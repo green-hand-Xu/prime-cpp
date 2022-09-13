@@ -44,6 +44,7 @@ void Upper(){
         vstr.push_back(str);        
     }
 
+//todo:没有判断 字符中间有空格的情况 ，解决方法加上 isspace(str) 判断是不是空格
     for(string &s:vstr){
         for(int i=0;i<=s.size()-1;i++){
             //将字符串内每个字符改成大写并保存回来

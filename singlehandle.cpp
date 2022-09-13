@@ -27,10 +27,10 @@ int main( )
     while (++i)
     {
         cout<<"sleeping"<<endl;
-        if(i==3){
-        //raise():生成信号 , 并给自己发送这个信号
-        raise(SIGINT);
-        }
+        // if(i==3){
+        // //raise():生成信号 , 并给自己发送这个信号
+        // raise(SIGINT);
+        // }
         sleep(1);
     }
     

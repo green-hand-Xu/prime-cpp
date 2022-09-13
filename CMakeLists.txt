@@ -13,7 +13,7 @@ find_package (Threads REQUIRED)
 #     Object_two/inc
 # 
 
-add_executable(demo Vector.cpp)
+add_executable(demo iterator.cpp)
 
 target_link_libraries(demo pthread)
 

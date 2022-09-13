@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/xyb/CPPOUT/CPP_dairly_demo/build",
-  "command": "/usr/bin/c++    -g   -std=gnu++14 -o CMakeFiles/demo.dir/Vector.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/Vector.cpp",
-  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/Vector.cpp"
+  "command": "/usr/bin/c++    -g   -std=gnu++14 -o CMakeFiles/demo.dir/iterator.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/iterator.cpp",
+  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/iterator.cpp"
 }
 ]

@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-Vector.o: Vector.cpp.o
+iterator.o: iterator.cpp.o
 
-.PHONY : Vector.o
+.PHONY : iterator.o
 
 # target to build an object file
-Vector.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/Vector.cpp.o
-.PHONY : Vector.cpp.o
+iterator.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/iterator.cpp.o
+.PHONY : iterator.cpp.o
 
-Vector.i: Vector.cpp.i
+iterator.i: iterator.cpp.i
 
-.PHONY : Vector.i
+.PHONY : iterator.i
 
 # target to preprocess a source file
-Vector.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/Vector.cpp.i
-.PHONY : Vector.cpp.i
+iterator.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/iterator.cpp.i
+.PHONY : iterator.cpp.i
 
-Vector.s: Vector.cpp.s
+iterator.s: iterator.cpp.s
 
-.PHONY : Vector.s
+.PHONY : iterator.s
 
 # target to generate assembly for a file
-Vector.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/Vector.cpp.s
-.PHONY : Vector.cpp.s
+iterator.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/iterator.cpp.s
+.PHONY : iterator.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... Vector.o"
-	@echo "... Vector.i"
-	@echo "... Vector.s"
+	@echo "... iterator.o"
+	@echo "... iterator.i"
+	@echo "... iterator.s"
 .PHONY : help
 
 
