@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/xyb/CPPOUT/CPP_dairly_demo/build",
-  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/std_forward.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp",
-  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp"
+  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp",
+  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp"
 }
 ]

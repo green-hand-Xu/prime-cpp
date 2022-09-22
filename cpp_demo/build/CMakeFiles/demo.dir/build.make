@@ -57,27 +57,27 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/std_forward.cpp.o: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/std_forward.cpp.o: ../std_forward.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/std_forward.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/std_forward.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp
+CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o: ../dynamic_pointer_cast.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp
 
-CMakeFiles/demo.dir/std_forward.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/std_forward.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp > CMakeFiles/demo.dir/std_forward.cpp.i
+CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp > CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.i
 
-CMakeFiles/demo.dir/std_forward.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/std_forward.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp -o CMakeFiles/demo.dir/std_forward.cpp.s
+CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp -o CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/std_forward.cpp.o"
+"CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o"
 
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo: CMakeFiles/demo.dir/std_forward.cpp.o
+demo: CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable demo"

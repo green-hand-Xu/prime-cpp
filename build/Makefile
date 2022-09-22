@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-std_forward.o: std_forward.cpp.o
+dynamic_pointer_cast.o: dynamic_pointer_cast.cpp.o
 
-.PHONY : std_forward.o
+.PHONY : dynamic_pointer_cast.o
 
 # target to build an object file
-std_forward.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/std_forward.cpp.o
-.PHONY : std_forward.cpp.o
+dynamic_pointer_cast.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o
+.PHONY : dynamic_pointer_cast.cpp.o
 
-std_forward.i: std_forward.cpp.i
+dynamic_pointer_cast.i: dynamic_pointer_cast.cpp.i
 
-.PHONY : std_forward.i
+.PHONY : dynamic_pointer_cast.i
 
 # target to preprocess a source file
-std_forward.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/std_forward.cpp.i
-.PHONY : std_forward.cpp.i
+dynamic_pointer_cast.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.i
+.PHONY : dynamic_pointer_cast.cpp.i
 
-std_forward.s: std_forward.cpp.s
+dynamic_pointer_cast.s: dynamic_pointer_cast.cpp.s
 
-.PHONY : std_forward.s
+.PHONY : dynamic_pointer_cast.s
 
 # target to generate assembly for a file
-std_forward.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/std_forward.cpp.s
-.PHONY : std_forward.cpp.s
+dynamic_pointer_cast.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.s
+.PHONY : dynamic_pointer_cast.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... std_forward.o"
-	@echo "... std_forward.i"
-	@echo "... std_forward.s"
+	@echo "... dynamic_pointer_cast.o"
+	@echo "... dynamic_pointer_cast.i"
+	@echo "... dynamic_pointer_cast.s"
 .PHONY : help
 
 

@@ -17,7 +17,7 @@ std::mutex mtx;           // locks access to counter
 void attempt_10k_increases() {
     for (int i=0; i<10000; ++i) {
         if (mtx.try_lock()) {   // only increase if currently not locked:
-            // mtx.lock();
+            //mtx.lock();
             ++counter;
             mtx.unlock();
         }

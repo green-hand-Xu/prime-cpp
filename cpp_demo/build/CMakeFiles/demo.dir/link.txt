@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/demo.dir/std_forward.cpp.o  -o demo  -lpthread 
+/usr/bin/c++     CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o  -o demo  -lpthread 

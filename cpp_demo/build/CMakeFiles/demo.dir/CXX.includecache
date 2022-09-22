@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp
+/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/dynamic_pointer_cast.cpp
 iostream
+-
+memory
 -
 
