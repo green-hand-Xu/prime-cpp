@@ -43,7 +43,7 @@ RM = /home/xyb/cmake-3.16.0-Linux-x86_64/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xyb/CPPOUT/CPP_dairly_demo
+CMAKE_SOURCE_DIR = /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/xyb/CPPOUT/CPP_dairly_demo/build
@@ -57,27 +57,27 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/iterator.cpp.o: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/iterator.cpp.o: ../iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/iterator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/iterator.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/iterator.cpp
+CMakeFiles/demo.dir/std_forward.cpp.o: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/std_forward.cpp.o: /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/std_forward.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/std_forward.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp
 
-CMakeFiles/demo.dir/iterator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/iterator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/iterator.cpp > CMakeFiles/demo.dir/iterator.cpp.i
+CMakeFiles/demo.dir/std_forward.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/std_forward.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp > CMakeFiles/demo.dir/std_forward.cpp.i
 
-CMakeFiles/demo.dir/iterator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/iterator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/iterator.cpp -o CMakeFiles/demo.dir/iterator.cpp.s
+CMakeFiles/demo.dir/std_forward.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/std_forward.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp -o CMakeFiles/demo.dir/std_forward.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/iterator.cpp.o"
+"CMakeFiles/demo.dir/std_forward.cpp.o"
 
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo: CMakeFiles/demo.dir/iterator.cpp.o
+demo: CMakeFiles/demo.dir/std_forward.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable demo"
@@ -93,6 +93,6 @@ CMakeFiles/demo.dir/clean:
 .PHONY : CMakeFiles/demo.dir/clean
 
 CMakeFiles/demo.dir/depend:
-	cd /home/xyb/CPPOUT/CPP_dairly_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xyb/CPPOUT/CPP_dairly_demo /home/xyb/CPPOUT/CPP_dairly_demo /home/xyb/CPPOUT/CPP_dairly_demo/build /home/xyb/CPPOUT/CPP_dairly_demo/build /home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles/demo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/xyb/CPPOUT/CPP_dairly_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo /home/xyb/CPPOUT/CPP_dairly_demo/build /home/xyb/CPPOUT/CPP_dairly_demo/build /home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles/demo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/demo.dir/depend
 

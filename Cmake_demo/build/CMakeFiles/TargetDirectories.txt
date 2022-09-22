@@ -1,0 +1,4 @@
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles/edit_cache.dir
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles/mymathapp.dir
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles/rebuild_cache.dir
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles/mymath.dir

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/main.cpp
+iostream
+-
+signal.h
+-
+unistd.h
+-
+mymath.h
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/mymath.h
+
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/mymath.cpp
+mymath.h
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/mymath.h
+
+/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/mymath.h
+

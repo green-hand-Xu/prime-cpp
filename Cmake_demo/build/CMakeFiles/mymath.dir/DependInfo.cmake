@@ -4,12 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/std_forward.cpp" "/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles/demo.dir/std_forward.cpp.o"
+  "/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/mymath.cpp" "/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles/mymath.dir/mymath.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "mymath_EXPORTS"
+  )
+
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   )
 
 # Targets to which this target links.

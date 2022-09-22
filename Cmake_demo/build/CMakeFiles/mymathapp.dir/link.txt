@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/mymathapp.dir/main.cpp.o CMakeFiles/mymathapp.dir/mymath.cpp.o  -o mymathapp  -Wl,-rpath,/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build libmymath.so 
