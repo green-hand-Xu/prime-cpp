@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/demo.dir/std_forward.cpp.o  -o demo  -lpthread 
