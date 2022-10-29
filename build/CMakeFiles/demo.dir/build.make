@@ -57,27 +57,27 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/iterator.cpp.o: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/iterator.cpp.o: /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/iterator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/iterator.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/iterator.cpp
+CMakeFiles/demo.dir/point.cpp.o: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/point.cpp.o: /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/point.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/point.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp
 
-CMakeFiles/demo.dir/iterator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/iterator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/iterator.cpp > CMakeFiles/demo.dir/iterator.cpp.i
+CMakeFiles/demo.dir/point.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/point.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp > CMakeFiles/demo.dir/point.cpp.i
 
-CMakeFiles/demo.dir/iterator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/iterator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/iterator.cpp -o CMakeFiles/demo.dir/iterator.cpp.s
+CMakeFiles/demo.dir/point.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/point.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp -o CMakeFiles/demo.dir/point.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/iterator.cpp.o"
+"CMakeFiles/demo.dir/point.cpp.o"
 
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo: CMakeFiles/demo.dir/iterator.cpp.o
+demo: CMakeFiles/demo.dir/point.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable demo"
