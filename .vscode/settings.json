@@ -34,7 +34,10 @@
         "tuple": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "bit": "cpp",
+        "memory": "cpp"
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/cpp_demo"
+    "cmake.sourceDirectory": "${workspaceFolder}/cpp_demo",
+    "winopacity.opacity": 220
 }

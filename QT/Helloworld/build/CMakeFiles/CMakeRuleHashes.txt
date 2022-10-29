@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+9411bb145d295da2a67ddbb4d0c10330 ../Helloworld_zh_CN.ts
+241cc0c287b4bd8448c72ed3b6ce03fc CMakeFiles/helloworld_autogen

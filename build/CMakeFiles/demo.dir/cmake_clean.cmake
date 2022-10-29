@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o"
+  "CMakeFiles/demo.dir/iterator.cpp.o"
   "demo"
   "demo.pdb"
 )

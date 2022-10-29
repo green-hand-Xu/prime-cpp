@@ -1216,6 +1216,30 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo"
+		},
+		{
+			"name" : "iterator_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/xyb/CPPOUT/CPP_dairly_demo/build"
+		},
+		{
+			"name" : "iterator_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo"
 		}
 	],
 	"kind" : "cache",

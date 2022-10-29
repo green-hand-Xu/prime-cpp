@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-dynamic_pointer_cast.o: dynamic_pointer_cast.cpp.o
+point.o: point.cpp.o
 
-.PHONY : dynamic_pointer_cast.o
+.PHONY : point.o
 
 # target to build an object file
-dynamic_pointer_cast.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.o
-.PHONY : dynamic_pointer_cast.cpp.o
+point.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.o
+.PHONY : point.cpp.o
 
-dynamic_pointer_cast.i: dynamic_pointer_cast.cpp.i
+point.i: point.cpp.i
 
-.PHONY : dynamic_pointer_cast.i
+.PHONY : point.i
 
 # target to preprocess a source file
-dynamic_pointer_cast.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.i
-.PHONY : dynamic_pointer_cast.cpp.i
+point.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.i
+.PHONY : point.cpp.i
 
-dynamic_pointer_cast.s: dynamic_pointer_cast.cpp.s
+point.s: point.cpp.s
 
-.PHONY : dynamic_pointer_cast.s
+.PHONY : point.s
 
 # target to generate assembly for a file
-dynamic_pointer_cast.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/dynamic_pointer_cast.cpp.s
-.PHONY : dynamic_pointer_cast.cpp.s
+point.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.s
+.PHONY : point.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... dynamic_pointer_cast.o"
-	@echo "... dynamic_pointer_cast.i"
-	@echo "... dynamic_pointer_cast.s"
+	@echo "... point.o"
+	@echo "... point.i"
+	@echo "... point.s"
 .PHONY : help
 
 

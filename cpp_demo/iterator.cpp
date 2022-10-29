@@ -7,7 +7,7 @@ using namespace std;
 *迭代器的使用
 *可以用 a.begin()!=a.end() 语句判断 a 是不是空内容
 *为空则返回的都是尾后迭代器
-
+*   *iter 表示迭代器所指的元素的引用
 *声明迭代器类型变量 
 *vector<int>::iterator it;  可用 it 对元素进行读写
 *string::iterator it;       可用 it 读写单个字符
@@ -44,20 +44,27 @@ void shouzimudaxie(){
 
 // 翻倍 容器内元素值
 void fanbei(){
-    vector<int> vec;
-    int a;
-    cout<<"输入int值存入 容器中 , 输入任意非字符结束。"<<endl;
-    while (cin>>a)
+    struct str
     {
-        vec.push_back(a);
+        std::string str;
+    };
+    
+    vector<str> vec;
+    std::string a;
+    cout<<"输入string值存入 容器中 , 输入 z 字符结束。"<<endl;
+    while (cin>>a && a != "z")
+    {
+        str b ;
+        b.str = a;
+        vec.push_back(b);
     }
-    //翻倍容器内容并输出
+    // 容器内首字母大写
     for(auto v = vec.begin() ; v != vec.end(); ++v){
-        *v=*v*2;
+        v->str =toupper((v->str)[0]) ;
     }
     for (auto v = vec.begin() ; v != vec.end(); ++v)
     {
-        cout<<*v<<" ";
+        std::cout<<v->str<<" "<<std::endl;
     }
 }
 
@@ -78,12 +85,11 @@ void erfenchazhao(){
     }
 
     cout<<*mid<<endl;
-    
 }
 
 int main(){
 
-    erfenchazhao();
+    fanbei();
 
 
     return 0;
