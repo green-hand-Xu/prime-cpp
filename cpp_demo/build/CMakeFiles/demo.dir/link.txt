@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/demo.dir/point.cpp.o  -o demo  -lpthread 
+/usr/bin/c++     CMakeFiles/demo.dir/array.cpp.o  -o demo  -lpthread 

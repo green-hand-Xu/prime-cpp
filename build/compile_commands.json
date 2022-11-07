@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/xyb/CPPOUT/CPP_dairly_demo/build",
-  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/point.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp",
-  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp"
+  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/array.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/array.cpp",
+  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/array.cpp"
 }
 ]

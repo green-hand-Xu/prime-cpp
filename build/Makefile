@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-point.o: point.cpp.o
+array.o: array.cpp.o
 
-.PHONY : point.o
+.PHONY : array.o
 
 # target to build an object file
-point.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.o
-.PHONY : point.cpp.o
+array.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/array.cpp.o
+.PHONY : array.cpp.o
 
-point.i: point.cpp.i
+array.i: array.cpp.i
 
-.PHONY : point.i
+.PHONY : array.i
 
 # target to preprocess a source file
-point.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.i
-.PHONY : point.cpp.i
+array.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/array.cpp.i
+.PHONY : array.cpp.i
 
-point.s: point.cpp.s
+array.s: array.cpp.s
 
-.PHONY : point.s
+.PHONY : array.s
 
 # target to generate assembly for a file
-point.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/point.cpp.s
-.PHONY : point.cpp.s
+array.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/array.cpp.s
+.PHONY : array.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... point.o"
-	@echo "... point.i"
-	@echo "... point.s"
+	@echo "... array.o"
+	@echo "... array.i"
+	@echo "... array.s"
 .PHONY : help
 
 

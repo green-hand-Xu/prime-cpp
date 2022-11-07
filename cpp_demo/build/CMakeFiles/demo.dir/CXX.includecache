@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/point.cpp
-stdio.h
+/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/array.cpp
+iostream
+-
+vector
 -
 

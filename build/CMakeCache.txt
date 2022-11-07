@@ -214,12 +214,6 @@ demo_BINARY_DIR:STATIC=/home/xyb/CPPOUT/CPP_dairly_demo/build
 //Value Computed by CMake
 demo_SOURCE_DIR:STATIC=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo
 
-//Value Computed by CMake
-iterator_BINARY_DIR:STATIC=/home/xyb/CPPOUT/CPP_dairly_demo/build
-
-//Value Computed by CMake
-iterator_SOURCE_DIR:STATIC=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo
-
 
 ########################
 # INTERNAL cache entries
