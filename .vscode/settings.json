@@ -36,7 +36,8 @@
         "utility": "cpp",
         "thread": "cpp",
         "bit": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "list": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/cpp_demo",
     "winopacity.opacity": 220

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 /*
 *数组
 *定义数组，数组的长度 必须是一个常量表达式 如字面值 或者 constexpr 修饰的
@@ -30,7 +31,7 @@ void Explicit_initialization(){
     }
     cout<<endl;
 
-    //创建多维数组
+    //创建多维数组  
     int ia[3][4];//大小为3的数组，每个元素是含有4个整数的数组
     int arr[10][20][30] = {0};// 大小为10的数组，他的每个元素都是大小为20的数组，这些数组元素是含有30个整数的数组。
 
@@ -93,9 +94,90 @@ void copyv2a(){
     cout<<std::endl;
 }
 
+//二维数组，元素的位置索引作为他的值
+void erweishuzu() {
+    constexpr size_t rowCnt = 3, colCnt = 4;
+    int ia[rowCnt][colCnt]; //12个未初始化的元素
+    for (size_t i = 0; i != rowCnt; i++){
+        for (size_t j = 0;j != colCnt; j++){
+            ia[i][j] = i * colCnt +j;
+        }
+    }
 
+    cout<<"输出的是数组中存的数组的首地址："<<std::endl;
+
+    for(auto a:ia){
+        cout<<a<<" ";
+    }
+    cout<<'\n';
+    cout<<"输出的是数组中存的数"<<std::endl;
+    for(auto &a:ia){
+        for(auto b:a){
+            cout<<b<<" ";
+        }
+    }
+    cout<<std::endl;
+}
+
+void zhizhenandshuzu(){
+    constexpr size_t rowCnt = 3, colCnt = 4;
+    int ia[rowCnt][colCnt];
+    for (size_t i = 0; i != rowCnt; i++){
+        for (size_t j = 0;j != colCnt; j++){
+            ia[i][j] = i * colCnt +j;
+        }
+    }
+
+    int (*p)[4] = ia; //p指向ia的内层元素 是个包含4个整数的数组
+    p = &ia[2];
+    
+    for(auto p = ia ; p != ia+3 ;++p){
+        for(auto q = *p ; q != *p+4 ; ++q){
+            cout<< *q << ' ';
+        }
+        cout<<'\n';
+    }
+
+}
+
+//不使用 auto 或 decltype 关键字 对数组输出  （理解具体类型）
+void shuzu()
+{
+    constexpr size_t rowCnt = 3, colCnt = 4;
+    int ia[rowCnt][colCnt];
+    for (size_t i = 0; i != rowCnt; i++){
+        for (size_t j = 0;j != colCnt; j++){
+            ia[i][j] = i * colCnt +j;
+        }
+    }
+
+    // 1、 使用普通for 指针形式  //TODO:仔细理解！
+    for(int (*i)[4] = ia ; i!=ia+3 ; i++){
+        for(int *n=*i ; n != *i+4 ; n++){
+            cout<<*n<<' ';
+        }
+        cout<<'\n';
+    }
+
+    //2、使用范围for循环    //TODO:仔细理解 和普通for循环的不同 范围for 循环元素 要有迭代器操作才行
+    for(int (&i)[4]:ia){
+        for(int j:i){
+            cout<<j<<' ';
+        }
+        cout<<'\n';
+    }
+
+    //3、使用普通for 下标形式
+    for(int i=0; i !=3 ; i++){
+        for(int j = 0 ; j !=4 ; j++){
+            cout<<ia[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
+
+}
 
 
 int main(){
-    copyv2a();
+    shuzu();
 }
