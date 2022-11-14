@@ -179,5 +179,6 @@ void shuzu()
 
 
 int main(){
+    
     shuzu();
 }

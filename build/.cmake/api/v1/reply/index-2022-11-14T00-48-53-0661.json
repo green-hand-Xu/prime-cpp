@@ -25,7 +25,7 @@
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-08d8bfe2dd712c08c2f0.json",
+			"jsonFile" : "codemodel-v2-06350e7f23ec864dfb80.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -89,7 +89,7 @@
 						}
 					},
 					{
-						"jsonFile" : "codemodel-v2-08d8bfe2dd712c08c2f0.json",
+						"jsonFile" : "codemodel-v2-06350e7f23ec864dfb80.json",
 						"kind" : "codemodel",
 						"version" : 
 						{
