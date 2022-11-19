@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp
+/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/per.cpp
 iostream
 -
-vector
+string
 -
+cstring
+/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/cstring
 

@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/demo.dir/biaodashi.cpp.o  -o demo  -lpthread 
+/usr/bin/c++     CMakeFiles/demo.dir/per.cpp.o  -o demo  -lpthread 

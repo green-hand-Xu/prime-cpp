@@ -57,27 +57,27 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/biaodashi.cpp.o: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/biaodashi.cpp.o: ../biaodashi.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/biaodashi.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/biaodashi.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp
+CMakeFiles/demo.dir/per.cpp.o: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/per.cpp.o: ../per.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/per.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/per.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/per.cpp
 
-CMakeFiles/demo.dir/biaodashi.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/biaodashi.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp > CMakeFiles/demo.dir/biaodashi.cpp.i
+CMakeFiles/demo.dir/per.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/per.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/per.cpp > CMakeFiles/demo.dir/per.cpp.i
 
-CMakeFiles/demo.dir/biaodashi.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/biaodashi.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp -o CMakeFiles/demo.dir/biaodashi.cpp.s
+CMakeFiles/demo.dir/per.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/per.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/per.cpp -o CMakeFiles/demo.dir/per.cpp.s
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/biaodashi.cpp.o"
+"CMakeFiles/demo.dir/per.cpp.o"
 
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo: CMakeFiles/demo.dir/biaodashi.cpp.o
+demo: CMakeFiles/demo.dir/per.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable demo"

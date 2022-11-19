@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-biaodashi.o: biaodashi.cpp.o
+per.o: per.cpp.o
 
-.PHONY : biaodashi.o
+.PHONY : per.o
 
 # target to build an object file
-biaodashi.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.o
-.PHONY : biaodashi.cpp.o
+per.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/per.cpp.o
+.PHONY : per.cpp.o
 
-biaodashi.i: biaodashi.cpp.i
+per.i: per.cpp.i
 
-.PHONY : biaodashi.i
+.PHONY : per.i
 
 # target to preprocess a source file
-biaodashi.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.i
-.PHONY : biaodashi.cpp.i
+per.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/per.cpp.i
+.PHONY : per.cpp.i
 
-biaodashi.s: biaodashi.cpp.s
+per.s: per.cpp.s
 
-.PHONY : biaodashi.s
+.PHONY : per.s
 
 # target to generate assembly for a file
-biaodashi.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.s
-.PHONY : biaodashi.cpp.s
+per.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/per.cpp.s
+.PHONY : per.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... biaodashi.o"
-	@echo "... biaodashi.i"
-	@echo "... biaodashi.s"
+	@echo "... per.o"
+	@echo "... per.i"
+	@echo "... per.s"
 .PHONY : help
 
 
