@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/demo.dir/per.cpp.o  -o demo  -lpthread 
+/usr/bin/c++  -g   CMakeFiles/demo.dir/expression.cpp.o  -o demo  -lpthread 

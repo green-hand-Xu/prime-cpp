@@ -4,6 +4,3 @@
 CMakeFiles/mymathapp.dir/main.cpp.o: ../main.cpp
 CMakeFiles/mymathapp.dir/main.cpp.o: ../mymath.h
 
-CMakeFiles/mymathapp.dir/mymath.cpp.o: ../mymath.cpp
-CMakeFiles/mymathapp.dir/mymath.cpp.o: ../mymath.h
-

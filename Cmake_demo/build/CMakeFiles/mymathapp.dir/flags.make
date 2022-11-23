@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/include 
+CXX_INCLUDES = 
 

@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/mymathapp.dir/main.cpp.o"
-  "CMakeFiles/mymathapp.dir/mymath.cpp.o"
   "mymathapp"
   "mymathapp.pdb"
 )

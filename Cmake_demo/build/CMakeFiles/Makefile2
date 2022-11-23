@@ -54,7 +54,6 @@ CMAKE_BINARY_DIR = /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build
 
 # The main recursive "all" target.
 all: CMakeFiles/mymathapp.dir/all
-all: CMakeFiles/mymath.dir/all
 
 .PHONY : all
 
@@ -65,7 +64,6 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/mymathapp.dir/clean
-clean: CMakeFiles/mymath.dir/clean
 
 .PHONY : clean
 
@@ -73,15 +71,15 @@ clean: CMakeFiles/mymath.dir/clean
 # Target rules for target CMakeFiles/mymathapp.dir
 
 # All Build rule for target.
-CMakeFiles/mymathapp.dir/all: CMakeFiles/mymath.dir/all
+CMakeFiles/mymathapp.dir/all:
 	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/depend
 	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles --progress-num=3,4,5 "Built target mymathapp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles --progress-num=1,2 "Built target mymathapp"
 .PHONY : CMakeFiles/mymathapp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/mymathapp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mymathapp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/mymathapp.dir/rule
@@ -95,33 +93,6 @@ mymathapp: CMakeFiles/mymathapp.dir/rule
 CMakeFiles/mymathapp.dir/clean:
 	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/clean
 .PHONY : CMakeFiles/mymathapp.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/mymath.dir
-
-# All Build rule for target.
-CMakeFiles/mymath.dir/all:
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/depend
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles --progress-num=1,2 "Built target mymath"
-.PHONY : CMakeFiles/mymath.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/mymath.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mymath.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/mymath.dir/rule
-
-# Convenience name for target.
-mymath: CMakeFiles/mymath.dir/rule
-
-.PHONY : mymath
-
-# clean rule for target.
-CMakeFiles/mymath.dir/clean:
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/clean
-.PHONY : CMakeFiles/mymath.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

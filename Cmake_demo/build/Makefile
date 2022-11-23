@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/xyb/CPPOUT/CPP_dairly_demo/Cmake_demo/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/home/xyb/cmake-3.16.0-Linux-x86_64/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/home/xyb/cmake-3.16.0-Linux-x86_64/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -123,19 +123,6 @@ mymathapp/fast:
 	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/build
 .PHONY : mymathapp/fast
 
-#=============================================================================
-# Target rules for targets named mymath
-
-# Build rule for target.
-mymath: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mymath
-.PHONY : mymath
-
-# fast build rule for target.
-mymath/fast:
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/build
-.PHONY : mymath/fast
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -163,52 +150,18 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-mymath.o: mymath.cpp.o
-
-.PHONY : mymath.o
-
-# target to build an object file
-mymath.cpp.o:
-	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/mymath.cpp.o
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/mymath.cpp.o
-.PHONY : mymath.cpp.o
-
-mymath.i: mymath.cpp.i
-
-.PHONY : mymath.i
-
-# target to preprocess a source file
-mymath.cpp.i:
-	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/mymath.cpp.i
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/mymath.cpp.i
-.PHONY : mymath.cpp.i
-
-mymath.s: mymath.cpp.s
-
-.PHONY : mymath.s
-
-# target to generate assembly for a file
-mymath.cpp.s:
-	$(MAKE) -f CMakeFiles/mymathapp.dir/build.make CMakeFiles/mymathapp.dir/mymath.cpp.s
-	$(MAKE) -f CMakeFiles/mymath.dir/build.make CMakeFiles/mymath.dir/mymath.cpp.s
-.PHONY : mymath.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... mymathapp"
-	@echo "... rebuild_cache"
-	@echo "... mymath"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... mymath.o"
-	@echo "... mymath.i"
-	@echo "... mymath.s"
 .PHONY : help
 
 

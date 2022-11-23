@@ -13,7 +13,7 @@ using namespace std;
 
 int main(){
 
-    cout<<sizeof(string *)<<endl;
+    cout<<(~1)<<" "<<sizeof(~1)<<endl;
 
     return 0;
 }

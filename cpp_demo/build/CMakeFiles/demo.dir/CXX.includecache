@@ -6,13 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/per.cpp
+/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/expression.cpp
 iostream
--
-string
--
-map
--
-cstring
 -
 
