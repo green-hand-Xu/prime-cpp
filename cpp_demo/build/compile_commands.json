@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/build",
-  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/expression.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/expression.cpp",
-  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/expression.cpp"
+  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/biaodashi.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp",
+  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/biaodashi.cpp"
 }
 ]
