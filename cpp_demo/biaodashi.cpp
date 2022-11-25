@@ -73,9 +73,18 @@ void demo4(){
     }
 }
 
+void demo5(){
+    double d = 3.14;
+    void* p = &d;//正确：任何非常量对象的地址都能存入void*
+
+    // 将void* 转换回初始的指针类型
+    double *dp = static_cast<double*>(p); 
+    cout<<*dp<<endl;
+}
+
 int main(){
 
-   demo4();
+   demo5();
 
     return 0;
 }
