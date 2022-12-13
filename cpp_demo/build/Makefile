@@ -123,32 +123,32 @@ demo/fast:
 	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
-biaodashi.o: biaodashi.cpp.o
+baseandson.o: baseandson.cpp.o
 
-.PHONY : biaodashi.o
+.PHONY : baseandson.o
 
 # target to build an object file
-biaodashi.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.o
-.PHONY : biaodashi.cpp.o
+baseandson.cpp.o:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/baseandson.cpp.o
+.PHONY : baseandson.cpp.o
 
-biaodashi.i: biaodashi.cpp.i
+baseandson.i: baseandson.cpp.i
 
-.PHONY : biaodashi.i
+.PHONY : baseandson.i
 
 # target to preprocess a source file
-biaodashi.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.i
-.PHONY : biaodashi.cpp.i
+baseandson.cpp.i:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/baseandson.cpp.i
+.PHONY : baseandson.cpp.i
 
-biaodashi.s: biaodashi.cpp.s
+baseandson.s: baseandson.cpp.s
 
-.PHONY : biaodashi.s
+.PHONY : baseandson.s
 
 # target to generate assembly for a file
-biaodashi.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/biaodashi.cpp.s
-.PHONY : biaodashi.cpp.s
+baseandson.cpp.s:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/baseandson.cpp.s
+.PHONY : baseandson.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... demo"
-	@echo "... biaodashi.o"
-	@echo "... biaodashi.i"
-	@echo "... biaodashi.s"
+	@echo "... baseandson.o"
+	@echo "... baseandson.i"
+	@echo "... baseandson.s"
 .PHONY : help
 
 

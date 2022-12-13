@@ -1,21 +1,13 @@
 #include <iostream>
 #include <string>
+#include <future>
+
+using namespace std;
 
 int main(){
 
-    std::string word("some string");
-    // while (std::cin>>word)
-    // {
-    //     std::cout<<word<<std::endl;
-    // }
-    
-    for(auto c:word){
-        std::cout<<c<<std::endl;
+    if (true && false){
+        cout<<"abc"<<endl;
     }
-
-    /*
-        ispunct(c) 判断字符是不是标点符号    
-    */
-
     return 0;
 }
