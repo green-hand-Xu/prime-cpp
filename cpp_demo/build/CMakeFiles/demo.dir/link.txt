@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/demo.dir/baseandson.cpp.o  -o demo  -lpthread 

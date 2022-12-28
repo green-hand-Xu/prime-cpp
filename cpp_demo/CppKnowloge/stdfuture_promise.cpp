@@ -3,20 +3,28 @@
 //c++ std::promise std::future
 #include <thread>
 
+
+struct Stu{
+
+    int No;
+
+}Stu1;
+
+
+
 //模拟Pport中的method
-std::future<char*> future(){
-    std::promise<char*> ret;
-    //
-    //
-    
-    ret.set_value("OK");
+std::future<Stu> future(){
+    std::promise<Stu> ret;
+
+    ret.set_value({1});
     return ret.get_future();
 }
 
 //模拟调用Rport的method
 void ret(){
     auto ret = future();
-    std::cout<<ret.get()<<std::endl;
+    auto Ret = static_cast<int>(ret.get().No);
+     std::cout<<Ret<<std::endl;
 }
 
 int main()
