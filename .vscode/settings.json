@@ -39,6 +39,6 @@
         "memory": "cpp",
         "list": "cpp"
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/cpp_demo",
+    "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220
 }

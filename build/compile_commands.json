@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/xyb/CPPOUT/CPP_dairly_demo/build",
-  "command": "/usr/bin/c++    -g   -std=gnu++17 -o CMakeFiles/demo.dir/main.cpp.o -c /home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/main.cpp",
-  "file": "/home/xyb/CPPOUT/CPP_dairly_demo/cpp_demo/main.cpp"
-}
-]

@@ -1,4 +1,0 @@
-/home/xyb/CPPOUT/CPP_dairly_demo/QT/Helloworld/build/CMakeFiles/edit_cache.dir
-/home/xyb/CPPOUT/CPP_dairly_demo/QT/Helloworld/build/CMakeFiles/rebuild_cache.dir
-/home/xyb/CPPOUT/CPP_dairly_demo/QT/Helloworld/build/CMakeFiles/helloworld.dir
-/home/xyb/CPPOUT/CPP_dairly_demo/QT/Helloworld/build/CMakeFiles/helloworld_autogen.dir
