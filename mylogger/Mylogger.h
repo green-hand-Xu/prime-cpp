@@ -26,20 +26,32 @@ enum log_target{file, terminal, file_and_terminal};// 日志输出目标
 
 /**
  * @brief 获取当前时间
- * 使用 time 库的 time_t time (time_t *__timer) 方法 返回类型为 time_t 对象
+ * 使用 time 库的 time_t time (time_t *__timer) 方法 返回类型为 time_t 对象 并赋值给传入的对象。
  * 
  * @return string 
  */
 string currTime(){
-    // 创建 time_t 类型 变量
+    // 创建 time_t 类型 变量 实际类型为 long int
     time_t nowtime;
     //创建编译器内置时间结构体
     struct tm* p;
-    time(&nowtime);
-    p = localtime(&nowtime);
-    printf("%02d:%02d:%02d\n",p->tm_hour,p->tm_min,p->tm_sec);
+    string t ;
+    time(&nowtime); //*获取当前时间，并保存到 nowtime 中
 
-    return "a";
+    //* localtime( time_t 对象指针 )返回“struct tm”表示 *TIMER的本地时区
+    //* 该结构体可用于输出关于日期时间的相关属性值，但是为int类型 不适合当作字符串输出
+    p = localtime(&nowtime); 
+
+    char tmp[256];
+    //* strftime(目标字符串，最多传出字符数量 ，格式化方式 ，tm 结构体指针 ) 
+    //* 可以将格式化后的时间格式字符串 写到目标char数组中
+    //* 第四个参数为 tm 结构体指针对象， 可用 localtime（）方法 返回此对象
+    //* 适合返回字符串进行打印。
+    //* 常用格式化方式 ：%a 星期几的简写 %A 星期几的全称 %b 月份的简写 %B 月份的全称
+    //* %F 年-月-日 %T 时-分-秒    %Y 年   % m 月 %d 日  %H 时 %M 分 %S 妙
+    strftime(tmp,sizeof(tmp),"%F %T",localtime(&nowtime));
+
+    return tmp;
 }
 
 

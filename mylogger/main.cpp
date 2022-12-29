@@ -1,10 +1,13 @@
 #include "Mylogger.h"
 
+#include <iostream>
 
+using namespace std;
 
 int main(){
 
-    currTime();
+    auto a = currTime();
+    cout << a <<endl;
 
     return 0;
 }
