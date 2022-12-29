@@ -1,3 +1,0 @@
-/home/xyb/CPPOUT/CPP_dairly_demo/mylogger/build/CMakeFiles/rebuild_cache.dir
-/home/xyb/CPPOUT/CPP_dairly_demo/mylogger/build/CMakeFiles/edit_cache.dir
-/home/xyb/CPPOUT/CPP_dairly_demo/mylogger/build/CMakeFiles/mylogger.dir
