@@ -37,7 +37,19 @@
         "thread": "cpp",
         "bit": "cpp",
         "memory": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "chrono": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "condition_variable": "cpp",
+        "cstddef": "cpp",
+        "cstring": "cpp",
+        "deque": "cpp",
+        "set": "cpp",
+        "functional": "cpp",
+        "mutex": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220

@@ -16,7 +16,7 @@ using std::ios;
 //** 声明一个指针对象 并不是直接声明了 这个指针类型的一个对象，此时这个指针为空
 
 /**
- * @brief 简单的日志类实现
+ *  @brief 简单的日志类实现
  *  日志级别设置为 debug info warning error
  *  通过枚举雷的方式设置日志级别  和 日志输出目标格式
  */
@@ -37,6 +37,7 @@ string currTime(){
     struct tm* p;
     string t ;
     time(&nowtime); //*获取当前时间，并保存到 nowtime 中
+    auto a = time(NULL);
 
     //* localtime( time_t 对象指针 )返回“struct tm”表示 *TIMER的本地时区
     //* 该结构体可用于输出关于日期时间的相关属性值，但是为int类型 不适合当作字符串输出
@@ -50,6 +51,8 @@ string currTime(){
     //* 常用格式化方式 ：%a 星期几的简写 %A 星期几的全称 %b 月份的简写 %B 月份的全称
     //* %F 年-月-日 %T 时-分-秒    %Y 年   % m 月 %d 日  %H 时 %M 分 %S 妙
     strftime(tmp,sizeof(tmp),"%F %T",localtime(&nowtime));
+
+    cout<<"a"<<a<<endl;
 
     return tmp;
 }
