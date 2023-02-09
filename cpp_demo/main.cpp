@@ -1,51 +1,59 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
+#include<ctype.h>
+#include<vector>
 using namespace std;
- 
-class Base
-{
-private:
-    /* data */
-public:
-    Base(/* args */);
-    // ~Base();
-};
-
-Base::Base(/* args */)
-{
-    cout<<"父类构造函数"<<endl;
-}
-
-// Base::~Base()
-// {
-//     cout<<"父类析构函数"<<endl;
-// }
-
-class Son:public Base
-{
-private:
-    /* data */
-public:
-    Son(/* args */);
-    // ~Son();
-};
-
-Son::Son(/* args */)
-{
-    cout<<"子类构造函数"<<endl;
-}
-
-// Son::~Son()
-// {
-//     cout<<"子类析构函数"<<endl;
-// }
-
 
 int main()
 {
+    int i = 0;
+    while (cin>>i)
+    {
+        if(i == 5){
+            goto add;
+        }else{continue;}
 
-    Son son1;
-
+        add:i++;
+        cout<<i<<endl;
+    }
+    
     return 0;
 }
+
+// #include <iostream>
+// #include <string>
+
+// using std::string;
+// using std::cout;
+// using std::cin;
+// using std::endl;
+
+// int main()
+// {
+// 	string s,pres,max_string;
+// 	unsigned int cnt = 1,max_cnt = 1;
+
+// 	while(cin >> s && s!="quit")
+// 	{
+// 		if(s == pres)
+// 		{
+// 			++cnt;
+// 		}else
+// 		{
+// 			if(cnt > max_cnt)
+// 			{
+// 				max_cnt = cnt;
+// 				max_string = pres;
+// 			}
+// 			cnt = 1;
+// 		}
+// 		pres = s;
+// 	}
+// 	if(cnt > max_cnt)
+// 	{
+// 		max_cnt = cnt;
+// 		max_string = pres;
+// 	}
+
+// 	(max_cnt > 1) ? (cout << max_string << ":" << max_cnt << endl) : (cout << "no repeat" << endl);
+// 	return 0;
+// }
