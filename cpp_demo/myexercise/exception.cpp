@@ -13,14 +13,18 @@
 
 using namespace std;
 
-int sum(int a,int b){
+int sum(int,int);
 
+int sum(int a,int b){
+    int c;//内置类型的未初始化局部变量将产生未定义的值
+    cout<<c<<endl;
     throw runtime_error("error");
 
 }
 
 int main(){
     int a,b;
+    cout<<a<<endl;
     while(true){
         try{
             cin >> a >> b;
