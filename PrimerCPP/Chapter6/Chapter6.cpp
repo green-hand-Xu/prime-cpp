@@ -1,4 +1,6 @@
 #include <iostream>
+#include <initializer_list>
+#include <cstdlib>
 
 using namespace std;
 
@@ -49,6 +51,35 @@ void print(const int (&ia)[10])
 		cout << ia[i] << endl;
 }
 
+/**
+ * @brief 参数是initializer_list类型的对象
+ *          功能是计算列表中所有元素的和
+ * @param li 
+ */
+int demo(initializer_list<int> li){
+    int sum = 0;
+    for(auto e :li){
+        sum += e;
+    }
+    return sum;
+}
+/**
+ * @brief 声明一个返回数组指针的函数
+ *        数组的维度必须跟在函数名字之后
+ * @return int 
+ */
+int (*shuzu(int i))[10];
+
+//声明 尾置返回类型函数
+auto func(int i) -> int (*)[10];
+
+//使用别名 声明 返回数组指针的函数
+using arr = int[10];
+arr* func2(int i);
+
+//声明带有默认实参的函数  *一旦某个形参被赋予了默认值，它后面所有的形参都必须有默认值
+using sz = string::size_type;
+string screen(sz ht = 24, sz wid = 80 , char backgrnd = ' ' );
 
 int main(){
 //------------------ 6.22---------------------
@@ -66,5 +97,25 @@ int main(){
 //------------------6.24----------------------
     int p[10] = {1,2,3,4};
     print(p);
-    return 0;
+//------------------6.27----------------------
+    cout<<"demo() = "<<demo({1,2,3,4,5})<<endl;
+//return EXIT_SUCCESS或EXIT_FAILURE 是定义在cstdlib头文件里的预处理变量 表示成功或者失败
+// 预处理变量 不能加 std:: 也不能在 using声明中出现。
+    return EXIT_SUCCESS;
 }
+
+/**
+ * @brief 带参数的main函数
+ *          argv[0] 保存程序的名字，非用户收入。
+ *          接下来 依次传递命令行提供的实参进数组，最后一个指针之后的元素值保证为0.
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
+// int main(int argc,char *argv[]){
+
+//     cout<<argv[0]<<endl; 
+//     cout<<argv[1]<<endl;
+//     // cout<<sizeof(argv)<<endl; 
+//     cout<<argv[7]<<endl;
+// }

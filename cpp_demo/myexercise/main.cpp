@@ -1,59 +1,46 @@
 #include <iostream>
 #include<ctype.h>
 #include<vector>
+#include <cstdlib> // Header file needed to use srand and rand
+#include <ctime> // Header file needed to use time
 using namespace std;
+
+int range35(){
+    return rand()%35+1;
+}
+
+int range12(){
+    return rand()%12+1;
+}
 
 int main()
 {
-    int i = 0;
-    while (cin>>i)
-    {
-        if(i == 5){
-            goto add;
-        }else{continue;}
+    unsigned seed;  // Random generator seed
+    // Use the time function to get a "seed” value for srand
+    seed = time(0);
+    srand(seed);
 
-        add:i++;
-        cout<<i<<endl;
+    vector<int> vec;
+    for (int i = 0; i <5 ; i++)
+    {
+        int j = 0;
+        j = range35();
+        vec.push_back(j);
+    }
+
+    for (int i = 0; i < 2; i++)
+    {
+        int j = 0;
+        j = range12();
+        vec.push_back(j);
     }
     
-    return 0;
+    for (auto i = vec.begin(); i < vec.end(); i++)
+    {
+        cout<<*i<<" ";
+    }
+    cout<<endl;
+
+
 }
 
-// #include <iostream>
-// #include <string>
-
-// using std::string;
-// using std::cout;
-// using std::cin;
-// using std::endl;
-
-// int main()
-// {
-// 	string s,pres,max_string;
-// 	unsigned int cnt = 1,max_cnt = 1;
-
-// 	while(cin >> s && s!="quit")
-// 	{
-// 		if(s == pres)
-// 		{
-// 			++cnt;
-// 		}else
-// 		{
-// 			if(cnt > max_cnt)
-// 			{
-// 				max_cnt = cnt;
-// 				max_string = pres;
-// 			}
-// 			cnt = 1;
-// 		}
-// 		pres = s;
-// 	}
-// 	if(cnt > max_cnt)
-// 	{
-// 		max_cnt = cnt;
-// 		max_string = pres;
-// 	}
-
-// 	(max_cnt > 1) ? (cout << max_string << ":" << max_cnt << endl) : (cout << "no repeat" << endl);
-// 	return 0;
-// }
