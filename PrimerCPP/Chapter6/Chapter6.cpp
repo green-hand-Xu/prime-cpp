@@ -1,6 +1,11 @@
+// #define NDEBUG 1
+
 #include <iostream>
 #include <initializer_list>
 #include <cstdlib>
+//assert 预处理宏头文件
+#include <cassert>
+
 
 using namespace std;
 
@@ -80,6 +85,23 @@ arr* func2(int i);
 //声明带有默认实参的函数  *一旦某个形参被赋予了默认值，它后面所有的形参都必须有默认值
 using sz = string::size_type;
 string screen(sz ht = 24, sz wid = 80 , char backgrnd = ' ' );
+//默认实参初始值 也可以为表达式，只要类型能转换成形参所需类型即可(不能是局部变量)
+sz ht(){
+    cout<<"1"<<endl;
+    return 0;
+}
+
+sz ht2();
+string screen2(sz ht = ht2(), sz wid = 80 , char backgrnd = ' ' );
+
+string make_plural(size_t ctr, const string &word, const string &ending = "s")
+{
+	return (ctr > 1) ? word + ending : word;
+}
+
+void fun1(){
+    
+}
 
 int main(){
 //------------------ 6.22---------------------
@@ -89,6 +111,8 @@ int main(){
     int *B = &P; // 2
     swap(A,B); // A=2 B=1
     cout<<"A= "<<*A<<" B= "<<*B<<endl;
+//------------------6.5.3节---------------------
+    assert(0);
 //------------------6.23----------------------
     int i = 0;
     int j[2]={0,1};
@@ -101,12 +125,16 @@ int main(){
     cout<<"demo() = "<<demo({1,2,3,4,5})<<endl;
 //return EXIT_SUCCESS或EXIT_FAILURE 是定义在cstdlib头文件里的预处理变量 表示成功或者失败
 // 预处理变量 不能加 std:: 也不能在 using声明中出现。
-    return EXIT_SUCCESS;
+    // return EXIT_SUCCESS;
+//------------------6.42---------------------------
+    std::cout << make_plural(2, "success", "es") << std::endl;
+	std::cout << make_plural(2, "failure") << std::endl;
+    return 0;
 }
 
 /**
  * @brief 带参数的main函数
- *          argv[0] 保存程序的名字，非用户收入。
+ *          argv[0] 保存程序的名字，非用户输入。
  *          接下来 依次传递命令行提供的实参进数组，最后一个指针之后的元素值保证为0.
  * @param argc 
  * @param argv 

@@ -49,7 +49,9 @@
         "deque": "cpp",
         "set": "cpp",
         "functional": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "cassert": "cpp",
+        "csignal": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220
