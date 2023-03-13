@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package (Threads REQUIRED)
 
 
-add_executable(demo SingletonPattern.cpp)
+add_executable(demo forward-declaration/A.cpp)
 
 target_link_libraries(demo pthread)
 

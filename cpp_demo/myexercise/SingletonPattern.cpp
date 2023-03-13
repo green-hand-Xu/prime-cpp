@@ -38,6 +38,7 @@ SingletonPattern::SingletonPattern()
 SingletonPattern::~SingletonPattern()
 {
 	if (m_Instance != nullptr) {
+		cout << "进入循环？" << endl;
 		delete m_Instance;
 		m_Instance = nullptr;
 	}
@@ -62,12 +63,10 @@ void SingletonPattern::display()
 
 
 int main() {
-	// SingletonPattern* m_Test = SingletonPattern::GetInstance();
-	// m_Test->display();
-    // delete m_Test;
-	// cin.ignore();
-    int* a;
-    cout<<a<<endl;
+	SingletonPattern* m_Test = SingletonPattern::GetInstance();
+	m_Test->display();
+    delete m_Test;
+	cin.ignore();
 
 	return 0;
 }

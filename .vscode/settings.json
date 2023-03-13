@@ -51,7 +51,9 @@
         "functional": "cpp",
         "mutex": "cpp",
         "cassert": "cpp",
-        "csignal": "cpp"
+        "csignal": "cpp",
+        "cerrno": "cpp",
+        "ios": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220
