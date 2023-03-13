@@ -100,7 +100,11 @@ string make_plural(size_t ctr, const string &word, const string &ending = "s")
 }
 
 void fun1(){
-    
+    cout<< "func = "<<__func__<<endl;
+    cout<< "FILE = "<<__FILE__<<endl;
+    cout<< "LINE = "<<__LINE__<<endl;
+    cout<< "DATE = "<<__DATE__<<" ";
+    cout<< "TIME = "<<__TIME__<<endl;
 }
 
 int main(){
@@ -112,7 +116,7 @@ int main(){
     swap(A,B); // A=2 B=1
     cout<<"A= "<<*A<<" B= "<<*B<<endl;
 //------------------6.5.3节---------------------
-    assert(0);
+    // assert(0);
 //------------------6.23----------------------
     int i = 0;
     int j[2]={0,1};
@@ -129,6 +133,7 @@ int main(){
 //------------------6.42---------------------------
     std::cout << make_plural(2, "success", "es") << std::endl;
 	std::cout << make_plural(2, "failure") << std::endl;
+    fun1();
     return 0;
 }
 
