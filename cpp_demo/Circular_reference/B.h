@@ -6,8 +6,8 @@ public:
     B();
     ~B();
 
-    void funB();
-
+    void RegistGetHandler();
+    void GS2SMethod();
 
 };
 

@@ -7,8 +7,8 @@ public:
     A();
     ~A();
 
-    void funA();
-
+    void SkeletonMethod();
+    void Field_Update();
 
 };
 
