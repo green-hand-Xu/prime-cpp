@@ -35,6 +35,17 @@ struct Foo {
     }
     int data = 10;
 };
+//使用typedef 声明 函数指针 比传统方式声明 更简洁好用，可以当作参数 传进去，因为类型支持识别。
+typedef void (*PrintFinCallback)();
+void print(const char *text, PrintFinCallback callback) {
+    printf("%s\n", text);
+    callback();
+}
+
+void printFinCallback() {
+    cout << "hhh" << endl;
+}
+
 
 int main(){
 
@@ -66,10 +77,41 @@ int main(){
     }
     cout<<endl;
 
+    // 用于成员函数时，要传入对象实例，因为成员函数默认第一个为 this 指针参数，类型为自己的对象类型。
+    // 此时就需要补全参数。用于全局函数或者静态函数时则不用补全。
     cout<<"5、 bind 用于对象内的函数指针"<<endl;
     Foo foo;
-    auto f3 = std::bind(&Foo::print_sum,&foo,95,placeholders::_1);
-    f3(5);
+    Foo foo2;
+    foo.data = 100;
+    auto f3 = std::bind(&Foo::print_sum,&foo,1,placeholders::_1);
+    f3(1);
+
+    cout<<"6、函数指针的使用。"<<endl;
+    print("test", printFinCallback);
+
+/**
+ * @brief 结合 std::mem_fn 使用时，比直接在bind 定义时就绑定传入的实例对象而言 更加灵活，
+ *         因为可以只先绑定 对象类型 （函数或数据成员），然后用std::mem_fn 传入具体的实例对象
+ *          这样传入的实例对象就不会在一开始定死了。
+ * 
+ */
+    cout<<"7、bind 用于 std::mem_fn 对象 指向成员函数"<<endl;
+    auto ptr_to_print_sum = std::mem_fn(&Foo::print_sum);
+    auto f4 = std::bind(ptr_to_print_sum,&foo,95,placeholders::_1);
+    f4(5);
+
+    cout<<"8、bind 用于 一个指向成员数据的指针,可以输出成员值，此时占位符的入参为想要输出值的对象实例"<<endl;
+    auto f5 = std::bind(&Foo::data,placeholders::_1);
+    std::cout << f5(foo2)<<endl;
+
+    cout<<"9、bind 用于std::mem_fn 对象 指向成员内成员变量"<<endl;
+    auto ptr_to_data = std::mem_fn(&Foo::data);
+    auto f6 = std::bind(ptr_to_data,placeholders::_1);
+    cout<<f6(foo)<<endl;
+
+    cout<<"10、使用智能指针去调用对象成员的引用"<<endl;
+    cout<<f6(std::make_shared<Foo>(foo))<<endl;
+    cout<<f6(std::make_unique<Foo>(foo2))<<endl;
 
     return 0;
 }
