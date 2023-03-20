@@ -2,17 +2,33 @@
 
 using namespace std;
 
-enum class ModeSelectionCtrl_Command_Enum : std::uint8_t {
-    Static_Mode = 0,
-    Breathing_Mode = 1,
-    Flowing_Mode = 2,
-    Random_Mode = 5,
-    Welcome_Mode = 6,
-    Flash_Frequency_Mode = 7
+class Date
+{
+public:
+    //构造函数
+    Date(int year,int month,int day)
+    {
+        _year = year;
+        _month = month;
+        _day = day;
+    }
+    //拷贝构造函数
+    Date(const Date& d)
+    {
+        cout<<"拷贝构造函数"<<endl;
+        _year = d._year;
+        _month = d._month;
+        _day = d._day;
+    }
+private:
+    int _year;
+    int _month;
+    int _day;
 };
-
-int main(){
-
-    
-    return 0;
+int main()
+{
+    Date d1(2018,1,1);
+    //以下两种方法等价
+    Date d2(d1);
+    Date d3=d1;
 }
