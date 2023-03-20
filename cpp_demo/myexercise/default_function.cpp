@@ -1,3 +1,6 @@
+/**
+ * 类的默认函数练习
+*/
 #include <iostream>
 
 using namespace std;
