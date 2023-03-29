@@ -2,56 +2,85 @@
 
 using namespace std;
 
-class Date
-{
-public:
-    //构造函数
-    Date(int year,int month,int day)
-    {
-        _year = year;
-        _month = month;
-        _day = day;
-    }
-    //拷贝构造函数
-    Date(const Date& d)
-    {
-        cout<<"拷贝构造函数"<<endl;
-        _year = d._year;
-        _month = d._month;
-        _day = d._day;
-    }
-private:
-    int _year;
-    int _month;
-    int _day;
+
+enum class S2S_Response_Enum : std::uint32_t {
+    E_OK = 0,
+    E_MEMORY_ERROR = 1,
+    E_STORAGE_ERROR = 2,
+    E_SYSTEM_RESOURCE_ERROR = 3,
+    E_MIDDLEWARE_ERROR = 4,
+    E_IPC_READ_ERROR = 5,
+    SOMEIP_E_UNKNOWN_SERVICE = 16777218,
+    SOMEIP_E_UNKNOWN_METHOD = 16777219,
+    SOMEIP_E_NOT_READY = 16777220,
+    SOMEIP_E_NOT_REACHABLE = 16777221
 };
 
-void demo9(){
-    //* volatile：系统总是重新从它所在的内存读取数据
-    //整型常量 加const 后 一些基本常量 会被编译器进行优化 存到寄存器里，后续直接使用寄存器里存的值
-    const volatile int a = 100;
-    const int c = 200;//整型常量
 
-    int *p = const_cast<int *>(&a); //常量引用被转为 非常量指针，仍指向原来的对象
-    int pp = const_cast<int&>(c); //去const的引用，进行了赋值操作，构造了新对象
-    int &ppp = const_cast<int &>(a);//去const 转换成引用，仍指向原来的对象
+// someip 时候 1--0 也是表示调用成功
+enum class SOA_Protocol_Type_Enum : std::uint8_t {
+    Protocol_General = 0,
+    Protocol_SOMEIP = 1,
+    Protocol_DDS = 2,
+    Protocol_Custom = 128
+};
 
+struct SOA_Response_Struct {
+    using _ProtocolType_type = SOA_Protocol_Type_Enum;
+    _ProtocolType_type ProtocolType;
 
-    *p = 150;
-    pp = 250;
-    ppp = 300;
-    // 有 volatile 声明 a = 150； 无 volatile 声明 a = 100；
-    // 因为编译器优化 const a 的值存到了寄存器里，再输出时，默认取的寄存器的值 不是内存的值
-    cout<<"a = "<<a<<endl;
-    //下面输出的是指针内容，所以值是改变后的值，不是从寄存器拿的值
-    cout<<"*p = "<<*p<<endl;
-    cout<<"pp = "<<pp<<endl;
-    cout<<"ppp = "<<ppp<<endl;
+    using _Reserved0_type = std::uint8_t;
+    _Reserved0_type Reserved0;
 
+    using _Reserved1_type = std::uint8_t;
+    _Reserved1_type Reserved1;
+
+    using _ReturnCode_type = std::uint8_t;
+    _ReturnCode_type ReturnCode;
+
+};
+
+ template<typename R ,typename GS2S>
+bool rethandler_c(R &ret,const GS2S &response){
+    auto res = static_cast<uint32_t>(response);
+
+    auto protocolType_value = static_cast<uint8_t>(res>>24);
+    auto reserved0_value = static_cast<uint8_t>(res>>16);
+    auto reserved1_value = static_cast<uint8_t>(res>>8);
+    auto code_value = static_cast<uint8_t>(res);
+
+    //调用成功 返回 0,0,0,0
+    if(code_value == 0){
+        ret.ProtocolType = typename R::_ProtocolType_type(static_cast<uint8_t>(0));
+        ret.Reserved0 = reserved0_value;
+        ret.Reserved1 = reserved1_value;
+        ret.ReturnCode = code_value;
+        return true;
+    }
+
+    //调用失败 
+    ret.ProtocolType = typename R::_ProtocolType_type(protocolType_value);
+    ret.Reserved0 = reserved0_value;
+    ret.Reserved1 = reserved1_value;
+    ret.ReturnCode = code_value;
+    return false;
 }
+
+                template<typename R>
+                std::string responseToString(const R &ret){
+                    return "ProtocolType = " + std::to_string(static_cast<int>(ret.ProtocolType)) + " Reserved0 = " + std::to_string(static_cast<int>(ret.Reserved0))
+                    + " Reserved1 = " + std::to_string(static_cast<int>(ret.Reserved1)) + " ReturnCode = " + std::to_string(static_cast<int>(ret.ReturnCode));
+                }
 
 int main()
 {
-    demo9();
+    S2S_Response_Enum GS2S_Ret{S2S_Response_Enum(65793)};
+    SOA_Response_Struct Method_Ret{SOA_Protocol_Type_Enum(0),0,0,0};
+    rethandler_c(Method_Ret,GS2S_Ret);
+    cout<<static_cast<int>(Method_Ret.ProtocolType)<<endl;
+    cout<<static_cast<int>(Method_Ret.Reserved0)<<endl;
+    cout<<static_cast<int>(Method_Ret.Reserved1)<<endl;
+    cout<<static_cast<int>(Method_Ret.ReturnCode)<<endl;
+    cout<<responseToString(Method_Ret);
 }
 
