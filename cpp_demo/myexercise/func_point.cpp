@@ -45,7 +45,7 @@ int main(){
     f=&func;/* 将func函数的首地址赋给指针f */
     f(1);//调用函数指针 
 
-    popo(f);
+    // popo(f);
 
     //创建 使用 typedef 声明的 函数指针 对象，并赋值。
     Func0 *fun0 = func;

@@ -53,7 +53,9 @@
         "cassert": "cpp",
         "csignal": "cpp",
         "cerrno": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220
