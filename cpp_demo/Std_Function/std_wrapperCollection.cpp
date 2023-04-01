@@ -2,7 +2,7 @@
  * @file std_wrapperCollection.cpp
  * @author your name (you@domain.com)
  * @brief 各类包装器的练习合集 
- * *包含 std::reference_wrapper std::ref std::cref std::mem_fn std::bind  std::make_pair std::make_tuple
+ * *包含 std::reference_wrapper std::ref std::cref std::mem_fn std::bind  
  * *std::function 见function的专门的练习例子
  * @version 0.1
  * @date 2023-03-30

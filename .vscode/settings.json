@@ -58,5 +58,6 @@
         "random": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
-    "winopacity.opacity": 220
+    "winopacity.opacity": 220,
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
 }
