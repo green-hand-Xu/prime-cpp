@@ -89,12 +89,7 @@ int main(){
     cout<<"6、函数指针的使用。"<<endl;
     print("test", printFinCallback);
 
-/**
- * @brief 结合 std::mem_fn 使用时，比直接在bind 定义时就绑定传入的实例对象而言 更加灵活，
- *         因为可以只先绑定 对象类型 （函数或数据成员），然后用std::mem_fn 传入具体的实例对象
- *          这样传入的实例对象就不会在一开始定死了。
- * 
- */
+
     cout<<"7、bind 用于 std::mem_fn 对象 指向成员函数"<<endl;
     auto ptr_to_print_sum = std::mem_fn(&Foo::print_sum);
     auto f4 = std::bind(ptr_to_print_sum,&foo,95,placeholders::_1);
