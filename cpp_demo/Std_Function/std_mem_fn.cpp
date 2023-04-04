@@ -40,11 +40,13 @@ int main(){
     f2.data = 10;
 
     auto greet = std::mem_fn(&Foo::display_greeting);//包装成员方法
+    std::_Mem_fn<void(Foo::*)()> greet1 = std::mem_fn(&Foo::display_greeting);//等价于 auto 声明
     //调用时 传入的第一个参数为实例对象，之后的为函数参数
     greet(f);
     greet(f2);
 
     auto print_num = std::mem_fn(&Foo::display_number);//包装带参数的成员方法
+    std::_Mem_fn<void(Foo::*)(int)> print_num = std::mem_fn(&Foo::display_number);//等价于 auto 声明
     print_num(f,5);//第一个参数为具体实例对象，第二个参数为函数参数
 
     auto access_data = std::mem_fn(&Foo::data);
