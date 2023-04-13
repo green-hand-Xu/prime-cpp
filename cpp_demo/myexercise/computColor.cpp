@@ -609,18 +609,104 @@ using G_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct:
 using B_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct::_BlueRatCtrl_type;
 
 std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap{
-    {AtmLi_ColorSet_64_Enum::Colour_0,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*7+10)),G_ColorType(static_cast<uint8_t>(113)),B_ColorType(static_cast<uint8_t>(2))}}
+    {AtmLi_ColorSet_64_Enum::Colour_0,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+10)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(1*16+12))}},
+    {AtmLi_ColorSet_64_Enum::Colour_1,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+11)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(2*16+3))}},
+    {AtmLi_ColorSet_64_Enum::Colour_2,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(7*16+6)),B_ColorType(static_cast<uint8_t>(3*16+2))}},
+    {AtmLi_ColorSet_64_Enum::Colour_3,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(6*16+13)),B_ColorType(static_cast<uint8_t>(3*16+11))}},
+    {AtmLi_ColorSet_64_Enum::Colour_4,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+9)),G_ColorType(static_cast<uint8_t>(6*16+1)),B_ColorType(static_cast<uint8_t>(5*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_5,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+11)),G_ColorType(static_cast<uint8_t>(5*16+1)),B_ColorType(static_cast<uint8_t>(6*16+3))}},
+    {AtmLi_ColorSet_64_Enum::Colour_6,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+6)),G_ColorType(static_cast<uint8_t>(3*16+2)),B_ColorType(static_cast<uint8_t>(8*16+7))}},
+    {AtmLi_ColorSet_64_Enum::Colour_7,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+15)),G_ColorType(static_cast<uint8_t>(1*16+2)),B_ColorType(static_cast<uint8_t>(10*16+14))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_8,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t> (3*16+15)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(12*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_9,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t> (5*16+11)),G_ColorType(static_cast<uint8_t>(0*16+12)),B_ColorType(static_cast<uint8_t>(9*16+8))}},
+    {AtmLi_ColorSet_64_Enum::Colour_10,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+8)),G_ColorType(static_cast<uint8_t>(1*16+13)),B_ColorType(static_cast<uint8_t>(7*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_11,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+10)),G_ColorType(static_cast<uint8_t>(3*16+6)),B_ColorType(static_cast<uint8_t>(4*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_12,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+10)),G_ColorType(static_cast<uint8_t>(2*16+0)),B_ColorType(static_cast<uint8_t>(5*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_13,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+12)),G_ColorType(static_cast<uint8_t>(1*16+14)),B_ColorType(static_cast<uint8_t>(4*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_14,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(10*16+7)),G_ColorType(static_cast<uint8_t>(0*16+7)),B_ColorType(static_cast<uint8_t>(5*16+1))}},
+    {AtmLi_ColorSet_64_Enum::Colour_15,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+9)),G_ColorType(static_cast<uint8_t>(1*16+3)),B_ColorType(static_cast<uint8_t>(3*16+3))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_16,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+1)),G_ColorType(static_cast<uint8_t>(0*16+14)),B_ColorType(static_cast<uint8_t>(2*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_17,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+0)),G_ColorType(static_cast<uint8_t>(2*16+12)),B_ColorType(static_cast<uint8_t>(1*16+3))}},
+    {AtmLi_ColorSet_64_Enum::Colour_18,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+15)),G_ColorType(static_cast<uint8_t>(1*16+3)),B_ColorType(static_cast<uint8_t>(0*16+13))}},
+    {AtmLi_ColorSet_64_Enum::Colour_19,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+15)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_20,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+13)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_21,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+11)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
+    {AtmLi_ColorSet_64_Enum::Colour_22,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+1)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+12))}},
+    {AtmLi_ColorSet_64_Enum::Colour_23,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+11)),G_ColorType(static_cast<uint8_t>(1*16+9)),B_ColorType(static_cast<uint8_t>(0*16+11))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_24,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(14*16+4)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(1*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_25,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+9)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(3*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_26,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+13)),G_ColorType(static_cast<uint8_t>(0*16+3)),B_ColorType(static_cast<uint8_t>(5*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_27,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+8)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(8*16+1))}},
+    {AtmLi_ColorSet_64_Enum::Colour_28,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+1)),G_ColorType(static_cast<uint8_t>(0*16+4)),B_ColorType(static_cast<uint8_t>(9*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_29,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+8)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(11*16+1))}},
+    {AtmLi_ColorSet_64_Enum::Colour_30,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+4)),G_ColorType(static_cast<uint8_t>(0*16+3)),B_ColorType(static_cast<uint8_t>(12*16+8))}},
+    {AtmLi_ColorSet_64_Enum::Colour_31,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+12)),G_ColorType(static_cast<uint8_t>(0*16+4)),B_ColorType(static_cast<uint8_t>(12*16+15))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_32,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+4)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(13*16+9))}},
+    {AtmLi_ColorSet_64_Enum::Colour_34,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(15*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_35,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+7)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(14*16+7))}},
+    {AtmLi_ColorSet_64_Enum::Colour_36,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(13*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_37,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+0)),G_ColorType(static_cast<uint8_t>(0*16+15)),B_ColorType(static_cast<uint8_t>(13*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_38,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+0)),G_ColorType(static_cast<uint8_t>(4*16+4)),B_ColorType(static_cast<uint8_t>(8*16+11))}},
+    {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+3)),G_ColorType(static_cast<uint8_t>(7*16+8)),B_ColorType(static_cast<uint8_t>(5*16+4))}},
+    {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+10)),G_ColorType(static_cast<uint8_t>(8*16+6)),B_ColorType(static_cast<uint8_t>(3*16+15))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_40,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+4)),G_ColorType(static_cast<uint8_t>(8*16+2)),B_ColorType(static_cast<uint8_t>(6*16+9))}},
+    {AtmLi_ColorSet_64_Enum::Colour_41,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+8)),G_ColorType(static_cast<uint8_t>(9*16+11)),B_ColorType(static_cast<uint8_t>(4*16+12))}},
+    {AtmLi_ColorSet_64_Enum::Colour_42,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+10)),G_ColorType(static_cast<uint8_t>(11*16+11)),B_ColorType(static_cast<uint8_t>(3*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_43,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+6)),G_ColorType(static_cast<uint8_t>(14*16+0)),B_ColorType(static_cast<uint8_t>(1*16+9))}},
+    {AtmLi_ColorSet_64_Enum::Colour_44,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(12*16+3)),B_ColorType(static_cast<uint8_t>(1*16+13))}},
+    {AtmLi_ColorSet_64_Enum::Colour_45,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+7)),G_ColorType(static_cast<uint8_t>(11*16+2)),B_ColorType(static_cast<uint8_t>(1*16+6))}},
+    {AtmLi_ColorSet_64_Enum::Colour_46,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+13)),G_ColorType(static_cast<uint8_t>(13*16+10)),B_ColorType(static_cast<uint8_t>(0*16+8))}},
+    {AtmLi_ColorSet_64_Enum::Colour_47,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(15*16+15)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_48,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+15)),G_ColorType(static_cast<uint8_t>(14*16+14)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
+    {AtmLi_ColorSet_64_Enum::Colour_49,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+4)),G_ColorType(static_cast<uint8_t>(12*16+9)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
+    {AtmLi_ColorSet_64_Enum::Colour_50,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+13)),G_ColorType(static_cast<uint8_t>(10*16+0)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
+    {AtmLi_ColorSet_64_Enum::Colour_51,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+13)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(0*16+1))}},
+    {AtmLi_ColorSet_64_Enum::Colour_52,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(10*16+6)),G_ColorType(static_cast<uint8_t>(5*16+8)),B_ColorType(static_cast<uint8_t>(0*16+1))}},
+    {AtmLi_ColorSet_64_Enum::Colour_53,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+9)),G_ColorType(static_cast<uint8_t>(4*16+6)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_54,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+7)),G_ColorType(static_cast<uint8_t>(2*16+8)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_55,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+9)),G_ColorType(static_cast<uint8_t>(3*16+3)),B_ColorType(static_cast<uint8_t>(0*16+3))}},
+
+    {AtmLi_ColorSet_64_Enum::Colour_56,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+15)),G_ColorType(static_cast<uint8_t>(1*16+11)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_57,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+5)),G_ColorType(static_cast<uint8_t>(2*16+5)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_58,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+5)),G_ColorType(static_cast<uint8_t>(3*16+5)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
+    {AtmLi_ColorSet_64_Enum::Colour_59,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+0)),G_ColorType(static_cast<uint8_t>(4*16+5)),B_ColorType(static_cast<uint8_t>(0*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_60,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+6)),G_ColorType(static_cast<uint8_t>(5*16+15)),B_ColorType(static_cast<uint8_t>(0*16+10))}},
+    {AtmLi_ColorSet_64_Enum::Colour_61,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+10)),G_ColorType(static_cast<uint8_t>(6*16+6)),B_ColorType(static_cast<uint8_t>(0*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_62,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+2)),G_ColorType(static_cast<uint8_t>(6*16+10)),B_ColorType(static_cast<uint8_t>(1*16+3))}},
+    {AtmLi_ColorSet_64_Enum::Colour_63,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+12)),G_ColorType(static_cast<uint8_t>(6*16+11)),B_ColorType(static_cast<uint8_t>(1*16+8))}},
 };
 
 
-ColorCtrl_Struct return_rgbcolor(AtmLi_ColorSet_64_Enum color_id){
+ColorCtrl_Struct return_rgbcolor(AtmLi_ColorSet_64_Enum color_id , std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap ){
     ColorCtrl_Struct a{0,0,0};
+    a = colormap[color_id];
     return a;
 }
 
+void print_map(){
+        for(auto iterator = colormap.begin(); iterator!=colormap.end();iterator++){
+        std::cout<<static_cast<int>( iterator->first)<<" "<<static_cast<int>(iterator->second.RedRatCtrl)<<","<<static_cast<int>(iterator->second.BlueRatCtrl)<<","<<static_cast<int>(iterator->second.GreenRatCtrl) <<std::endl;
+    }
+}
+
+enum class GearStsCombine_Enum : std::uint8_t {
+    OFF = 0,
+    ON = 1
+};
+
 int main(){
 
-    std::cout<<static_cast<int>(colormap[AtmLi_ColorSet_64_Enum::Colour_0].RedRatCtrl);
+    // auto Value = return_rgbcolor(AtmLi_ColorSet_64_Enum::Colour_63,colormap);
+    // std::cout<<static_cast<int>(Value.RedRatCtrl)<<","<<static_cast<int>(Value.GreenRatCtrl)<<","<<static_cast<int>(Value.BlueRatCtrl) <<std::endl;
+    GearStsCombine_Enum _GearStsCombine_Enum{0};
+
+
 
     return 0;
 }
