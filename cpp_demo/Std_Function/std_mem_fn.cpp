@@ -43,7 +43,7 @@ int main(){
     std::_Mem_fn<void(Foo::*)()> greet1 = std::mem_fn(&Foo::display_greeting);//等价于 auto 声明
     //调用时 传入的第一个参数为实例对象，之后的为函数参数
     greet(f);
-    greet(f2);
+    greet1(f2);
 
     auto print_num = std::mem_fn(&Foo::display_number);//包装带参数的成员方法
     std::_Mem_fn<void(Foo::*)(int)> print_num = std::mem_fn(&Foo::display_number);//等价于 auto 声明
