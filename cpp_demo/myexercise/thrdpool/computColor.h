@@ -609,7 +609,7 @@ using G_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct:
 using B_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct::_BlueRatCtrl_type;
 
 std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap{
-    {AtmLi_ColorSet_64_Enum::Colour_0,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+10)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(1*16+12))}},
+    {AtmLi_ColorSet_64_Enum::Colour_0,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+2)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(1*16+12))}},
     {AtmLi_ColorSet_64_Enum::Colour_1,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+11)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(2*16+3))}},
     {AtmLi_ColorSet_64_Enum::Colour_2,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(7*16+6)),B_ColorType(static_cast<uint8_t>(3*16+2))}},
     {AtmLi_ColorSet_64_Enum::Colour_3,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(6*16+13)),B_ColorType(static_cast<uint8_t>(3*16+11))}},
@@ -646,12 +646,12 @@ std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap{
     {AtmLi_ColorSet_64_Enum::Colour_31,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+12)),G_ColorType(static_cast<uint8_t>(0*16+4)),B_ColorType(static_cast<uint8_t>(12*16+15))}},
 
     {AtmLi_ColorSet_64_Enum::Colour_32,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+4)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(13*16+9))}},
-    {AtmLi_ColorSet_64_Enum::Colour_34,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(15*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_35,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+7)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(14*16+7))}},
-    {AtmLi_ColorSet_64_Enum::Colour_36,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(13*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_37,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+0)),G_ColorType(static_cast<uint8_t>(0*16+15)),B_ColorType(static_cast<uint8_t>(13*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_38,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+0)),G_ColorType(static_cast<uint8_t>(4*16+4)),B_ColorType(static_cast<uint8_t>(8*16+11))}},
-    {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+3)),G_ColorType(static_cast<uint8_t>(7*16+8)),B_ColorType(static_cast<uint8_t>(5*16+4))}},
+    {AtmLi_ColorSet_64_Enum::Colour_33,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(15*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_34,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+7)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(14*16+7))}},
+    {AtmLi_ColorSet_64_Enum::Colour_35,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(13*16+15))}},
+    {AtmLi_ColorSet_64_Enum::Colour_36,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+0)),G_ColorType(static_cast<uint8_t>(0*16+15)),B_ColorType(static_cast<uint8_t>(13*16+0))}},
+    {AtmLi_ColorSet_64_Enum::Colour_37,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+0)),G_ColorType(static_cast<uint8_t>(4*16+4)),B_ColorType(static_cast<uint8_t>(8*16+11))}},
+    {AtmLi_ColorSet_64_Enum::Colour_38,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+3)),G_ColorType(static_cast<uint8_t>(7*16+8)),B_ColorType(static_cast<uint8_t>(5*16+4))}},
     {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+10)),G_ColorType(static_cast<uint8_t>(8*16+6)),B_ColorType(static_cast<uint8_t>(3*16+15))}},
 
     {AtmLi_ColorSet_64_Enum::Colour_40,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+4)),G_ColorType(static_cast<uint8_t>(8*16+2)),B_ColorType(static_cast<uint8_t>(6*16+9))}},
@@ -686,7 +686,12 @@ std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap{
 ColorCtrl_Struct return_rgbcolor(AtmLi_ColorSet_64_Enum color_id , std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap ){
     ColorCtrl_Struct a{0,0,0};
     a = colormap[color_id];
+    // print_ColorCtrl_Struct(a);
     return a;
+}
+
+void print_ColorCtrl_Struct(ColorCtrl_Struct obj){
+    std::cout<<static_cast<int>( obj.RedRatCtrl)<<" "<<static_cast<int>(obj.BlueRatCtrl)<<","<<static_cast<int>(obj.GreenRatCtrl)<<std::endl;
 }
 
 void print_map(){
@@ -699,320 +704,3 @@ enum class GearStsCombine_Enum : std::uint8_t {
     OFF = 0,
     ON = 1
 };
-
-using Context_ActvNodeCtrl_Command_Enum = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Command_Enum;
-using Context_ActvNodeCtrl_Struct = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct;
-
-Context_ActvNodeCtrl_Struct data;
-
-
-void printNodeStatus(GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct& data){
-    Context_ActvNodeCtrl_Command_Enum *item = (Context_ActvNodeCtrl_Command_Enum*)&data;//获取结构体存储首地址
-    auto num = 1;
-    auto tail = item+sizeof(data)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
-    for(auto i = item ; i<tail;i++){
-        std::cout<<"num = "<<num <<" data = "<<static_cast<int>(*i)<<std::endl;
-        num++;
-    }    
-}
-
-void setSignalNode(int No , int status ,Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto index = head+No-1;//对应的 结构体中 元素位置
-    *index = (Context_ActvNodeCtrl_Command_Enum)status; //改变对应位置的节点值
-}
-
-void SetNodesRanges(int start, int end ,int status , Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto startindex = head + start -1;
-    auto endindex = head + end -1;
-    for (auto i = startindex; i <=endindex ; i++)
-    {
-        *i = (Context_ActvNodeCtrl_Command_Enum)status;
-    }
-}
-
-void ResetNodeToAllZero(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
-
-    for(auto i = head ; i<tail;i++){
-        *i =(Context_ActvNodeCtrl_Command_Enum)0;
-    }
-}
-
-void SetNodeToAllOpen(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
-
-    for(auto i = head ; i<tail;i++){
-        *i =(Context_ActvNodeCtrl_Command_Enum)1;
-    }
-}
-
-
-void testActvNode(){
-    for (auto i = 1; i <=24 ; i++)
-    {
-        setSignalNode(i,0,data);
-    }
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    for (size_t i = 1; i <= 24 ; i++)
-    {
-        setSignalNode(i,1,data);
-    }
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-
-    ResetNodeToAllZero(data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    SetNodesRanges(10,20,1,data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    SetNodeToAllOpen(data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    ResetNodeToAllZero(data);
-    SetNodesRanges(1,1,1,data);
-    printNodeStatus(data);
-}
-
-//--------------------------------------律动模式算法---------------------------------------------------------------------
-enum class SyllablePrmCtrl_Command_Enum : std::uint8_t {
-    No_Action = 0,
-    Valid1 = 1,
-    Valid2 = 2,
-    Valid3 = 3,
-    Valid4 = 4,
-    Valid5 = 5,
-    Valid6 = 6,
-    Valid7 = 7
-};
-
-struct SyllablePrmCtrl_Struct {
-    using _SyllablePrmCtrl_type = SyllablePrmCtrl_Command_Enum;
-    _SyllablePrmCtrl_type SyllablePrmCtrl;
-
-    using _SyllablePrmCtrl_NF_type = SyllablePrmCtrl_Command_Enum;
-    _SyllablePrmCtrl_NF_type SyllablePrmCtrl_NF;
-
-};
-
-//0-100有效 101 无响应
-enum class MusicFrqSet_Enum : std::uint8_t {
-    amplitude_0 = 0,
-    amplitude_1 = 1,
-    amplitude_2 = 2,
-    amplitude_3 = 3,
-    amplitude_4 = 4,
-    amplitude_5 = 5,
-    amplitude_6 = 6,
-    amplitude_7 = 7,
-    amplitude_8 = 8,
-    amplitude_9 = 9,
-    amplitude_10 = 10,
-    amplitude_11 = 11,
-    amplitude_12 = 12,
-    amplitude_13 = 13,
-    amplitude_14 = 14,
-    amplitude_15 = 15,
-    amplitude_16 = 16,
-    amplitude_17 = 17,
-    amplitude_18 = 18,
-    amplitude_19 = 19,
-    amplitude_20 = 20,
-    amplitude_21 = 21,
-    amplitude_22 = 22,
-    amplitude_23 = 23,
-    amplitude_24 = 24,
-    amplitude_25 = 25,
-    amplitude_26 = 26,
-    amplitude_27 = 27,
-    amplitude_28 = 28,
-    amplitude_29 = 29,
-    amplitude_30 = 30,
-    amplitude_31 = 31,
-    amplitude_32 = 32,
-    amplitude_33 = 33,
-    amplitude_34 = 34,
-    amplitude_35 = 35,
-    amplitude_36 = 36,
-    amplitude_37 = 37,
-    amplitude_38 = 38,
-    amplitude_39 = 39,
-    amplitude_40 = 40,
-    amplitude_41 = 41,
-    amplitude_42 = 42,
-    amplitude_43 = 43,
-    amplitude_44 = 44,
-    amplitude_45 = 45,
-    amplitude_46 = 46,
-    amplitude_47 = 47,
-    amplitude_48 = 48,
-    amplitude_49 = 49,
-    amplitude_50 = 50,
-    amplitude_51 = 51,
-    amplitude_52 = 52,
-    amplitude_53 = 53,
-    amplitude_54 = 54,
-    amplitude_55 = 55,
-    amplitude_56 = 56,
-    amplitude_57 = 57,
-    amplitude_58 = 58,
-    amplitude_59 = 59,
-    amplitude_60 = 60,
-    amplitude_61 = 61,
-    amplitude_62 = 62,
-    amplitude_63 = 63,
-    amplitude_64 = 64,
-    amplitude_65 = 65,
-    amplitude_66 = 66,
-    amplitude_67 = 67,
-    amplitude_68 = 68,
-    amplitude_69 = 69,
-    amplitude_70 = 70,
-    amplitude_71 = 71,
-    amplitude_72 = 72,
-    amplitude_73 = 73,
-    amplitude_74 = 74,
-    amplitude_75 = 75,
-    amplitude_76 = 76,
-    amplitude_77 = 77,
-    amplitude_78 = 78,
-    amplitude_79 = 79,
-    amplitude_80 = 80,
-    amplitude_81 = 81,
-    amplitude_82 = 82,
-    amplitude_83 = 83,
-    amplitude_84 = 84,
-    amplitude_85 = 85,
-    amplitude_86 = 86,
-    amplitude_87 = 87,
-    amplitude_88 = 88,
-    amplitude_89 = 89,
-    amplitude_90 = 90,
-    amplitude_91 = 91,
-    amplitude_92 = 92,
-    amplitude_93 = 93,
-    amplitude_94 = 94,
-    amplitude_95 = 95,
-    amplitude_96 = 96,
-    amplitude_97 = 97,
-    amplitude_98 = 98,
-    amplitude_99 = 99,
-    amplitude_100 = 100,
-    No_action = 101,
-    Reserved1 = 102,
-    Reserved2 = 103,
-    Reserved3 = 104,
-    Reserved4 = 105,
-    Reserved5 = 106,
-    Reserved6 = 107,
-    Reserved7 = 108,
-    Reserved8 = 109,
-    Reserved9 = 110,
-    Reserved10 = 111,
-    Reserved11 = 112,
-    Reserved12 = 113,
-    Reserved13 = 114,
-    Reserved14 = 115,
-    Reserved15 = 116,
-    Reserved16 = 117,
-    Reserved17 = 118,
-    Reserved18 = 119,
-    Reserved19 = 120,
-    Reserved20 = 121,
-    Reserved21 = 122,
-    Reserved22 = 123,
-    Reserved23 = 124,
-    Reserved24 = 125,
-    Reserved25 = 126,
-    Reserved26 = 127
-};
-
-struct MusicFrqSet_Struct {
-    using _MusicFrq0_type = MusicFrqSet_Enum;
-    _MusicFrq0_type MusicFrq0;
-
-    using _MusicFrq1_type = MusicFrqSet_Enum;
-    _MusicFrq1_type MusicFrq1;
-
-    using _MusicFrq2_type = MusicFrqSet_Enum;
-    _MusicFrq2_type MusicFrq2;
-
-    using _MusicFrq3_type = MusicFrqSet_Enum;
-    _MusicFrq3_type MusicFrq3;
-
-    using _MusicFrq4_type = MusicFrqSet_Enum;
-    _MusicFrq4_type MusicFrq4;
-
-    using _MusicFrq5_type = MusicFrqSet_Enum;
-    _MusicFrq5_type MusicFrq5;
-
-    using _MusicFrq6_type = MusicFrqSet_Enum;
-    _MusicFrq6_type MusicFrq6;
-
-};
-
-int getMaxMusicNo(MusicFrqSet_Struct& musicstruct){
-    int MaxNo = 0;
-    int No = 0;
-    int max = 0;
-    int min = 0;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
-
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        min = static_cast<uint8_t>(*i);
-        if(max < min){
-            max = min;
-            MaxNo = No;
-        }
-        No++;
-    }
-    return MaxNo;
-}
-
-void setMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
-    int value = 18;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        *i = (MusicFrqSet_Enum)value;
-        value += (-3);
-    }
-        
-}
-
-void printMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
-    int musicno = 0;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        std::cout<<"musicno "<<musicno<<" : "<<static_cast<int>(*i)<<std::endl;
-        musicno++;
-    }    
-}
-
-int main(){
-    MusicFrqSet_Struct MusicStruct;
-    
-    setMusicFrq_Struct(MusicStruct);
-
-    auto maxNo = getMaxMusicNo(MusicStruct);
-    std::cout<<"maxNo = "<<maxNo<<std::endl;
-    printMusicFrq_Struct(MusicStruct);
-
-    return 0;
-}

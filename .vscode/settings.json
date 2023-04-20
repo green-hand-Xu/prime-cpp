@@ -56,7 +56,13 @@
         "ios": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "msgqueue.h": "c",
+        "thrdpool.h": "c",
+        "cstdarg": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220,
