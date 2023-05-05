@@ -716,10 +716,11 @@ void printNodeStatus(GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Str
     }    
 }
 
-void setSignalNode(int No , int status ,Context_ActvNodeCtrl_Struct& ActvNodeStruct){
+Context_ActvNodeCtrl_Struct setSignalNode(int No , int status ,Context_ActvNodeCtrl_Struct& ActvNodeStruct){
     Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
     auto index = head+No-1;//对应的 结构体中 元素位置
     *index = (Context_ActvNodeCtrl_Command_Enum)status; //改变对应位置的节点值
+    return ActvNodeStruct;
 }
 
 void SetNodesRanges(int start, int end ,int status , Context_ActvNodeCtrl_Struct& ActvNodeStruct){
@@ -1005,14 +1006,49 @@ void printMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
     }    
 }
 
-int main(){
-    MusicFrqSet_Struct MusicStruct;
-    
-    setMusicFrq_Struct(MusicStruct);
+//*********************************** 驾驶区域 节点开关 辅助函数*************************************//
+//主驾区节点全开/全关
+Context_ActvNodeCtrl_Struct MainZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
+    //LIN 7
+    OpenNode = setSignalNode(2,1,ActvNodeStruct);
+    OpenNode = setSignalNode(1,1,ActvNodeStruct);
+    OpenNode = setSignalNode(5,1,ActvNodeStruct);
+    OpenNode = setSignalNode(21,1,ActvNodeStruct);
+    OpenNode = setSignalNode(23,1,ActvNodeStruct);
+    OpenNode = setSignalNode(20,1,ActvNodeStruct);
+    OpenNode = setSignalNode(18,1,ActvNodeStruct);
+    OpenNode = setSignalNode(6,1,ActvNodeStruct);
+    OpenNode = setSignalNode(7,1,ActvNodeStruct);
+    OpenNode = setSignalNode(8,1,ActvNodeStruct);
+    //LIN 9
+    OpenNode = setSignalNode(42,1,ActvNodeStruct);
+    OpenNode = setSignalNode(43,1,ActvNodeStruct);
+    OpenNode = setSignalNode(44,1,ActvNodeStruct);
+    OpenNode = setSignalNode(45,1,ActvNodeStruct);
+    OpenNode = setSignalNode(25,1,ActvNodeStruct);
+    OpenNode = setSignalNode(26,1,ActvNodeStruct);
+    OpenNode = setSignalNode(27,1,ActvNodeStruct);
+    OpenNode = setSignalNode(28,1,ActvNodeStruct);
+    OpenNode = setSignalNode(41,1,ActvNodeStruct);
+    OpenNode = setSignalNode(29,1,ActvNodeStruct);
+    OpenNode = setSignalNode(30,1,ActvNodeStruct);
+    OpenNode = setSignalNode(31,1,ActvNodeStruct);
 
-    auto maxNo = getMaxMusicNo(MusicStruct);
-    std::cout<<"maxNo = "<<maxNo<<std::endl;
-    printMusicFrq_Struct(MusicStruct);
+    ActvNodeStruct = OpenNode;
+    return OpenNode;
+}
+
+//测试 打开主驾区域 节点 并输出结果
+void test_openmainclose(){
+    Context_ActvNodeCtrl_Struct  actvnode{};
+    //打开主驾区节点使能
+    actvnode = MainZoneOpen(actvnode);
+    printNodeStatus(actvnode);
+}
+
+int main(){
+    test_openmainclose();
 
     return 0;
 }
