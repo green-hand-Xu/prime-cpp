@@ -8,6 +8,7 @@
 #define _ALCMCLRSETHMISRV_GS2S_DATATYPES_HPP_
 
 #include <cstdint>
+#include <thread>
 
 namespace GWM{
 namespace Vehicle{
@@ -1039,6 +1040,67 @@ Context_ActvNodeCtrl_Struct MainZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStr
     return OpenNode;
 }
 
+//测试门状态改变重新计时功能，其中门又0-1是触发 1-0不是触发条件 但是会重新计时
+bool Timer30sSwt = false;
+int doorstatus = 0;
+int lastdoorst = 0;
+
+int RRdoorstatus = 0;
+int RRlastdoorst = 0;
+
+void startTimer30s(){
+    std::thread([](){
+        while (Timer30sSwt)
+        {
+            std::cout<<"execute: startTimer30s thread"<<'\n';
+            std::cout<<"execute: War_IPBackgroundLmpCtrl "<<'\n';
+            for (int i = 0; i < 600; i++)
+            {
+                if(Timer30sSwt == false){
+                    std::cout<<__func__<<"中途取消计时";
+                    break;
+                }
+                std::cout<<__func__<<"计时中 time = "<< i <<'\n';
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            }
+
+            if(Timer30sSwt == true){
+            std::cout<<__func__<<"计时时间到，结束计时并关闭背景灯" <<'\n';   
+            std::cout<<__func__<<"计时时间到，War_IPBackgroundLmpCtrl" <<'\n'; 
+            }
+            Timer30sSwt = false;
+        
+        }
+    }).detach();
+}
+
+
+void stopTimer30s(){
+    std::cout<<"execute: "<<__func__<<'\n';
+    std::cout<<__func__<<" stop timer"<<'\n';
+    Timer30sSwt = false;
+}
+
+void Door_Change_Tri(){
+    if(doorstatus == 1 && lastdoorst == 0){
+        stopTimer30s();
+        Timer30sSwt = true;
+        startTimer30s();
+    }
+    if(doorstatus == 0 && lastdoorst == 1){
+        stopTimer30s();
+    }
+
+    if(RRdoorstatus == 1 && RRlastdoorst == 0){
+        stopTimer30s();
+        Timer30sSwt = true;
+        startTimer30s();
+    }
+    if(RRdoorstatus == 0 && RRlastdoorst == 1){
+        stopTimer30s();
+    }
+}
+
 //测试 打开主驾区域 节点 并输出结果
 void test_openmainclose(){
     Context_ActvNodeCtrl_Struct  actvnode{};
@@ -1048,7 +1110,50 @@ void test_openmainclose(){
 }
 
 int main(){
-    test_openmainclose();
+    
+    int doorst = 0;
+    while (true)
+    {
+        std::cout<<"输入 1 ：关闭1门"<<"输入 2 : 打开1门"<<'\n'
+        <<"输入 3 ：关闭2门"<<"输入 4 : 打开2门"<<'\n';
+        std::cin>>doorst;
+        switch (doorst)
+        {
+        case 1:
+            lastdoorst = doorstatus;
+            doorstatus = 0;
+            std::cout<<"doorstatus = 0"<<'\n';
+            break;
+
+        case 2:
+            lastdoorst = doorstatus;
+            doorstatus = 1;
+            std::cout<<"doorstatus = 1"<<'\n';
+            break;
+
+        case 3:
+            RRlastdoorst = RRdoorstatus;
+            RRdoorstatus = 0;
+            std::cout<<"doorstatus = 0"<<'\n';
+            break;
+
+        case 4:
+            RRlastdoorst = RRdoorstatus;
+            RRdoorstatus = 1;
+            std::cout<<"doorstatus = 1"<<'\n';
+            break;
+
+        case 5:
+            Timer30sSwt = false;
+            break;
+
+        default:
+            break;
+        }
+        Door_Change_Tri();
+    }
+    
+
 
     return 0;
 }
