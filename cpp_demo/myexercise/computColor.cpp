@@ -9,7 +9,7 @@
 
 #include <cstdint>
 #include <thread>
-
+#include <bitset>
 namespace GWM{
 namespace Vehicle{
 namespace Body{
@@ -1109,8 +1109,7 @@ void test_openmainclose(){
     printNodeStatus(actvnode);
 }
 
-int main(){
-    
+void test_delayclose(){
     int doorst = 0;
     while (true)
     {
@@ -1152,8 +1151,25 @@ int main(){
         }
         Door_Change_Tri();
     }
-    
+}
 
+int main(){
+    uint16_t gradual_bright = 0x1<<12;//渐亮
+    uint16_t gradual_extinction = 0x2<<12;//渐灭
+
+
+    uint8_t save_light = 255u;
+
+    uint16_t light1 = gradual_bright | save_light;
+    uint16_t light2 = gradual_extinction | save_light;
+    uint16_t flash_fulllight = (0x4<<12) | 0xff;
+
+    std::cout<<std::bitset<16>(light1)<<std::endl;
+    std::cout<<std::bitset<16>(light2)<<std::endl;
+    std::cout<<std::bitset<16>(flash_fulllight)<<std::endl;
+    std::cout<<"0&0: "<< (0&0) << " 0&1:" <<(0&1)<<" 0&2: "<<(0&2)<<std::endl;
+    std::cout<<"1&0: "<< (1&0) << " 1&1:" <<(1&1)<<" 1&2: "<<(1&2)<<std::endl;
+    std::cout<<"2|0: "<< (2|0) << " 1|1:" <<(1|1)<<" 1|2: "<<(1|2)<<std::endl;
 
     return 0;
 }
