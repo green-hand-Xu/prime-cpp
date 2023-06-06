@@ -1152,8 +1152,11 @@ void test_delayclose(){
         Door_Change_Tri();
     }
 }
-
-int main(){
+/**
+ * @brief 与或非的计算
+ * 
+ */
+void computenum(){
     uint16_t gradual_bright = 0x1<<12;//渐亮
     uint16_t gradual_extinction = 0x2<<12;//渐灭
 
@@ -1170,6 +1173,23 @@ int main(){
     std::cout<<"0&0: "<< (0&0) << " 0&1:" <<(0&1)<<" 0&2: "<<(0&2)<<std::endl;
     std::cout<<"1&0: "<< (1&0) << " 1&1:" <<(1&1)<<" 1&2: "<<(1&2)<<std::endl;
     std::cout<<"2|0: "<< (2|0) << " 1|1:" <<(1|1)<<" 1|2: "<<(1|2)<<std::endl;
+}
+
+int main(){
+    bool sleepflag = true;
+    for(int i = 0 ; i <= 10000 ; i+=1000){
+        if(sleepflag == false){
+            std::cout<<" break "<<std::endl;
+            break;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::cout<<" i = "<<i<<std::endl;
+        if (i>= 5000)
+        {
+            sleepflag = false;
+        }
+        
+    }
 
     return 0;
 }
