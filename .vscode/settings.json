@@ -62,7 +62,9 @@
         "cstdarg": "cpp",
         "algorithm": "cpp",
         "iterator": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "unordered_set": "cpp",
+        "cinttypes": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/Cmake_demo",
     "winopacity.opacity": 220,
