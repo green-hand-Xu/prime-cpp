@@ -12,5 +12,7 @@ include_directories (
     ${VSOMEIP_INCLUDE_DIRS}
 )
 
-add_executable(FirstProject hello_world_Server.cpp)
-target_link_libraries(FirstProject vsomeip3 ${Boost_LIBRARIES})
+add_executable(Server hello_world_Server.cpp)
+add_executable(Client hello_world_Client.cpp)
+target_link_libraries(Server vsomeip3 ${Boost_LIBRARIES})
+target_link_libraries(Client vsomeip3 ${Boost_LIBRARIES})
