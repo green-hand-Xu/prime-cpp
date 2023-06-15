@@ -43,8 +43,6 @@ void CurrentTime(const std::shared_ptr<vsomeip_v3::message> &message){
     //将设置完内容的payload 放入响应消息中
     CurrentTime_retponse->set_payload(CurrentTime_payload);
     ServerApp_app->send(CurrentTime_retponse);
-
-
 }
 
 int main(){
