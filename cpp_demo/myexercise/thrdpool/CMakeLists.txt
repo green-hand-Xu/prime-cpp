@@ -18,7 +18,7 @@ include_directories(
 
 find_package (Threads REQUIRED)
 
-add_executable(demo computColor.cpp ${SRCS})
+add_executable(demo main.cpp ${SRCS})
 
 # target_link_directories(
 #     ${PROJECT_NAME}

@@ -23,7 +23,7 @@ struct __thrdpool
 {
 	msgqueue_t *msgqueue; // 任务队列
 	size_t nthreads; // 线程个数
-	size_t stacksize; // 构造线程时的参数
+	size_t stacksize; // 构造线程时的 堆栈大小 参数 单位 Byte
 	pthread_t tid; // 线程id，整个线程池只有一个 运行期间记录的是个zero值
 	pthread_mutex_t mutex;
 	pthread_key_t key;//线程池的key 然后会赋予给每个由线程池创建的线程作为他们的thread local，用于区分这个线程是否是线程池创建的。
