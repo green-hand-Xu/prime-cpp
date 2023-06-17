@@ -10,10 +10,22 @@
 bool flag = true;
 
 typedef void (*TaskType)(void *); //定义context 类型的函数指针
+
+    /**
+     * @brief 
+     * 
+     * @param task 
+     */
+    void my_pending(const struct thrdpool_task *task){
+        // 线程池销毁后，没执行的任务会到这里
+        //todo:暂不处理未执行的任务
+        printf("pending task-%llu.\n", reinterpret_cast<unsigned long long>(task->context)); 
+    }
+
 class Threadpool
 {
 public:
-    //默认创建线程池：线程数 5  堆栈大小 4k
+    //默认创建线程池：线程数 5  堆栈大小 4k (ubutun 最小大小为4k)
     Threadpool(){
         thrdpool = thrdpool_create((size_t)(5),(size_t)(16384));
         std::cout<<"initialization finish"<<std::endl;
@@ -43,6 +55,10 @@ public:
         return ret;
     }
 
+    void destory_thrdpool(){
+        thrdpool_destroy(&my_pending, thrdpool); // 摧毁线程池并取出未执行的任务
+    }
+
     thrdpool_t* thrdpool; //申请的线程池对象
     thrdpool_task _task; //执行的任务对象
 };
@@ -65,13 +81,9 @@ void my_routine(void *context)
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     i = static_cast<uint8_t>(0);
-    std::cout<<"flag == false i = "<< static_cast<int>(i) <<std::endl;             
+    std::cout<<"flag == false i = "<< static_cast<int>(i) <<std::endl;
 }
 
-void my_pending(const struct thrdpool_task *task){
-    // 线程池销毁后，没执行的任务会到这里
-    printf("pending task-%llu.\n", reinterpret_cast<unsigned long long>(task->context)); 
-}
 
 int print_STACK_size(){
 
@@ -169,7 +181,7 @@ int main()
 {
     Threadpool threadpool;
     threadpool.thrdstart([](void *){my_routine(task.context);});
-
+    print_STACK_size();
     getchar(); // 卡住主线程，按回车继续
     flag = false;
     getchar();
