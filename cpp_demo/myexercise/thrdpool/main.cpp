@@ -9,8 +9,8 @@
 
 bool flag = true;
 
-typedef void (*TaskType)(void *); //定义context 类型的函数指针
-
+// typedef void (*TaskType)(void *); //定义context 类型的函数指针
+using TaskType = std::function<void( void *)>;
     /**
      * @brief 
      * 
@@ -149,17 +149,12 @@ void thrdpool_start(){
     thrdpool_t *thrd_pool = thrdpool_create(3, 16384); // 创建 线程池  堆栈大小采取最小值       
     
     unsigned long long i;
-                               
-    // for (i = 0; i < 5; i++)
 
-    // {
         auto tri = [](void *){my_routine(task.context);}; 
         task.routine = tri;                                           
         // task.context = reinterpret_cast<void *>(i);                             
         thrdpool_schedule(&task, thrd_pool); // 调用
-    // }
-    // getchar(); // 卡住主线程，按回车继续
-    // thrdpool_destroy(&my_pending, thrd_pool); // 结束
+
 }
 
 void std_threadstart(){
@@ -179,11 +174,38 @@ void std_threadstart(){
 
 int main()                                                                         
 {
-    Threadpool threadpool;
-    threadpool.thrdstart([](void *){my_routine(task.context);});
+    // Threadpool threadpool;
+    std::shared_ptr<Threadpool> threadpool;
+    threadpool = std::make_shared<Threadpool>();
+    threadpool->thrdstart(
+        []
+        (void *)
+        {my_routine(task.context);}
+        );
     print_STACK_size();
     getchar(); // 卡住主线程，按回车继续
     flag = false;
     getchar();
     return 0;                                                                   
 } 
+
+
+${CMAKE_CURRENT_SOURCE_DIR}/thirdparty
+
+#include "thirdparty/CTPL/ctpl_stl.h"
+
+
+std::shared_ptr<ctpl::thread_pool> ThreadPool;
+
+,ThreadPool(nullptr) 
+
+
+	ThreadPool->push(
+        [this,value](int id){
+
+        }
+	);
+
+ThreadPool = std::make_shared<ctpl::thread_pool>();
+
+ThreadPool = std::make_shared<ctpl::thread_pool>(8);

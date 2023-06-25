@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/*.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
 message(STATUS ${SRCS})
 
@@ -28,5 +29,6 @@ add_executable(demo main.cpp ${SRCS})
 target_link_libraries(
     ${PROJECT_NAME}
     pthread
+    libpthread.a
 )
 

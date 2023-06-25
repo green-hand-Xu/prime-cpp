@@ -14,6 +14,7 @@
 
 #include <errno.h>
 #include <pthread.h>
+#include <thread>
 #include <stdlib.h>
 #include <string.h>
 #include "msgqueue.h"
@@ -33,7 +34,7 @@ struct __thrdpool
 struct __thrdpool_task_entry
 {
 	void *link;
-	struct thrdpool_task task;
+	thrdpool_task task;
 };
 
 static pthread_t __zero_tid;
@@ -42,7 +43,8 @@ static void *__thrdpool_routine(void *arg)
 {
 	thrdpool_t *pool = (thrdpool_t *)arg;
 	struct __thrdpool_task_entry *entry;
-	void (*task_routine)(void *);
+	// void (*task_routine)(void *);
+	std::function<void (void *)> task_routine;
 	void *task_context;
 	pthread_t tid;
 
