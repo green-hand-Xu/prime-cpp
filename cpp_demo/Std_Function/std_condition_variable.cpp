@@ -7,7 +7,8 @@
 #include <iostream>
 #include <thread>
 #include <condition_variable>
- 
+#include <map>
+#include <atomic>
 /**
  * @brief 生产者消费者案例
  * 
@@ -101,10 +102,10 @@ public:
             Dynflag == false;
             while (1)
             {
-                std::cout<<"启动氛围灯 动态模式 启动。 模式 = "<< ModeNo <<std::endl;
                 if(DynStopflag == false){
                     break;
                 }
+                std::cout<<"启动氛围灯 动态模式 启动。 模式 = "<< ModeNo <<std::endl;
                 std::this_thread::sleep_for(std::chrono::seconds(1));
             }
             Dynflag == true;
@@ -120,7 +121,7 @@ public:
     }
 
 
-    std::mutex DynMutex;//动态模式互斥变量
+    std::mutex DynMutex;//动态模式互斥变量 最初的 mutex 对象是未加锁的
     std::condition_variable Dyncv;//动态模式条件变量
 
     bool Dynflag = true; //动态模式线程循环 互斥标志位
@@ -149,16 +150,23 @@ public:
     }
 
     void start(){
-        std::thread([this](){
+                std::thread([this](){
+                    DynStopflag = false;//线程运行时 停止标志位为 false
+                    int i = 1;
+                    while (DynModeSwt) //判断动态模式开关状态
+                    {
+                        std::cout<<"启动氛围灯 动态模式 启动。"<<"线程id = "<<std::this_thread::get_id()<<" 模式 = "<< colormap_runtime[i]<<std::endl;
+                        std::this_thread::sleep_for(std::chrono::seconds(2));
+                        ++i;
+                        if(i>colormap_runtime.size()){
+                            i = 1;
+                        }
+                    }
+                    DynStopflag = true; //结束循环时 将表示动态模式循环运行状态的标志位 置为 true
+                    std::cout<<"氛围灯 动态模式 结束。 模式 = "<<"线程id = "<<std::this_thread::get_id()<<" 模式 = "<< colormap_runtime[i]<<std::endl;
+                }).detach();
+        }
 
-            while (DynModeSwt) //判断动态模式开关状态
-            {
-                std::cout<<"启动氛围灯 动态模式 启动。"<<"线程id = "<<std::this_thread::get_id()<<" 模式 = "<< modeid <<std::endl;
-                std::this_thread::sleep_for(std::chrono::seconds(5));
-            }
-            std::cout<<"氛围灯 动态模式 结束。 模式 = "<< modeid <<std::endl;
-        }).detach();
-    }
 
     //结束动态模式
     void stop(){
@@ -166,40 +174,55 @@ public:
     }
 
 
-    std::mutex DynMutex;//动态模式互斥变量
-    std::condition_variable Dyncv;//动态模式条件变量
-
-    bool Dynflag = true; //动态模式线程循环 互斥标志位
     bool DynStopflag = true;//动态模式运行标志位 true 表示 无动态模式运行
     bool DynModeSwt = false;//氛围灯动态模式开关状态
-    int modeid = 1;
+    std::map<int,std::string> colormap_runtime = colormap1; //运行时动态读取的 颜色色条
+
+    //预定义的颜色色条
+    std::map<int,std::string> colormap1{{1,"colormap1颜色1"},{2,"colormap1颜色2"},{3,"colormap1颜色3"},{4,"colormap1颜色4"},{5,"colormap1颜色5"},{6,"colormap1颜色6"},{7,"colormap1颜色7"}};
+    std::map<int,std::string> colormap2{{1,"colormap2颜色1"},{2,"colormap2颜色2"},{3,"colormap2颜色3"},{4,"colormap2颜色4"},{5,"colormap2颜色5"},{6,"colormap2颜色6"},{7,"colormap2颜色7"}};
+    std::map<int,std::string> colormap3{{1,"colormap3颜色1"},{2,"colormap3颜色2"},{3,"colormap3颜色3"},{4,"colormap3颜色4"},{5,"colormap3颜色5"},{6,"colormap3颜色6"},{7,"colormap3颜色7"}};
 };
 
 DynMode1 Dmode1;
 int modeNo;
 
 
-void simulate_Dyn1Start(){
-    Dmode1.DynModeSwt = true;
-    Dmode1.start();
+void simulate_Dyn1Start( std::map<int,std::string> colormap){
+    Dmode1.DynModeSwt = true; //触发条件为动态模式ON
+    Dmode1.colormap_runtime = colormap;//改变动态模式运行时读取的色条
+    //判断当前动态模式线程是否在运行，运行则不再进行线程的启动
+    if(!Dmode1.DynStopflag){
+        return;
+    }
+    Dmode1.start();//启动动态模式
 }
 
 int main(){
     
     while (1)
     {
-        std::cout<<"请输入动态模式色条编号'\n'1表示开启动态模式'\n'0表示关闭动态模式"<<std::endl;
+        std::cout<<"请输入动态模式色条编号'\n'1-3表示开启对应动态模式'\n'0表示关闭动态模式"<<std::endl;
         std::cin>>modeNo;
-        if(modeNo == 1){
-            simulate_Dyn1Start();
+        switch (modeNo)
+        {
+        case 1:
+            simulate_Dyn1Start(Dmode1.colormap1);
+            break;
+        case 2:
+            simulate_Dyn1Start(Dmode1.colormap2);
+            break;
+        case 3:
+            simulate_Dyn1Start(Dmode1.colormap3);
+            break;        
+        default:
+            break;
         }
-        
+       
         if(modeNo == 0){
             Dmode1.stop();
             std::cout<<"动态模式结束"<<std::endl;
         }
-        Dmode1.modeid = modeNo;
-
     }
     
     return 0;
