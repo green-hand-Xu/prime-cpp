@@ -173,7 +173,6 @@ public:
         DynModeSwt = false;
     }
 
-
     bool DynStopflag = true;//动态模式运行标志位 true 表示 无动态模式运行
     bool DynModeSwt = false;//氛围灯动态模式开关状态
     std::map<int,std::string> colormap_runtime = colormap1; //运行时动态读取的 颜色色条
