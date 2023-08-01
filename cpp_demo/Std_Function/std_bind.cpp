@@ -65,7 +65,7 @@ int main(){
 
     cout<<"3、bind 的参数列表里 继续套用 bind 对象,此时 占位符 是共享的"<<endl;
     auto f2 = std::bind(f,placeholders::_3,std::bind(g,std::bind(g,std::bind(g,placeholders::_3))),placeholders::_3,4,5); //实际参数 相当于前面三个都是_3
-    f2(10,11,12);//占位符重复时，使用最后一个最新的占位符赋值
+    f2(10,11,12,13);//占位符重复时，使用最后一个最新的占位符赋值
     f2(12,11,10);
 
     cout<<"4、使用随机数方法"<<endl;
