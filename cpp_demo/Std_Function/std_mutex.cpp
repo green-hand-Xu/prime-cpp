@@ -2,6 +2,7 @@
 #include <string>
 #include <mutex>
 #include <thread>
+#include <cstdio>
 
 using namespace std;
 
@@ -11,26 +12,28 @@ using namespace std;
 *最初产生的 mutex 对象是处于 unlocked 状态
 */
 
-volatile int counter(0); // non-atomic counter
 std::mutex mtx;           // locks access to counter
  
-void attempt_10k_increases() {
-    for (int i=0; i<10000; ++i) {
-        if (mtx.try_lock()) {   // only increase if currently not locked:
-            //mtx.lock();
-            ++counter;
-            mtx.unlock();
-        }
+void sync_fun1() {
+    //使用 print 输出是为了防止多线程下 cout（非线程安全） 的输出混乱问题。
+    if (mtx.try_lock())
+    {
+        printf("线程id = %-ld  持有锁 \n",std::this_thread::get_id());
+        mtx.unlock();//解锁
+        printf("线程id = %-ld  释放锁 \n",std::this_thread::get_id());
+    }else{
+        printf("线程id = %-ld  未持有锁 \n",std::this_thread::get_id());
     }
+    
 }
  
 int main (int argc, const char* argv[]) {
     std::thread threads[10];
-    for (int i=0; i<10; ++i)
-        threads[i] = std::thread(attempt_10k_increases);
- 
-    for (auto& th : threads) th.join();
-    std::cout << counter << " successful increases of the counter.\n";
- 
+    for (int i=0; i<10; ++i){
+        threads[i] = std::thread(sync_fun1);
+    }
+    for (auto& th : threads) {
+        th.join();
+    }
     return 0;
 }
