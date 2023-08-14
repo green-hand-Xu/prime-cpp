@@ -512,7 +512,9 @@ struct SOA_Response_Struct {
     using _ReturnCode_type = SOA_ReturnCode_Integer;
     _ReturnCode_type ReturnCode;
 
-};
+}_SOA_Response_Struct;
+
+auto [ a,b,c,d ] = _SOA_Response_Struct;
 
 struct NodeSwtCtrl_Struct {
     using _NodeSwtCtrl_type = NodeSwtCtrl_Command_Enum;

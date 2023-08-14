@@ -43,11 +43,20 @@ void sync_fun2() {
     }
     
 }
- 
+
+void sync_fun3() {
+
+    mtx.lock();
+    printf("线程id = %-ld  持有锁 \n",std::this_thread::get_id());
+    counts++;
+    mtx.unlock();//解锁
+    printf("线程id = %-ld  释放锁 \n",std::this_thread::get_id()); 
+}
+
 int main (int argc, const char* argv[]) {
     std::thread threads[10];
     for (int i=0; i<10; ++i){
-        threads[i] = std::thread(sync_fun1);
+        threads[i] = std::thread(sync_fun3);
     }
     for (auto& th : threads) {
         th.join();
