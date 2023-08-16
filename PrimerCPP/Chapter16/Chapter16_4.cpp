@@ -35,6 +35,32 @@ std::ostream &print(std::ostream &os , const T &t , Args... args){ //*包拓展�
     return print(os,args...); //*包拓展： 拓展 args  生成实参列表
 }
 
+//* 包拓展
+template <typename... Args>
+std::ostream &errorMsg(std::ostream &os, const Args... rest){
+    //*等价于 第二个参数为 print（a1）, print（a2）...一次展开 单独的调用
+    //*若 入参为 print(rest...) 则在参数列表内进行包拓展  相当于 print(a1,a2,a3...)
+    return print(os,print(rest)...); 
+}
+
+//* 转发参数包 结合 完美转发 来实现 统一接口的调用
+//* 为一个函数实现两种调用方式，分为单参数和两个参数
+template<typename T>
+void _FieldHandler(T value){
+    std::cout<<"单参数函数 "<<value<<std::endl;
+}
+
+template<typename T>
+void _FieldHandler(T value,T olevalue){
+    std::cout<<"双参数函数 "<<value<<' '<<olevalue<<std::endl;
+}
+
+template<typename... Args>
+void FieldHandler(Args... rest){
+    return _FieldHandler(std::forward<Args>(rest)...);
+}
+
+
 // 可变参数模板函数普通调用
 void test_one(){
     foo("1",1,1,1,1);
@@ -48,6 +74,7 @@ void test_two(){
 
 int main(){
 
-    test_two();
+    FieldHandler("a","b");
+    FieldHandler("a");
     return 0;
 }
