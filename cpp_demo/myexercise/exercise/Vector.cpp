@@ -85,11 +85,24 @@ void shouwei(){
         j--;
     }
 }
+/**
+ * @brief 验证 插入 中间删除后 是否还会自动排序
+ * 
+ */
+void fun1(){
 
+    vector<int> vints{1,2,3,4,5,6,7};
+    cout<<"数组长度 = "<<vints.size()<<endl;
+    vints.erase(vints.cbegin());
+    cout<<"释放首位元素后 数组长度 = "<<vints.size()<<endl;
+    cout<<"第一个元素为 = "<<vints[0]<<endl;
+
+
+}
 
 int main( )
 {
-    shouwei();
+    fun1();
 
     return 0;
 }

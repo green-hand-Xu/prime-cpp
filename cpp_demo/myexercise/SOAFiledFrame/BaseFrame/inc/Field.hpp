@@ -4,6 +4,7 @@
 #include <functional>
 /**
  * @brief Field 字段的处理类
+ * 将Field 声明为一个此类对象，封装一些针对于该field常用的操作
  * 某些子类可以重载的函数 设置为虚函数，尽量所有函数设置为 不抛出异常
  * 
  * @tparam T Field 字段的类型 
