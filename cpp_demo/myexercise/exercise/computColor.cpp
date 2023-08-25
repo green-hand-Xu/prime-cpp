@@ -227,16 +227,11 @@ enum class AtmLi_ColorSet_64_Enum : std::uint8_t {
 }//GWM
 
 
-#endif /* _ALCMCLRSETHMISRV_GS2S_DATATYPES_HPP_ */
-/**********************************************************************************************************************
- *  COPYRIGHT
- *  -------------------------------------------------------------------------------------------------------------------
- *  Copyright (c) 2022 by Gwm. All rights reserved.
- *********************************************************************************************************************/
+#endif 
 
 #ifndef _ALCMCTRLSRV_DATATYPES_HPP_
 #define _ALCMCTRLSRV_DATATYPES_HPP_
-
+#include <iostream>
 #include <cstdint>
 
 namespace GWM{
@@ -245,113 +240,10 @@ namespace Body{
 namespace ALCM{
 namespace ALCMCtrlSrv_Gen{
 
-
-using HardwireOutput_Command_Integer = std::uint16_t;
-
-using ColorCtrl_Command_Integer = std::uint8_t;
-
-enum class ModeSelectionCtrl_Command_Enum : std::uint8_t {
-    Static_Mode = 0,
-    Breathing_Mode = 1,
-    Flowing_Mode = 2,
-    Music_Mode = 3,
-    Dynamic_Mode = 4,
-    Random_Mode = 5,
-    Welcome_Mode = 6,
-    Flash_Frequency_Mode = 7
-};
-
-enum class LightLvlCtrl_Command_Enum : std::uint8_t {
-    OFF = 0,
-    per10 = 1,
-    per20 = 2,
-    per30 = 3,
-    per40 = 4,
-    per50 = 5,
-    per60 = 6,
-    per70 = 7,
-    per80 = 8,
-    per90 = 9,
-    per100 = 10,
-    Reserved1 = 11,
-    Reserved2 = 12,
-    Reserved3 = 13,
-    Reserved4 = 14,
-    Reserved5 = 15
-};
-
-enum class ModeChangeCtrl_Command_Enum : std::uint8_t {
-    Immediately = 0,
-    NON_Immediately = 1
-};
-
-using FadeTimeCtrl_Command_Integer = std::uint8_t;
-
-enum class SyllablePrmCtrl_Command_Enum : std::uint8_t {
-    No_Action = 0,
-    Valid1 = 1,
-    Valid2 = 2,
-    Valid3 = 3,
-    Valid4 = 4,
-    Valid5 = 5,
-    Valid6 = 6,
-    Valid7 = 7
-};
-
-enum class NodeSwtCtrl_Command_Enum : std::uint8_t {
-    OFF = 0,
-    ON = 1
-};
-
-using SOA_ReturnCode_Integer = std::uint8_t;
-
-using SOA_Reserved_Integer = std::uint8_t;
-
-enum class SOA_Protocol_Type_Enum : std::uint8_t {
-    Protocol_General = 0,
-    Protocol_SOMEIP = 1,
-    Protocol_DDS = 2,
-    Protocol_Custom = 128
-};
-
 enum class ActvNodeCtrl_Command_Enum : std::uint8_t {
     Disable = 0,
     Enable = 1
 };
-
-enum class SOA_ClientID_Emum : std::uint8_t {
-    LocalSwitch1 = 0,
-    LocalSwitch2 = 1,
-    LocalSwitch3 = 2,
-    HUT = 3,
-    RKE = 4,
-    PKE = 5,
-    BLE = 6,
-    Gesture = 7,
-    Voice = 8,
-    Induction = 9,
-    ADAS = 10,
-    AVP = 11,
-    IDC_L2 = 12,
-    Remote = 47,
-    Environment = 48,
-    Dark = 49,
-    Temp = 50,
-    Sunny = 51,
-    RLS = 52,
-    VehStateChg = 64,
-    DoorAction = 65,
-    Speed = 66,
-    Park = 67,
-    UserDefClnt1 = 240,
-    UserDefClnt2 = 241,
-    UserDefClnt3 = 242,
-    UserDefClnt4 = 243,
-    UserDefClnt5 = 244,
-    UserDefClnt6 = 245,
-    UserDefClnt7 = 246
-};
-
 struct ActvNodeCtrl_Struct {
     using _Active_Node_1_type = ActvNodeCtrl_Command_Enum;
     _Active_Node_1_type Active_Node_1;
@@ -499,102 +391,6 @@ struct ActvNodeCtrl_Struct {
 
 };
 
-struct SOA_Response_Struct {
-    using _ProtocolType_type = SOA_Protocol_Type_Enum;
-    _ProtocolType_type ProtocolType;
-
-    using _Reserved0_type = SOA_Reserved_Integer;
-    _Reserved0_type Reserved0;
-
-    using _Reserved1_type = SOA_Reserved_Integer;
-    _Reserved1_type Reserved1;
-
-    using _ReturnCode_type = SOA_ReturnCode_Integer;
-    _ReturnCode_type ReturnCode;
-
-}_SOA_Response_Struct;
-
-auto [ a,b,c,d ] = _SOA_Response_Struct;
-
-struct NodeSwtCtrl_Struct {
-    using _NodeSwtCtrl_type = NodeSwtCtrl_Command_Enum;
-    _NodeSwtCtrl_type NodeSwtCtrl;
-
-    using _NodeSwtCtrl_NF_type = NodeSwtCtrl_Command_Enum;
-    _NodeSwtCtrl_NF_type NodeSwtCtrl_NF;
-
-};
-
-struct SyllablePrmCtrl_Struct {
-    using _SyllablePrmCtrl_type = SyllablePrmCtrl_Command_Enum;
-    _SyllablePrmCtrl_type SyllablePrmCtrl;
-
-    using _SyllablePrmCtrl_NF_type = SyllablePrmCtrl_Command_Enum;
-    _SyllablePrmCtrl_NF_type SyllablePrmCtrl_NF;
-
-};
-
-struct FadeTimeCtrl_Struct {
-    using _FadeTimeCtrl_type = FadeTimeCtrl_Command_Integer;
-    _FadeTimeCtrl_type FadeTimeCtrl;
-
-    using _FadeTimeCtrl_NF_type = FadeTimeCtrl_Command_Integer;
-    _FadeTimeCtrl_NF_type FadeTimeCtrl_NF;
-
-};
-
-struct ModeChangeCtrl_Struct {
-    using _ModeChangeCtrl_type = ModeChangeCtrl_Command_Enum;
-    _ModeChangeCtrl_type ModeChangeCtrl;
-
-    using _ModeChangeCtrl_NF_type = ModeChangeCtrl_Command_Enum;
-    _ModeChangeCtrl_NF_type ModeChangeCtrl_NF;
-
-};
-
-struct LightLvlCtrl_Struct {
-    using _LightLvlCtrl_type = LightLvlCtrl_Command_Enum;
-    _LightLvlCtrl_type LightLvlCtrl;
-
-    using _LightLvlCtrl_NF_type = LightLvlCtrl_Command_Enum;
-    _LightLvlCtrl_NF_type LightLvlCtrl_NF;
-
-};
-
-struct ModeSelectionCtrl_Struct {
-    using _ModeSelectionCtrl_type = ModeSelectionCtrl_Command_Enum;
-    _ModeSelectionCtrl_type ModeSelectionCtrl;
-
-    using _ModeSelectionCtrl_NF_type = ModeSelectionCtrl_Command_Enum;
-    _ModeSelectionCtrl_NF_type ModeSelectionCtrl_NF;
-
-};
-
-struct ColorCtrl_Struct {
-    using _RedRatCtrl_type = ColorCtrl_Command_Integer;
-    _RedRatCtrl_type RedRatCtrl;
-
-    using _GreenRatCtrl_type = ColorCtrl_Command_Integer;
-    _GreenRatCtrl_type GreenRatCtrl;
-
-    using _BlueRatCtrl_type = ColorCtrl_Command_Integer;
-    _BlueRatCtrl_type BlueRatCtrl;
-
-};
-
-struct HardwireOutput_Struct {
-    using _HardwireGreenOutput_type = HardwireOutput_Command_Integer;
-    _HardwireGreenOutput_type HardwireGreenOutput;
-
-    using _HardwireBlueOutput_type = HardwireOutput_Command_Integer;
-    _HardwireBlueOutput_type HardwireBlueOutput;
-
-    using _HardwireRedOutput_type = HardwireOutput_Command_Integer;
-    _HardwireRedOutput_type HardwireRedOutput;
-
-};
-
-
 }//ALCMCtrlSrv_Gen
 }//ALCM
 }//Body
@@ -603,112 +399,13 @@ struct HardwireOutput_Struct {
 
 
 #endif /* _ALCMCTRLSRV_DATATYPES_HPP_ */
-#include <map>
-#include <iostream>
-using AtmLi_ColorSet_64_Enum = GWM::Vehicle::Body::ALCM::GS2S::ALCMClrSetHMISrv_GS2S::ALCMClrSetHMISrv_GS2S_Gen::AtmLi_ColorSet_64_Enum;
-using ColorCtrl_Struct = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct;
-using R_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct::_RedRatCtrl_type;
-using G_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct::_GreenRatCtrl_type;
-using B_ColorType = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ColorCtrl_Struct::_BlueRatCtrl_type;
-
-std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap{
-    {AtmLi_ColorSet_64_Enum::Colour_0,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+10)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(1*16+12))}},
-    {AtmLi_ColorSet_64_Enum::Colour_1,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+11)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(2*16+3))}},
-    {AtmLi_ColorSet_64_Enum::Colour_2,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(7*16+6)),B_ColorType(static_cast<uint8_t>(3*16+2))}},
-    {AtmLi_ColorSet_64_Enum::Colour_3,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+7)),G_ColorType(static_cast<uint8_t>(6*16+13)),B_ColorType(static_cast<uint8_t>(3*16+11))}},
-    {AtmLi_ColorSet_64_Enum::Colour_4,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+9)),G_ColorType(static_cast<uint8_t>(6*16+1)),B_ColorType(static_cast<uint8_t>(5*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_5,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+11)),G_ColorType(static_cast<uint8_t>(5*16+1)),B_ColorType(static_cast<uint8_t>(6*16+3))}},
-    {AtmLi_ColorSet_64_Enum::Colour_6,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+6)),G_ColorType(static_cast<uint8_t>(3*16+2)),B_ColorType(static_cast<uint8_t>(8*16+7))}},
-    {AtmLi_ColorSet_64_Enum::Colour_7,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+15)),G_ColorType(static_cast<uint8_t>(1*16+2)),B_ColorType(static_cast<uint8_t>(10*16+14))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_8,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t> (3*16+15)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(12*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_9,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t> (5*16+11)),G_ColorType(static_cast<uint8_t>(0*16+12)),B_ColorType(static_cast<uint8_t>(9*16+8))}},
-    {AtmLi_ColorSet_64_Enum::Colour_10,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+8)),G_ColorType(static_cast<uint8_t>(1*16+13)),B_ColorType(static_cast<uint8_t>(7*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_11,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+10)),G_ColorType(static_cast<uint8_t>(3*16+6)),B_ColorType(static_cast<uint8_t>(4*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_12,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+10)),G_ColorType(static_cast<uint8_t>(2*16+0)),B_ColorType(static_cast<uint8_t>(5*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_13,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+12)),G_ColorType(static_cast<uint8_t>(1*16+14)),B_ColorType(static_cast<uint8_t>(4*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_14,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(10*16+7)),G_ColorType(static_cast<uint8_t>(0*16+7)),B_ColorType(static_cast<uint8_t>(5*16+1))}},
-    {AtmLi_ColorSet_64_Enum::Colour_15,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+9)),G_ColorType(static_cast<uint8_t>(1*16+3)),B_ColorType(static_cast<uint8_t>(3*16+3))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_16,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+1)),G_ColorType(static_cast<uint8_t>(0*16+14)),B_ColorType(static_cast<uint8_t>(2*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_17,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+0)),G_ColorType(static_cast<uint8_t>(2*16+12)),B_ColorType(static_cast<uint8_t>(1*16+3))}},
-    {AtmLi_ColorSet_64_Enum::Colour_18,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+15)),G_ColorType(static_cast<uint8_t>(1*16+3)),B_ColorType(static_cast<uint8_t>(0*16+13))}},
-    {AtmLi_ColorSet_64_Enum::Colour_19,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+15)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_20,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+13)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_21,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+11)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
-    {AtmLi_ColorSet_64_Enum::Colour_22,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(15*16+1)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(0*16+12))}},
-    {AtmLi_ColorSet_64_Enum::Colour_23,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+11)),G_ColorType(static_cast<uint8_t>(1*16+9)),B_ColorType(static_cast<uint8_t>(0*16+11))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_24,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(14*16+4)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(1*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_25,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+9)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(3*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_26,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+13)),G_ColorType(static_cast<uint8_t>(0*16+3)),B_ColorType(static_cast<uint8_t>(5*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_27,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+8)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(8*16+1))}},
-    {AtmLi_ColorSet_64_Enum::Colour_28,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(6*16+1)),G_ColorType(static_cast<uint8_t>(0*16+4)),B_ColorType(static_cast<uint8_t>(9*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_29,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(4*16+8)),G_ColorType(static_cast<uint8_t>(0*16+6)),B_ColorType(static_cast<uint8_t>(11*16+1))}},
-    {AtmLi_ColorSet_64_Enum::Colour_30,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+4)),G_ColorType(static_cast<uint8_t>(0*16+3)),B_ColorType(static_cast<uint8_t>(12*16+8))}},
-    {AtmLi_ColorSet_64_Enum::Colour_31,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+12)),G_ColorType(static_cast<uint8_t>(0*16+4)),B_ColorType(static_cast<uint8_t>(12*16+15))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_32,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+4)),G_ColorType(static_cast<uint8_t>(0*16+2)),B_ColorType(static_cast<uint8_t>(13*16+9))}},
-    {AtmLi_ColorSet_64_Enum::Colour_34,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(0*16+0)),B_ColorType(static_cast<uint8_t>(15*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_35,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+7)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(14*16+7))}},
-    {AtmLi_ColorSet_64_Enum::Colour_36,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(0*16+1)),B_ColorType(static_cast<uint8_t>(13*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_37,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(2*16+0)),G_ColorType(static_cast<uint8_t>(0*16+15)),B_ColorType(static_cast<uint8_t>(13*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_38,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+0)),G_ColorType(static_cast<uint8_t>(4*16+4)),B_ColorType(static_cast<uint8_t>(8*16+11))}},
-    {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+3)),G_ColorType(static_cast<uint8_t>(7*16+8)),B_ColorType(static_cast<uint8_t>(5*16+4))}},
-    {AtmLi_ColorSet_64_Enum::Colour_39,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+10)),G_ColorType(static_cast<uint8_t>(8*16+6)),B_ColorType(static_cast<uint8_t>(3*16+15))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_40,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+4)),G_ColorType(static_cast<uint8_t>(8*16+2)),B_ColorType(static_cast<uint8_t>(6*16+9))}},
-    {AtmLi_ColorSet_64_Enum::Colour_41,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+8)),G_ColorType(static_cast<uint8_t>(9*16+11)),B_ColorType(static_cast<uint8_t>(4*16+12))}},
-    {AtmLi_ColorSet_64_Enum::Colour_42,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+10)),G_ColorType(static_cast<uint8_t>(11*16+11)),B_ColorType(static_cast<uint8_t>(3*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_43,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+6)),G_ColorType(static_cast<uint8_t>(14*16+0)),B_ColorType(static_cast<uint8_t>(1*16+9))}},
-    {AtmLi_ColorSet_64_Enum::Colour_44,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+15)),G_ColorType(static_cast<uint8_t>(12*16+3)),B_ColorType(static_cast<uint8_t>(1*16+13))}},
-    {AtmLi_ColorSet_64_Enum::Colour_45,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+7)),G_ColorType(static_cast<uint8_t>(11*16+2)),B_ColorType(static_cast<uint8_t>(1*16+6))}},
-    {AtmLi_ColorSet_64_Enum::Colour_46,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(1*16+13)),G_ColorType(static_cast<uint8_t>(13*16+10)),B_ColorType(static_cast<uint8_t>(0*16+8))}},
-    {AtmLi_ColorSet_64_Enum::Colour_47,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+0)),G_ColorType(static_cast<uint8_t>(15*16+15)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_48,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(0*16+15)),G_ColorType(static_cast<uint8_t>(14*16+14)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
-    {AtmLi_ColorSet_64_Enum::Colour_49,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(3*16+4)),G_ColorType(static_cast<uint8_t>(12*16+9)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
-    {AtmLi_ColorSet_64_Enum::Colour_50,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(5*16+13)),G_ColorType(static_cast<uint8_t>(10*16+0)),B_ColorType(static_cast<uint8_t>(0*16+2))}},
-    {AtmLi_ColorSet_64_Enum::Colour_51,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+13)),G_ColorType(static_cast<uint8_t>(7*16+1)),B_ColorType(static_cast<uint8_t>(0*16+1))}},
-    {AtmLi_ColorSet_64_Enum::Colour_52,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(10*16+6)),G_ColorType(static_cast<uint8_t>(5*16+8)),B_ColorType(static_cast<uint8_t>(0*16+1))}},
-    {AtmLi_ColorSet_64_Enum::Colour_53,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+9)),G_ColorType(static_cast<uint8_t>(4*16+6)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_54,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+7)),G_ColorType(static_cast<uint8_t>(2*16+8)),B_ColorType(static_cast<uint8_t>(0*16+0))}},
-    {AtmLi_ColorSet_64_Enum::Colour_55,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+9)),G_ColorType(static_cast<uint8_t>(3*16+3)),B_ColorType(static_cast<uint8_t>(0*16+3))}},
-
-    {AtmLi_ColorSet_64_Enum::Colour_56,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+15)),G_ColorType(static_cast<uint8_t>(1*16+11)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_57,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(13*16+5)),G_ColorType(static_cast<uint8_t>(2*16+5)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_58,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(12*16+5)),G_ColorType(static_cast<uint8_t>(3*16+5)),B_ColorType(static_cast<uint8_t>(0*16+5))}},
-    {AtmLi_ColorSet_64_Enum::Colour_59,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(11*16+0)),G_ColorType(static_cast<uint8_t>(4*16+5)),B_ColorType(static_cast<uint8_t>(0*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_60,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(9*16+6)),G_ColorType(static_cast<uint8_t>(5*16+15)),B_ColorType(static_cast<uint8_t>(0*16+10))}},
-    {AtmLi_ColorSet_64_Enum::Colour_61,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+10)),G_ColorType(static_cast<uint8_t>(6*16+6)),B_ColorType(static_cast<uint8_t>(0*16+15))}},
-    {AtmLi_ColorSet_64_Enum::Colour_62,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(8*16+2)),G_ColorType(static_cast<uint8_t>(6*16+10)),B_ColorType(static_cast<uint8_t>(1*16+3))}},
-    {AtmLi_ColorSet_64_Enum::Colour_63,ColorCtrl_Struct{R_ColorType(static_cast<uint8_t>(7*16+12)),G_ColorType(static_cast<uint8_t>(6*16+11)),B_ColorType(static_cast<uint8_t>(1*16+8))}},
-};
 
 
-ColorCtrl_Struct return_rgbcolor(AtmLi_ColorSet_64_Enum color_id , std::map <AtmLi_ColorSet_64_Enum,ColorCtrl_Struct> colormap ){
-    ColorCtrl_Struct a{0,0,0};
-    a = colormap[color_id];
-    return a;
-}
-
-void print_map(){
-        for(auto iterator = colormap.begin(); iterator!=colormap.end();iterator++){
-        std::cout<<static_cast<int>( iterator->first)<<" "<<static_cast<int>(iterator->second.RedRatCtrl)<<","<<static_cast<int>(iterator->second.BlueRatCtrl)<<","<<static_cast<int>(iterator->second.GreenRatCtrl) <<std::endl;
-    }
-}
-
-enum class GearStsCombine_Enum : std::uint8_t {
-    OFF = 0,
-    ON = 1
-};
 
 using Context_ActvNodeCtrl_Command_Enum = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Command_Enum;
 using Context_ActvNodeCtrl_Struct = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct;
 
-Context_ActvNodeCtrl_Struct data;
-
-
+//打印节点详细信息
 void printNodeStatus(GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct& data){
     Context_ActvNodeCtrl_Command_Enum *item = (Context_ActvNodeCtrl_Command_Enum*)&data;//获取结构体存储首地址
     auto num = 1;
@@ -718,14 +415,14 @@ void printNodeStatus(GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Str
         num++;
     }    
 }
-
+//设置单个位置的节点
 Context_ActvNodeCtrl_Struct setSignalNode(int No , int status ,Context_ActvNodeCtrl_Struct& ActvNodeStruct){
     Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
     auto index = head+No-1;//对应的 结构体中 元素位置
     *index = (Context_ActvNodeCtrl_Command_Enum)status; //改变对应位置的节点值
     return ActvNodeStruct;
 }
-
+//设置范围区域的节点
 void SetNodesRanges(int start, int end ,int status , Context_ActvNodeCtrl_Struct& ActvNodeStruct){
     Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
     auto startindex = head + start -1;
@@ -735,7 +432,7 @@ void SetNodesRanges(int start, int end ,int status , Context_ActvNodeCtrl_Struct
         *i = (Context_ActvNodeCtrl_Command_Enum)status;
     }
 }
-
+//全部置0
 void ResetNodeToAllZero(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
     Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
     auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
@@ -744,7 +441,7 @@ void ResetNodeToAllZero(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
         *i =(Context_ActvNodeCtrl_Command_Enum)0;
     }
 }
-
+//全部置1
 void SetNodeToAllOpen(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
     Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
     auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
@@ -755,34 +452,7 @@ void SetNodeToAllOpen(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
 }
 
 
-void testActvNode(){
-    for (auto i = 1; i <=24 ; i++)
-    {
-        setSignalNode(i,0,data);
-    }
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    for (size_t i = 1; i <= 24 ; i++)
-    {
-        setSignalNode(i,1,data);
-    }
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-
-    ResetNodeToAllZero(data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    SetNodesRanges(10,20,1,data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    SetNodeToAllOpen(data);
-    printNodeStatus(data);
-    std::cout<<"==========================================================================="<<std::endl;
-    ResetNodeToAllZero(data);
-    SetNodesRanges(1,1,1,data);
-    printNodeStatus(data);
-}
-
+/*
 //--------------------------------------律动模式算法---------------------------------------------------------------------
 enum class SyllablePrmCtrl_Command_Enum : std::uint8_t {
     No_Action = 0,
@@ -1008,151 +678,157 @@ void printMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
         musicno++;
     }    
 }
-
+*/
 //*********************************** 驾驶区域 节点开关 辅助函数*************************************//
 //主驾区节点全开/全关
 Context_ActvNodeCtrl_Struct MainZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
     Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
     //LIN 7
-    OpenNode = setSignalNode(2,1,ActvNodeStruct);
-    OpenNode = setSignalNode(1,1,ActvNodeStruct);
-    OpenNode = setSignalNode(5,1,ActvNodeStruct);
-    OpenNode = setSignalNode(21,1,ActvNodeStruct);
-    OpenNode = setSignalNode(23,1,ActvNodeStruct);
-    OpenNode = setSignalNode(20,1,ActvNodeStruct);
-    OpenNode = setSignalNode(18,1,ActvNodeStruct);
-    OpenNode = setSignalNode(6,1,ActvNodeStruct);
-    OpenNode = setSignalNode(7,1,ActvNodeStruct);
-    OpenNode = setSignalNode(8,1,ActvNodeStruct);
+    OpenNode = setSignalNode(2,1,OpenNode);
+    OpenNode = setSignalNode(5,1,OpenNode);
+    OpenNode = setSignalNode(20,1,OpenNode);
+    OpenNode = setSignalNode(18,1,OpenNode);
+    OpenNode = setSignalNode(6,1,OpenNode);
+    OpenNode = setSignalNode(7,1,OpenNode);
+    OpenNode = setSignalNode(8,1,OpenNode);
     //LIN 9
-    OpenNode = setSignalNode(42,1,ActvNodeStruct);
-    OpenNode = setSignalNode(43,1,ActvNodeStruct);
-    OpenNode = setSignalNode(44,1,ActvNodeStruct);
-    OpenNode = setSignalNode(45,1,ActvNodeStruct);
-    OpenNode = setSignalNode(25,1,ActvNodeStruct);
-    OpenNode = setSignalNode(26,1,ActvNodeStruct);
-    OpenNode = setSignalNode(27,1,ActvNodeStruct);
-    OpenNode = setSignalNode(28,1,ActvNodeStruct);
-    OpenNode = setSignalNode(41,1,ActvNodeStruct);
-    OpenNode = setSignalNode(29,1,ActvNodeStruct);
-    OpenNode = setSignalNode(30,1,ActvNodeStruct);
-    OpenNode = setSignalNode(31,1,ActvNodeStruct);
+    OpenNode = setSignalNode(42,1,OpenNode);
+    OpenNode = setSignalNode(43,1,OpenNode);
+    OpenNode = setSignalNode(44,1,OpenNode);
+    OpenNode = setSignalNode(45,1,OpenNode);
+    OpenNode = setSignalNode(25,1,OpenNode);
+    OpenNode = setSignalNode(26,1,OpenNode);
+    OpenNode = setSignalNode(27,1,OpenNode);
+    OpenNode = setSignalNode(28,1,OpenNode);
+    OpenNode = setSignalNode(29,1,OpenNode);
+    OpenNode = setSignalNode(30,1,OpenNode);
+    OpenNode = setSignalNode(31,1,OpenNode);
 
-    ActvNodeStruct = OpenNode;
     return OpenNode;
 }
-
-//测试门状态改变重新计时功能，其中门又0-1是触发 1-0不是触发条件 但是会重新计时
-bool Timer30sSwt = false;
-int doorstatus = 0;
-int lastdoorst = 0;
-
-int RRdoorstatus = 0;
-int RRlastdoorst = 0;
-
-void startTimer30s(){
-    std::thread([](){
-        while (Timer30sSwt)
-        {
-            std::cout<<"execute: startTimer30s thread"<<'\n';
-            std::cout<<"execute: War_IPBackgroundLmpCtrl "<<'\n';
-            for (int i = 0; i < 600; i++)
-            {
-                if(Timer30sSwt == false){
-                    std::cout<<__func__<<"中途取消计时";
-                    break;
-                }
-                std::cout<<__func__<<"计时中 time = "<< i <<'\n';
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            }
-
-            if(Timer30sSwt == true){
-            std::cout<<__func__<<"计时时间到，结束计时并关闭背景灯" <<'\n';   
-            std::cout<<__func__<<"计时时间到，War_IPBackgroundLmpCtrl" <<'\n'; 
-            }
-            Timer30sSwt = false;
-        
-        }
-    }).detach();
+Context_ActvNodeCtrl_Struct MainZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
+    CloseNode = setSignalNode(2,0,CloseNode);
+    CloseNode = setSignalNode(5,0,CloseNode);
+    CloseNode = setSignalNode(20,0,CloseNode);
+    CloseNode = setSignalNode(18,0,CloseNode);
+    CloseNode = setSignalNode(6,0,CloseNode);
+    CloseNode = setSignalNode(7,0,CloseNode);
+    CloseNode = setSignalNode(8,0,CloseNode);
+    CloseNode = setSignalNode(42,0,CloseNode);
+    CloseNode = setSignalNode(43,0,CloseNode);
+    CloseNode = setSignalNode(44,0,CloseNode);
+    CloseNode = setSignalNode(45,0,CloseNode);
+    CloseNode = setSignalNode(25,0,CloseNode);
+    CloseNode = setSignalNode(26,0,CloseNode);
+    CloseNode = setSignalNode(27,0,CloseNode);
+    CloseNode = setSignalNode(28,0,CloseNode);
+    CloseNode = setSignalNode(29,0,CloseNode);
+    CloseNode = setSignalNode(30,0,CloseNode);
+    CloseNode = setSignalNode(31,0,CloseNode);
+    return CloseNode;
 }
 
+//副驾区节点全开/全关
+Context_ActvNodeCtrl_Struct FrontPassengerZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
+    OpenNode = setSignalNode(3,1,OpenNode);
+    OpenNode = setSignalNode(4,1,OpenNode);
+    OpenNode = setSignalNode(22,1,OpenNode);
+    OpenNode = setSignalNode(19,1,OpenNode);
+    OpenNode = setSignalNode(12,1,OpenNode);
+    OpenNode = setSignalNode(13,1,OpenNode);
+    OpenNode = setSignalNode(14,1,OpenNode);
+    OpenNode = setSignalNode(35,1,OpenNode);
+    OpenNode = setSignalNode(36,1,OpenNode);
+    OpenNode = setSignalNode(37,1,OpenNode);
 
-void stopTimer30s(){
-    std::cout<<"execute: "<<__func__<<'\n';
-    std::cout<<__func__<<" stop timer"<<'\n';
-    Timer30sSwt = false;
+    return OpenNode;
+}
+Context_ActvNodeCtrl_Struct FrontPassengerZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
+    CloseNode = setSignalNode(3,0,CloseNode);
+    CloseNode = setSignalNode(4,0,CloseNode);
+    CloseNode = setSignalNode(22,0,CloseNode);
+    CloseNode = setSignalNode(19,0,CloseNode);
+    CloseNode = setSignalNode(12,0,CloseNode);
+    CloseNode = setSignalNode(13,0,CloseNode);
+    CloseNode = setSignalNode(14,0,CloseNode);
+    CloseNode = setSignalNode(35,0,CloseNode);
+    CloseNode = setSignalNode(36,0,CloseNode);
+    CloseNode = setSignalNode(37,0,CloseNode);
+
+    return CloseNode;
 }
 
-void Door_Change_Tri(){
-    if(doorstatus == 1 && lastdoorst == 0){
-        stopTimer30s();
-        Timer30sSwt = true;
-        startTimer30s();
-    }
-    if(doorstatus == 0 && lastdoorst == 1){
-        stopTimer30s();
-    }
+//后部区节点全开/全关
+Context_ActvNodeCtrl_Struct RearZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
+    OpenNode = setSignalNode(9,1,OpenNode);
+    OpenNode = setSignalNode(10,1,OpenNode);
+    OpenNode = setSignalNode(11,1,OpenNode);
+    OpenNode = setSignalNode(15,1,OpenNode);
+    OpenNode = setSignalNode(16,1,OpenNode);
+    OpenNode = setSignalNode(17,1,OpenNode);
+    OpenNode = setSignalNode(32,1,OpenNode);
+    OpenNode = setSignalNode(33,1,OpenNode);
+    OpenNode = setSignalNode(34,1,OpenNode);
+    OpenNode = setSignalNode(38,1,OpenNode);
+    OpenNode = setSignalNode(39,1,OpenNode);
+    OpenNode = setSignalNode(40,1,OpenNode);
+    OpenNode = setSignalNode(47,1,OpenNode);
+    OpenNode = setSignalNode(48,1,OpenNode);
 
-    if(RRdoorstatus == 1 && RRlastdoorst == 0){
-        stopTimer30s();
-        Timer30sSwt = true;
-        startTimer30s();
-    }
-    if(RRdoorstatus == 0 && RRlastdoorst == 1){
-        stopTimer30s();
-    }
+    return OpenNode;
+}
+//关闭后排节点使能
+Context_ActvNodeCtrl_Struct RearZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
+    CloseNode = setSignalNode(9,0,CloseNode);
+    CloseNode = setSignalNode(10,0,CloseNode);
+    CloseNode = setSignalNode(11,0,CloseNode);
+    CloseNode = setSignalNode(15,0,CloseNode);
+    CloseNode = setSignalNode(16,0,CloseNode);
+    CloseNode = setSignalNode(17,0,CloseNode);
+    CloseNode = setSignalNode(32,0,CloseNode);
+    CloseNode = setSignalNode(33,0,CloseNode);
+    CloseNode = setSignalNode(34,0,CloseNode);
+    CloseNode = setSignalNode(38,0,CloseNode);
+    CloseNode = setSignalNode(39,0,CloseNode);
+    CloseNode = setSignalNode(40,0,CloseNode);
+    CloseNode = setSignalNode(47,0,CloseNode);
+    CloseNode = setSignalNode(48,0,CloseNode);
+
+    return CloseNode;
 }
 
-//测试 打开主驾区域 节点 并输出结果
-void test_openmainclose(){
-    Context_ActvNodeCtrl_Struct  actvnode{};
-    //打开主驾区节点使能
-    actvnode = MainZoneOpen(actvnode);
-    printNodeStatus(actvnode);
+/**
+ * @brief 关闭特殊区域节点
+ */
+Context_ActvNodeCtrl_Struct SpecialNodesClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
+
+    CloseNode = setSignalNode(1,0,CloseNode);
+    CloseNode = setSignalNode(21,0,CloseNode);
+    CloseNode = setSignalNode(23,0,CloseNode);
+    CloseNode = setSignalNode(41,0,CloseNode);
+    CloseNode = setSignalNode(46,0,CloseNode);
+
+    return CloseNode;
 }
+/**
+ * @brief 打开特殊区域节点
+ */
+Context_ActvNodeCtrl_Struct SpecialNodesOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
+    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
 
-void test_delayclose(){
-    int doorst = 0;
-    while (true)
-    {
-        std::cout<<"输入 1 ：关闭1门"<<"输入 2 : 打开1门"<<'\n'
-        <<"输入 3 ：关闭2门"<<"输入 4 : 打开2门"<<'\n';
-        std::cin>>doorst;
-        switch (doorst)
-        {
-        case 1:
-            lastdoorst = doorstatus;
-            doorstatus = 0;
-            std::cout<<"doorstatus = 0"<<'\n';
-            break;
+    CloseNode = setSignalNode(1,1,CloseNode);
+    CloseNode = setSignalNode(21,1,CloseNode);
+    CloseNode = setSignalNode(23,1,CloseNode);
+    CloseNode = setSignalNode(41,1,CloseNode);
+    CloseNode = setSignalNode(46,1,CloseNode);
 
-        case 2:
-            lastdoorst = doorstatus;
-            doorstatus = 1;
-            std::cout<<"doorstatus = 1"<<'\n';
-            break;
-
-        case 3:
-            RRlastdoorst = RRdoorstatus;
-            RRdoorstatus = 0;
-            std::cout<<"doorstatus = 0"<<'\n';
-            break;
-
-        case 4:
-            RRlastdoorst = RRdoorstatus;
-            RRdoorstatus = 1;
-            std::cout<<"doorstatus = 1"<<'\n';
-            break;
-
-        case 5:
-            Timer30sSwt = false;
-            break;
-
-        default:
-            break;
-        }
-        Door_Change_Tri();
-    }
+    return CloseNode;
 }
 /**
  * @brief 与或非的计算
@@ -1177,21 +853,22 @@ void computenum(){
     std::cout<<"2|0: "<< (2|0) << " 1|1:" <<(1|1)<<" 1|2: "<<(1|2)<<std::endl;
 }
 
+/**
+ * @brief 打印功能菜单
+ * 1：打印详细节点信息
+ * 2：关闭分区 （主驾、副驾、后排、特殊）
+ * 3：打开分区 （主驾、副驾、后排、特殊）
+ */
+void PrintMenu(){
+
+}
+
 int main(){
-    bool sleepflag = true;
-    for(int i = 0 ; i <= 10000 ; i+=1000){
-        if(sleepflag == false){
-            std::cout<<" break "<<std::endl;
-            break;
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        std::cout<<" i = "<<i<<std::endl;
-        if (i>= 5000)
-        {
-            sleepflag = false;
-        }
-        
-    }
+
+    Context_ActvNodeCtrl_Struct actvnode;
+
 
     return 0;
 }
+
+

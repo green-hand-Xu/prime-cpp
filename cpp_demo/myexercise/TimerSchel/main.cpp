@@ -15,13 +15,22 @@ int main(){
     // std::thread t1(Fun1);
     // t1.join();
     folly::FunctionScheduler fs;
-    fs.addFunction([] { std::cout << "tick111111111"; }, std::chrono::microseconds(1000), "ticker",std::chrono::microseconds(1000));
-    fs.start();
-    fs.cancelFunction("ticker");
+    int a = 101;
 
-    while (true)
+    fs.addFunction([&fs,&a] { std::cout << "tick111111111"<<std::endl;
+    if( a <= 100){
+        std::cout << "a = "<<a <<std::endl;
+        fs.cancelFunction("ticker");
+    }
+    }, std::chrono::milliseconds(50), "ticker");
+
+    fs.start();
+
+    while (std::cin>>a)
     {
+
         std::this_thread::sleep_for(std::chrono::seconds(100));
+
     }
     
 
