@@ -17,7 +17,16 @@ int main(){
     folly::FunctionScheduler fs;
     int a = 101;
 
-    fs.addFunction([&fs,&a] { std::cout << "tick111111111"<<std::endl;
+    fs.addFunction([&fs,&a] { 
+    std::cout << "tick111111111"<<std::endl;
+    if( a <= 100){
+        std::cout << "a = "<<a <<std::endl;
+        fs.cancelFunction("ticker");
+    }
+    }, std::chrono::milliseconds(50), "ticker");
+
+    fs.addFunction([&fs,&a] { 
+    std::cout << "tick2222222222222"<<std::endl;
     if( a <= 100){
         std::cout << "a = "<<a <<std::endl;
         fs.cancelFunction("ticker");
