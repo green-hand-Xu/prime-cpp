@@ -152,31 +152,152 @@ void safe_increment(int iterations)
     // g_i_mutex 当锁离开作用域后 会自动释放
 }
 
-int main (int argc, const char* argv[]) {
-    // std::thread threads[10];
+//std::unique_lock 练习
+struct uniquelock
+{
+    explicit uniquelock(int num) : num_things{num}{
+    }
 
-    // for (int i=0; i<10; ++i){
-    //     threads[i] = std::thread(listpush_task,FreqFields{i,i,i,i,i});
-    // }
+    int num_things;
+    std::mutex m;
+};
 
-    // for (auto& th : threads) {
-    //     th.join();
-    // }
+void transfer(uniquelock &from , uniquelock &to ,int num){
+    // 先构造锁但是不获取锁
+    std::unique_lock lock1{from.m, std::defer_lock};
+    std::unique_lock lock2{to.m, std::defer_lock};
+    //在不会死锁的情况下 一次获取两个锁 
+    std::lock(lock1,lock2);
 
-    // std::this_thread::sleep_for(100s);
-
-    auto test = [](std::string_view fun_name, auto fun)
+    if (lock1 && lock2)
     {
-        counts = 0;
-        std::cout << fun_name << ":\nbefore, counts: " << counts << '\n';
-        {
-            std::thread t1(fun, 1000000);
-            std::thread t2(fun, 1000000);
-            t1.join();
-            t2.join();
-        }
-        std::cout << "after, counts: " << counts << "\n\n";
-    };
-    test("safe_increment", safe_increment);
-    return 0;
+        std::cout<<"成功获得锁"<<std::endl;
+    }
+
+    from.num_things -= num;
+    to.num_things += num;
+
+    lock1.unlock();//释放锁1
+    lock2.unlock();//释放锁2
+
+    if (!lock1 && !lock2)
+    {
+        std::cout<<"手动释放锁"<<std::endl;
+    }
+    
+    //超出作用域后 uniquelock 会自动释放
+}
+
+void T_uniquelock(){
+    uniquelock uni1{100};
+    uniquelock uni2{50};
+    //因为调用方法入参为引用，所以启用线程时使用 std::ref 进行转换参数类型
+    std::thread t1{transfer,std::ref(uni1),std::ref(uni2),10};
+
+    std::thread t2{transfer,std::ref(uni2),std::ref(uni1),5};
+
+    t1.join();
+    t2.join();
+
+    std::cout << "acc1: " << uni1.num_things << "\n"
+                 "acc2: " << uni2.num_things << '\n';
+}
+
+void T2_uniquelock(){
+    uniquelock uni1{100};
+    uniquelock uni2{50};
+    //创建就获取锁
+    std::unique_lock unl1{uni1.m};
+    //创建不获取锁
+    std::unique_lock unl2{uni2.m,std::defer_lock};
+    std::cout<<" 交换前状态 unl1 st = "<< unl1.owns_lock() <<" unl2 st= "<<unl2.owns_lock()<<std::endl;
+
+    //swap() : 与另一个 std::unique_lock 交换状态。
+    unl1.swap(unl2); //u1 unlock  u2 lock
+    std::cout<<" 交换后状态 unl1 st = "<< unl1.owns_lock() <<" unl2 st= "<<unl2.owns_lock()<<std::endl;
+
+    unl1.try_lock();
+    //unl1.try_lock(); 同一线程对已获得所有权的锁 重复获取锁会抛出死锁异常
+}
+
+void T3_uniquelock(){
+
+    uniquelock uni1{100};
+    uniquelock uni2{50};
+    //创建就获取锁
+    std::unique_lock unl1{uni1.m}; //u1 lock
+    //创建不获取锁
+    std::unique_lock unl2{uni2.m,std::defer_lock};// u2 unlock
+
+    //mutex() : 返回指向关联互斥体的指针。
+    std::cout<<" 交换前 unl1的指针地址为 "<<unl1.mutex()<<std::endl;
+    std::cout<<" 交换前 unl2的指针地址为 "<<unl2.mutex()<<std::endl;
+
+    //swap() : 与另一个 std::unique_lock 交换状态。
+    unl1.swap(unl2); //u1 unlock  u2 lock
+
+    //mutex() : 返回指向关联互斥体的指针。
+    std::cout<<" 交换后 unl1的指针地址为 "<<unl1.mutex()<<std::endl;
+    std::cout<<" 交换后 unl2的指针地址为 "<<unl2.mutex()<<std::endl;
+
+    //交换后查看 unique_lock 对象状态
+    if (unl1.owns_lock())
+    {
+        std::cout<<" 交换后状态 unl1 上锁"<<std::endl;
+    }else{
+        std::cout<<" 交换后状态 unl1 未上锁"<<std::endl;
+    }
+    if (unl2.owns_lock())
+    {
+        std::cout<<" 交换后状态 unl2 上锁"<<std::endl;
+    }else{
+        std::cout<<" 交换后状态 unl2 未上锁"<<std::endl;
+    }
+    
+    //交换后尝试直接获取mutex锁 发现 uni1.m 仍是上锁状态，因此交换对绑定的mutex对象状态无影响
+    if (uni1.m.try_lock())
+    {
+        std::cout<<" 交换后 查看 绑定的 mutex 变量状态 uni1.m 未上锁"<<std::endl;
+        uni1.m.unlock();
+    }else{
+        std::cout<<" 交换后 查看 绑定的 mutex 变量状态 uni1.m 上锁"<<std::endl;
+    }
+
+    if (uni2.m.try_lock())
+    {
+        std::cout<<"交换后 查看 绑定的 mutex 变量状态 uni2.m 未上锁"<<std::endl;
+        uni2.m.unlock();
+    }else{
+        std::cout<<"交换后 查看 绑定的 mutex 变量状态 uni2.m 上锁"<<std::endl;
+    }   
+
+    //release() : 解除关联的互斥体而不解锁（即释放其所有权）。如果在调用之前拥有关联互斥体的所有权，则调用者现在负责解锁互斥体。
+    auto unl1bindmutex = unl1.release();//解除锁的关联，但是不会改变关联mutex锁的状态。返回与之绑定的mutex指针
+    std::cout<<" unl1 绑定的 mutex 对象为 "<<unl1bindmutex<<std::endl;
+
+    
+/*
+
+
+
+    if (!uni1.m.try_lock())
+    {
+        std::cout<<"unique_lock 解除锁关联后 直接尝试获取 uni1.m 的mutex锁 ，发现仍是上锁状态，并没有释放 "<<std::endl;
+    }
+    
+    std::cout<<"交换后 查看 绑定的 mutex 变量状态 uni1.m.try_lock() = "<<uni1.m.try_lock()<<" uni2.m.try_lock() = "<<uni2.m.try_lock()<<std::endl;
+    unl2bindmutex->unlock();
+    if (uni1.m.try_lock())
+    {
+        std::cout<<"手动释放锁后，重新获得锁 "<<std::endl;
+    }
+    if (uni2.m.try_lock())
+    {
+        std::cout<<"手动释放锁后，重新获得锁 "<<std::endl;
+    }
+*/
+}
+
+int main (int argc, const char* argv[]) {
+    T3_uniquelock();
 }
