@@ -143,19 +143,40 @@ void retNew_Task(){
 
 }
 
-
+void safe_increment(int iterations)
+{
+    const std::lock_guard<std::mutex> lock(mtx);
+    while (iterations-- > 0){
+        counts = counts + 1;
+    }
+    // g_i_mutex 当锁离开作用域后 会自动释放
+}
 
 int main (int argc, const char* argv[]) {
-    std::thread threads[10];
+    // std::thread threads[10];
 
-    for (int i=0; i<10; ++i){
-        threads[i] = std::thread(listpush_task,FreqFields{i,i,i,i,i});
-    }
+    // for (int i=0; i<10; ++i){
+    //     threads[i] = std::thread(listpush_task,FreqFields{i,i,i,i,i});
+    // }
 
-    for (auto& th : threads) {
-        th.join();
-    }
+    // for (auto& th : threads) {
+    //     th.join();
+    // }
 
-    std::this_thread::sleep_for(100s);
+    // std::this_thread::sleep_for(100s);
+
+    auto test = [](std::string_view fun_name, auto fun)
+    {
+        counts = 0;
+        std::cout << fun_name << ":\nbefore, counts: " << counts << '\n';
+        {
+            std::thread t1(fun, 1000000);
+            std::thread t2(fun, 1000000);
+            t1.join();
+            t2.join();
+        }
+        std::cout << "after, counts: " << counts << "\n\n";
+    };
+    test("safe_increment", safe_increment);
     return 0;
 }
