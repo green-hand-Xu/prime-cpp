@@ -27,18 +27,12 @@ bool DayRunngLmpSts_4{false};
 //左侧转向灯未点亮右侧点亮远程泊车点亮日间灯激活状态
 bool DayRunngLmpSts_5{false};
 
-int DayRunngLmpNo{0};
+int DayRunngLmpNo{-1};
 
 std::pair<bool,bool> DayRunLight{false,false};
 
 //执行打开日行灯操作
 void action(bool left, bool right){
-    auto [lastL,lastR] = DayRunLight;
-    if (left == lastL && right == lastR)
-    {
-        return;
-    }
-    DayRunLight = {left,right};
     std::cout<<" 打开日行灯 left = "<<left <<" right = "<<right<<std::endl;
 }
 
@@ -86,29 +80,62 @@ void worker_thread()
             return ready;
         }); 
 
+        auto [lastL,lastR] = DayRunLight;
+
+
         switch (DayRunngLmpNo)
         {
         case 0:
+            if (lastL && lastR)
+            {
+                break;
+            }
+            DayRunLight = {true,true};
             action(true,true);
             break;
         
         case 1:
+            if (lastL && lastR)
+            {
+                break;
+            }
+            DayRunLight = {true,true};
             action(true,true);
             break;
 
         case 2:
+            if (!lastL && lastR)
+            {
+                break;
+            }
+            DayRunLight = {false,true};
             action(false,true);
             break;
 
         case 3:
+            if (!lastL && lastR)
+            {
+                break;
+            }
+            DayRunLight = {false,true};
             action(false,true);
             break;
 
         case 4:
+            if (lastL && !lastR)
+            {
+                break;
+            }
+            DayRunLight = {true,false};;
             action(true,false);
             break;
 
         case 5:
+            if (lastL && !lastR)
+            {
+                break;
+            }
+            DayRunLight = {true,false};
             action(true,false);
             break;
         default:
@@ -163,7 +190,7 @@ void On_VCU_ST(){
 //* 监听电源状态并进行触发 (动力运行点亮)
 void On_SysPwr(int PowerSt){
     //触发源关系是 & 因此VCU_ST和电源都要检查
-    if (std::unique_lock<std::mutex> unilock(m);PowerSt == 1 ||PowerSt == 2 || PowerSt == 3 || true/*前提条件满足*/ &&(VCU_ST != 6 && VCU_ST!=12))
+    if (std::unique_lock<std::mutex> unilock(m);PowerSt == 2 ||PowerSt == 3 || PowerSt == 5 || true/*前提条件满足*/ &&(VCU_ST != 6 && VCU_ST!=12))
     {
         PowerMode = PowerSt;
         //*设定好日行灯状态
@@ -188,25 +215,55 @@ void setDayRunngLmpSt(int No,bool St){
     {
     case 0:
         DayRunngLmpSts_0 = St;
+        DayRunngLmpSts_1 = false;
+        DayRunngLmpSts_2 = false;
+        DayRunngLmpSts_3 = false;
+        DayRunngLmpSts_4 = false;
+        DayRunngLmpSts_5 = false;
         break;
 
     case 1:
+        DayRunngLmpSts_0 = false;
         DayRunngLmpSts_1 = St;
+        DayRunngLmpSts_2 = false;
+        DayRunngLmpSts_3 = false;
+        DayRunngLmpSts_4 = false;
+        DayRunngLmpSts_5 = false;
         break;
 
     case 2:
+        DayRunngLmpSts_0 = false;
+        DayRunngLmpSts_1 = false;
         DayRunngLmpSts_2 = St;
+        DayRunngLmpSts_3 = false;
+        DayRunngLmpSts_4 = false;
+        DayRunngLmpSts_5 = false;
         break;
 
     case 3:
+        DayRunngLmpSts_0 = false;
+        DayRunngLmpSts_1 = false;
+        DayRunngLmpSts_2 = false;
         DayRunngLmpSts_3 = St;
+        DayRunngLmpSts_4 = false;
+        DayRunngLmpSts_5 = false;
         break;
 
     case 4:
+        DayRunngLmpSts_0 = false;
+        DayRunngLmpSts_1 = false;
+        DayRunngLmpSts_2 = false;
+        DayRunngLmpSts_3 = false;
         DayRunngLmpSts_4 = St;
+        DayRunngLmpSts_5 = false;
         break;
 
     case 5:
+        DayRunngLmpSts_0 = false;
+        DayRunngLmpSts_1 = false;
+        DayRunngLmpSts_2 = false;
+        DayRunngLmpSts_3 = false;
+        DayRunngLmpSts_4 = false;
         DayRunngLmpSts_5 = St;
         break;
     default:
@@ -263,6 +320,7 @@ void Test_1(){
 int main(){
     std::thread worker(worker_thread);
     std::thread worker1(On_VCU_ST);
+    std::tuple<bool,bool> tupl{true,true};
 
     Test_1();
 

@@ -127,7 +127,7 @@ int main()
     //使用std::tie 解包
     std::tuple<char,int,long,std::string> tuple7('A',4,4.0,"F");
     // 定义变量，保存解包结果
-    char tuple_0    = '0';
+    auto tuple_0    = '0';
     int tuple_1        = 0;
     long tuple_2    = 0;
     std::string tuple_3("");
