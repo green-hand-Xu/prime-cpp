@@ -5,6 +5,7 @@
 
 using namespace std;
 
+template<typename T>
 class Date
 {
 public:
@@ -39,6 +40,18 @@ public:
         _month = d._month;
         _day = d._day;
     }
+    
+    //重载()运算符
+    Date operator() (){
+        cout<<"operator() "<<endl;
+        return _month;
+    }
+
+    //重载类型转换运算符 注意与函数调用运算符的区别
+    operator T() const{
+        cout<<"重载 成员类型转换 运算符"<<endl;
+        return _month;
+    }
 
     //赋值运算符重载函数
     Date& operator= (const Date& d)//&是引用传参
@@ -66,18 +79,26 @@ public:
 
 
 public:
-    int _year;
-    int _month;
-    int _day;
-    int *_ptr = NULL;
+    T _year;
+    T _month;
+    T _day;
+    T *_ptr = NULL;
 };
 int main()
 {
-    Date d1(1,2,3);
-    const Date d2(4,5,6);
+    Date<int> d1(1,2,3);
+    const Date<int> d2(4,5,6);
 
-    Date* pd1 = &d1;
-    const Date* pd2 = &d2;
+    Date<int>* pd1 = &d1;
+    const Date<int>* pd2 = &d2;
+
+    //重载类型转换运算符后，当直接使用这个类型时，会自动调用方法
+    cout<<d1<<endl;
+    //等价于
+    cout<<d1.operator int()<<endl; 
+    
+    d1();
+
     &d1;
     &d2;
     getchar();
