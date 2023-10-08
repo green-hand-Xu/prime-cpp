@@ -15,145 +15,50 @@
 #include<string.h>
 #include<stdlib.h>
 using namespace std;
-
-// namespace Persons{
-// class Person
-// {
-// public:
-// 	Person(string newID,string newname,string newsex,string newbirthday)
-// 	{
-// 		ID=newID;
-// 		name=newname;
-// 		sex=newsex;
-// 		birthday=newbirthday;
-// 	}
-// 	void getID()
-// 	{
-// 	 cout<<ID<<endl;	
-// 	}
-// 	void getName()
-// 	{
-// 	 cout<<name<<endl;
-// 	}
-// 	void getSex()
-// 	{
-// 	 cout<<sex<<endl;	
-// 	}
-// 	void getBirthday()	
-// 	{
-// 	 cout<<birthday<<endl;	
-// 	}
-// private:
-// 	string ID;
-// 	string name;
-// 	string sex;
-// 	string birthday;
-// };
-// }
-
-// class Student:public Persons::Person
-// {
-// public:
-// 	Student(string newID,string newname,string newsex,string newbirthday,string newclass,float newscore): Persons::Person(newID,newname,newsex,newbirthday) 
-// 	{  
-// 		Class=newclass;
-// 		score=newscore;
-// 	}
-// 	void getClass()
-// 	{
-// 		cout<<Class<<endl;
-// 	}
-// 	void getScore()
-// 	{
-// 		cout<<score<<endl;
-// 	}
-// private:
-// 	string Class;
-// 	float score;
-// };
-
-//  int main()
-//  {
-//  	Student *stu=new Student("5226","李虎","Man","2005-12-25","a班",96.63);
-//  	stu->getID();
-//  	stu->getName();
-//  	stu->getSex();
-//  	stu->getBirthday();
-//  	stu->getClass();
-//  	stu->getScore();
-//  	delete stu;
-//  	return 0;
-//  }
- 
-
- 
-class father
+class Base
 {
 
 	public:
-		father();
+		Base();
 
-		void setfat(string a);
-		string fat = "father";
+		void setBase(string a);
+		string Bases = "Base";
 
-	protected:
-		
-
+	 	void operator=(const Base &base){
+			cout<<"父类复制构造函数"<<endl;
+		}
 };
 
-father::father(){
-	cout<<"father constructed"<<endl;
+Base::Base(){
+	cout<<"Base constructed"<<endl;
 }
 
-void father::setfat(string a){
-	this->fat = a;
+void Base::setBase(string a){
+	this->Bases = a;
 }
 
 
-class son1:public father
+class inherit:public Base
 {
 	public:
-		son1();
+		inherit(string str){
+			this->inherits = str;
+		}
 
-	protected:
-		string son11 = "son11";
+		// inherit operator =(const inherit &inher) = delete;
 
-};
-
-
-son1::son1(){
-	cout<<"son1 constructed"<<endl;
-}
-
-class son2:public son1
-{
 	public:
-		son2();
-
-	protected:
-		string son22 = "son22";
-
+		string inherits = "inherit";
 };
-
-son2::son2(){
-	father::setfat("son2");
-	cout<<"son2 constructed"<<endl;
-}
-
-
-
-
-
-
 
 
  int main()
  {
-	son2 *son = new son2();
-
-	cout<<son->fat<<endl;
-
-
+	inherit obja{"obja"};
+	inherit objb{"objb"};
+	
+	obja = objb;
+	cout<<obja.inherits<<endl;
 
  	return 0;
  }
