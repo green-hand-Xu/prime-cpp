@@ -9,15 +9,16 @@ set(CMAKE_CXX_STANDARD 17)
 find_package (Threads REQUIRED)
 
 file(GLOB_RECURSE SRCS
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/BaseFrame/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/ConsumerObj/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/**.cpp
 )
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/BaseFrame/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/ConsumerObj/inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/GA/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils/deviceDef
 )
 
 add_executable(demo main.cpp ${SRCS})
