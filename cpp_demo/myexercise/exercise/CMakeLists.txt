@@ -19,7 +19,7 @@ find_package (Threads REQUIRED)
 
 
 
-add_executable(demo baseandson.cpp)
+add_executable(demo computColor.cpp)
 
 target_link_libraries(demo pthread)
 

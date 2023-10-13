@@ -1,461 +1,125 @@
-/**********************************************************************************************************************
- *  COPYRIGHT
- *  -------------------------------------------------------------------------------------------------------------------
- *  Copyright (c) 2022 by Gwm. All rights reserved.
- *********************************************************************************************************************/
-
-#ifndef _ALCMCLRSETHMISRV_GS2S_DATATYPES_HPP_
-#define _ALCMCLRSETHMISRV_GS2S_DATATYPES_HPP_
-
-#include <cstdint>
-#include <thread>
-#include <bitset>
-namespace GWM{
-namespace Vehicle{
-namespace Body{
-namespace ALCM{
-namespace GS2S{
-namespace ALCMClrSetHMISrv_GS2S{
-namespace ALCMClrSetHMISrv_GS2S_Gen{
-
-
-enum class ClrSet_Enum : std::uint8_t {
-    Colour_0 = 0,
-    Colour_1 = 1,
-    Colour_2 = 2,
-    Colour_3 = 3,
-    Colour_4 = 4,
-    Colour_5 = 5,
-    Colour_6 = 6,
-    Colour_7 = 7,
-    Colour_8 = 8,
-    Colour_9 = 9,
-    Colour_10 = 10,
-    Colour_11 = 11,
-    Colour_12 = 12,
-    Colour_13 = 13,
-    Colour_14 = 14,
-    Colour_15 = 15,
-    Colour_16 = 16,
-    Colour_17 = 17,
-    Colour_18 = 18,
-    Colour_19 = 19,
-    Colour_20 = 20,
-    Colour_21 = 21,
-    Colour_22 = 22,
-    Colour_23 = 23,
-    Colour_24 = 24,
-    Colour_25 = 25,
-    Colour_26 = 26,
-    Colour_27 = 27,
-    Colour_28 = 28,
-    Colour_29 = 29,
-    Colour_30 = 30,
-    Colour_31 = 31,
-    Colour_32 = 32,
-    Colour_33 = 33,
-    Colour_34 = 34,
-    Colour_35 = 35,
-    Colour_36 = 36,
-    Colour_37 = 37,
-    Colour_38 = 38,
-    Colour_39 = 39,
-    Colour_40 = 40,
-    Colour_41 = 41,
-    Colour_42 = 42,
-    Colour_43 = 43,
-    Colour_44 = 44,
-    Colour_45 = 45,
-    Colour_46 = 46,
-    Colour_47 = 47,
-    Colour_48 = 48,
-    Colour_49 = 49,
-    Colour_50 = 50,
-    Colour_51 = 51,
-    Colour_52 = 52,
-    Colour_53 = 53,
-    Colour_54 = 54,
-    Colour_55 = 55,
-    Colour_56 = 56,
-    Colour_57 = 57,
-    Colour_58 = 58,
-    Colour_59 = 59,
-    Colour_60 = 60,
-    Colour_61 = 61,
-    Colour_62 = 62,
-    Colour_63 = 63,
-    NoAction = 64,
-    Reserved1 = 65,
-    Reserved2 = 66,
-    Reserved3 = 67,
-    Reserved4 = 68,
-    Reserved5 = 69,
-    Reserved6 = 70,
-    Reserved7 = 71,
-    Reserved8 = 72,
-    Reserved9 = 73,
-    Reserved10 = 74,
-    Reserved11 = 75,
-    Reserved12 = 76,
-    Reserved13 = 77,
-    Reserved14 = 78,
-    Reserved15 = 79,
-    Reserved16 = 80,
-    Reserved17 = 81,
-    Reserved18 = 82,
-    Reserved19 = 83,
-    Reserved20 = 84,
-    Reserved21 = 85,
-    Reserved22 = 86,
-    Reserved23 = 87,
-    Reserved24 = 88,
-    Reserved25 = 89,
-    Reserved26 = 90,
-    Reserved27 = 91,
-    Reserved28 = 92,
-    Reserved29 = 93,
-    Reserved30 = 94,
-    Reserved31 = 95,
-    Reserved32 = 96,
-    Reserved33 = 97,
-    Reserved34 = 98,
-    Reserved35 = 99,
-    Reserved36 = 100,
-    Reserved37 = 101,
-    Reserved38 = 102,
-    Reserved39 = 103,
-    Reserved40 = 104,
-    Reserved41 = 105,
-    Reserved42 = 106,
-    Reserved43 = 107,
-    Reserved44 = 108,
-    Reserved45 = 109,
-    Reserved46 = 110,
-    Reserved47 = 111,
-    Reserved48 = 112,
-    Reserved49 = 113,
-    Reserved50 = 114,
-    Reserved51 = 115,
-    Reserved52 = 116,
-    Reserved53 = 117,
-    Reserved54 = 118,
-    Reserved55 = 119,
-    Reserved56 = 120,
-    Reserved57 = 121,
-    Reserved58 = 122,
-    Reserved59 = 123,
-    Reserved60 = 124,
-    Reserved61 = 125,
-    Reserved62 = 126,
-    Reserved63 = 127
-};
-
-enum class AtmLi_ColorSet_64_Enum : std::uint8_t {
-    Colour_0 = 0,
-    Colour_1 = 1,
-    Colour_2 = 2,
-    Colour_3 = 3,
-    Colour_4 = 4,
-    Colour_5 = 5,
-    Colour_6 = 6,
-    Colour_7 = 7,
-    Colour_8 = 8,
-    Colour_9 = 9,
-    Colour_10 = 10,
-    Colour_11 = 11,
-    Colour_12 = 12,
-    Colour_13 = 13,
-    Colour_14 = 14,
-    Colour_15 = 15,
-    Colour_16 = 16,
-    Colour_17 = 17,
-    Colour_18 = 18,
-    Colour_19 = 19,
-    Colour_20 = 20,
-    Colour_21 = 21,
-    Colour_22 = 22,
-    Colour_23 = 23,
-    Colour_24 = 24,
-    Colour_25 = 25,
-    Colour_26 = 26,
-    Colour_27 = 27,
-    Colour_28 = 28,
-    Colour_29 = 29,
-    Colour_30 = 30,
-    Colour_31 = 31,
-    Colour_32 = 32,
-    Colour_33 = 33,
-    Colour_34 = 34,
-    Colour_35 = 35,
-    Colour_36 = 36,
-    Colour_37 = 37,
-    Colour_38 = 38,
-    Colour_39 = 39,
-    Colour_40 = 40,
-    Colour_41 = 41,
-    Colour_42 = 42,
-    Colour_43 = 43,
-    Colour_44 = 44,
-    Colour_45 = 45,
-    Colour_46 = 46,
-    Colour_47 = 47,
-    Colour_48 = 48,
-    Colour_49 = 49,
-    Colour_50 = 50,
-    Colour_51 = 51,
-    Colour_52 = 52,
-    Colour_53 = 53,
-    Colour_54 = 54,
-    Colour_55 = 55,
-    Colour_56 = 56,
-    Colour_57 = 57,
-    Colour_58 = 58,
-    Colour_59 = 59,
-    Colour_60 = 60,
-    Colour_61 = 61,
-    Colour_62 = 62,
-    Colour_63 = 63
-};
-
-
-}//ALCMClrSetHMISrv_GS2S_Gen
-}//ALCMClrSetHMISrv_GS2S
-}//GS2S
-}//ALCM
-}//Body
-}//Vehicle
-}//GWM
-
-
-#endif 
-
-#ifndef _ALCMCTRLSRV_DATATYPES_HPP_
-#define _ALCMCTRLSRV_DATATYPES_HPP_
 #include <iostream>
 #include <cstdint>
+#include <cstring>
 
-namespace GWM{
-namespace Vehicle{
-namespace Body{
-namespace ALCM{
-namespace ALCMCtrlSrv_Gen{
+using HardwireOutput_Command_Integer = std::uint16_t;
 
-enum class ActvNodeCtrl_Command_Enum : std::uint8_t {
-    Disable = 0,
-    Enable = 1
-};
-struct ActvNodeCtrl_Struct {
-    using _Active_Node_1_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_1_type Active_Node_1;
-
-    using _Active_Node_2_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_2_type Active_Node_2;
-
-    using _Active_Node_3_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_3_type Active_Node_3;
-
-    using _Active_Node_4_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_4_type Active_Node_4;
-
-    using _Active_Node_5_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_5_type Active_Node_5;
-
-    using _Active_Node_6_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_6_type Active_Node_6;
-
-    using _Active_Node_7_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_7_type Active_Node_7;
-
-    using _Active_Node_8_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_8_type Active_Node_8;
-
-    using _Active_Node_9_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_9_type Active_Node_9;
-
-    using _Active_Node_10_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_10_type Active_Node_10;
-
-    using _Active_Node_11_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_11_type Active_Node_11;
-
-    using _Active_Node_12_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_12_type Active_Node_12;
-
-    using _Active_Node_13_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_13_type Active_Node_13;
-
-    using _Active_Node_14_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_14_type Active_Node_14;
-
-    using _Active_Node_15_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_15_type Active_Node_15;
-
-    using _Active_Node_16_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_16_type Active_Node_16;
-
-    using _Active_Node_17_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_17_type Active_Node_17;
-
-    using _Active_Node_18_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_18_type Active_Node_18;
-
-    using _Active_Node_19_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_19_type Active_Node_19;
-
-    using _Active_Node_20_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_20_type Active_Node_20;
-
-    using _Active_Node_21_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_21_type Active_Node_21;
-
-    using _Active_Node_22_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_22_type Active_Node_22;
-
-    using _Active_Node_23_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_23_type Active_Node_23;
-
-    using _Active_Node_24_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_24_type Active_Node_24;
-
-    using _Active_Node_1_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_1_NF_type Active_Node_1_NF;
-
-    using _Active_Node_2_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_2_NF_type Active_Node_2_NF;
-
-    using _Active_Node_3_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_3_NF_type Active_Node_3_NF;
-
-    using _Active_Node_4_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_4_NF_type Active_Node_4_NF;
-
-    using _Active_Node_5_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_5_NF_type Active_Node_5_NF;
-
-    using _Active_Node_6_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_6_NF_type Active_Node_6_NF;
-
-    using _Active_Node_7_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_7_NF_type Active_Node_7_NF;
-
-    using _Active_Node_8_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_8_NF_type Active_Node_8_NF;
-
-    using _Active_Node_9_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_9_NF_type Active_Node_9_NF;
-
-    using _Active_Node_10_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_10_NF_type Active_Node_10_NF;
-
-    using _Active_Node_11_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_11_NF_type Active_Node_11_NF;
-
-    using _Active_Node_12_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_12_NF_type Active_Node_12_NF;
-
-    using _Active_Node_13_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_13_NF_type Active_Node_13_NF;
-
-    using _Active_Node_14_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_14_NF_type Active_Node_14_NF;
-
-    using _Active_Node_15_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_15_NF_type Active_Node_15_NF;
-
-    using _Active_Node_16_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_16_NF_type Active_Node_16_NF;
-
-    using _Active_Node_17_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_17_NF_type Active_Node_17_NF;
-
-    using _Active_Node_18_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_18_NF_type Active_Node_18_NF;
-
-    using _Active_Node_19_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_19_NF_type Active_Node_19_NF;
-
-    using _Active_Node_20_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_20_NF_type Active_Node_20_NF;
-
-    using _Active_Node_21_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_21_NF_type Active_Node_21_NF;
-
-    using _Active_Node_22_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_22_NF_type Active_Node_22_NF;
-
-    using _Active_Node_23_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_23_NF_type Active_Node_23_NF;
-
-    using _Active_Node_24_NF_type = ActvNodeCtrl_Command_Enum;
-    _Active_Node_24_NF_type Active_Node_24_NF;
-
+enum class CPModeSet_Command_Enum : std::uint8_t {
+    NoAction = 0,
+    ClockwiseMode = 1,
+    CounterclockwiseMode = 2,
+    AlternationOfClockwiseAndCounterclockwise = 3,
+    BreathingRhythmMode = 4,
+    Reserved1 = 5,
+    Reserved2 = 6,
+    Reserved3 = 7
 };
 
-}//ALCMCtrlSrv_Gen
-}//ALCM
-}//Body
-}//Vehicle
-}//GWM
+enum class WPCGangSwt_Command_Enum : std::uint8_t {
+    OFF = 0,
+    RainbowRhythm = 1,
+    SpacetimeFlow = 2,
+    InspirationalBreathing = 3,
+    RedAndBlueCP = 4,
+    CustomMode = 5,
+    Reserved1 = 6,
+    Reserved2 = 7
+};
 
+enum class S2S_Response_Enum : std::uint32_t {
+    E_OK = 0,
+    E_MEMORY_ERROR = 29,
+    E_STORAGE_ERROR = 30,
+    E_SYSTEM_RESOURCE_ERROR = 31,
+    E_MIDDLEWARE_ERROR = 47,
+    E_IPC_READ_ERROR = 62,
+    E_IPC_WRITE_ERROR = 63,
+    E_FILE_CREATE_ERROR = 72,
+    E_FILE_NOT_EXIST = 73,
+    E_FILE_WRITE_ERROR = 74,
+    E_FILE_READ_ERROR = 75,
+    E_PERSISTENCY_CREATE_ERROR = 76,
+    E_PERSISTENCY_NOT_EXIST = 77,
+    E_PERSISTENCY_WRITE_ERROR = 78,
+    E_PERSISTENCY_READ_ERROR = 79,
+    E_AUTH_ERROR = 95,
+    E_EVENT_NOT_SUBSCRIBE = 96,
+    E_INVALID_FIELD = 97,
+    E_INVALID_ARGUMENT = 98,
+    E_WORKING_CONDITION_UNFULFILLED = 99,
+    E_HIGHER_PRIORITY_TASK_ONGOING = 100,
+    E_FUNCTION_UNAVAILABLE = 101,
+    E_INVALID_SOURCE_ID = 102,
+    E_DEVICE_ABNORMAL = 103,
+    E_SEQUENCE_ERROR = 104,
+    E_NOTLEARNED = 105,
+    E_FREQ_LIMIT = 106,
+    E_CAN_BUSON = 224,
+    E_CAN_BUSOFF = 225,
+    E_CAN_NOT_TIMEOUT = 226,
+    E_CAN_TIMEOUT = 227,
+    E_CAN_E2E_OK = 228,
+    E_CAN_E2E_NOT_OK = 229,
+    E_UNKNOWN_ERROR = 255,
+    SOMEIP_E_OK = 16777216,
+    SOMEIP_E_NOT_OK = 16777217,
+    SOMEIP_E_UNKNOWN_SERVICE = 16777218,
+    SOMEIP_E_UNKNOWN_METHOD = 16777219,
+    SOMEIP_E_NOT_READY = 16777220,
+    SOMEIP_E_NOT_REACHABLE = 16777221,
+    SOMEIP_E_TIMEOUT = 16777222,
+    SOMEIP_E_WRONG_PROTOCAL_VERSION = 16777223,
+    SOMEIP_E_WRONG_INTERFACE_VERSION = 16777224,
+    SOMEIP_E_MALFORMED_MESSAGE = 16777225,
+    SOMEIP_E_WRONG_MESSAGE_TYPE = 16777226,
+    SOMEIP_E_E2E_REPEATED = 16777227,
+    SOMEIP_E_E2E_WRONG_SEQUENCE = 16777228,
+    SOMEIP_E_E2E = 16777229,
+    SOMEIP_E_E2E_NOT_AVAILABLE = 16777230,
+    SOMEIP_E_E2E_NO_NEW_DATA = 16777231
+};
 
-#endif /* _ALCMCTRLSRV_DATATYPES_HPP_ */
+using ColorCtrl_Command_Integer = std::uint8_t;
 
+enum class ModeSelectionCtrl_Command_Enum : std::uint8_t {
+    StaticMode = 0,
+    BreathingMode = 1,
+    FlowingMode = 2,
+    MusicMode = 3,
+    DynamicMode = 4,
+    RandomMode = 5,
+    WelcomeMode = 6,
+    FlashFrequencyMode = 7
+};
 
+enum class LightLvlCtrl_Command_Enum : std::uint8_t {
+    OFF = 0,
+    Lvl10 = 1,
+    Lvl20 = 2,
+    Lvl30 = 3,
+    Lvl40 = 4,
+    Lvl50 = 5,
+    Lvl60 = 6,
+    Lvl70 = 7,
+    Lvl80 = 8,
+    Lvl90 = 9,
+    Lvl100 = 10,
+    Reserved1 = 11,
+    Reserved2 = 12,
+    Reserved3 = 13,
+    Reserved4 = 14,
+    Reserved5 = 15
+};
 
-using Context_ActvNodeCtrl_Command_Enum = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Command_Enum;
-using Context_ActvNodeCtrl_Struct = GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct;
+enum class ModeChangeCtrl_Command_Enum : std::uint8_t {
+    Immediately = 0,
+    NONImmediately = 1
+};
 
-//打印节点详细信息
-void printNodeStatus(GWM::Vehicle::Body::ALCM::ALCMCtrlSrv_Gen::ActvNodeCtrl_Struct& data){
-    Context_ActvNodeCtrl_Command_Enum *item = (Context_ActvNodeCtrl_Command_Enum*)&data;//获取结构体存储首地址
-    auto num = 1;
-    auto tail = item+sizeof(data)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
-    for(auto i = item ; i<tail;i++){
-        std::cout<<"num = "<<num <<" data = "<<static_cast<int>(*i)<<std::endl;
-        num++;
-    }    
-}
-//设置单个位置的节点
-Context_ActvNodeCtrl_Struct setSignalNode(int No , int status ,Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto index = head+No-1;//对应的 结构体中 元素位置
-    *index = (Context_ActvNodeCtrl_Command_Enum)status; //改变对应位置的节点值
-    return ActvNodeStruct;
-}
-//设置范围区域的节点
-void SetNodesRanges(int start, int end ,int status , Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto startindex = head + start -1;
-    auto endindex = head + end -1;
-    for (auto i = startindex; i <=endindex ; i++)
-    {
-        *i = (Context_ActvNodeCtrl_Command_Enum)status;
-    }
-}
-//全部置0
-void ResetNodeToAllZero(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
+using FadeTimeCtrl_Command_Integer = std::uint8_t;
 
-    for(auto i = head ; i<tail;i++){
-        *i =(Context_ActvNodeCtrl_Command_Enum)0;
-    }
-}
-//全部置1
-void SetNodeToAllOpen(Context_ActvNodeCtrl_Struct& ActvNodeStruct){
-    Context_ActvNodeCtrl_Command_Enum *head = (Context_ActvNodeCtrl_Command_Enum*)&ActvNodeStruct;//获取结构体存储首地址
-    auto tail = head+sizeof(ActvNodeStruct)/sizeof(Context_ActvNodeCtrl_Command_Enum);//获取结构体存储尾地址
-
-    for(auto i = head ; i<tail;i++){
-        *i =(Context_ActvNodeCtrl_Command_Enum)1;
-    }
-}
-
-
-/*
-//--------------------------------------律动模式算法---------------------------------------------------------------------
 enum class SyllablePrmCtrl_Command_Enum : std::uint8_t {
-    No_Action = 0,
+    NoAction = 0,
     Valid1 = 1,
     Valid2 = 2,
     Valid3 = 3,
@@ -465,410 +129,320 @@ enum class SyllablePrmCtrl_Command_Enum : std::uint8_t {
     Valid7 = 7
 };
 
-struct SyllablePrmCtrl_Struct {
+enum class NodeSwtCtrl_Command_Enum : std::uint8_t {
+    OFF = 0,
+    ON = 1
+};
+
+enum class ActvNodeCtrl_Command_Enum : std::uint8_t {
+    Disable = 0,
+    Enable = 1
+};
+
+struct ContourAtmLiCtrl_Struct {
+    using _ActvNode1_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode1_type ActvNode1;
+
+    using _ActvNode2_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode2_type ActvNode2;
+
+    using _ActvNode3_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode3_type ActvNode3;
+
+    using _ActvNode4_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode4_type ActvNode4;
+
+    using _ActvNode5_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode5_type ActvNode5;
+
+    using _ActvNode6_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode6_type ActvNode6;
+
+    using _ActvNode7_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode7_type ActvNode7;
+
+    using _ActvNode8_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode8_type ActvNode8;
+
+    using _ActvNode9_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode9_type ActvNode9;
+
+    using _ActvNode10_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode10_type ActvNode10;
+
+    using _ActvNode11_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode11_type ActvNode11;
+
+    using _ActvNode12_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode12_type ActvNode12;
+
+    using _ActvNode13_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode13_type ActvNode13;
+
+    using _ActvNode14_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode14_type ActvNode14;
+
+    using _ActvNode15_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode15_type ActvNode15;
+
+    using _ActvNode16_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode16_type ActvNode16;
+
+    using _ActvNode17_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode17_type ActvNode17;
+
+    using _ActvNode18_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode18_type ActvNode18;
+
+    using _ActvNode19_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode19_type ActvNode19;
+
+    using _ActvNode20_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode20_type ActvNode20;
+
+    using _ActvNode21_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode21_type ActvNode21;
+
+    using _ActvNode22_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode22_type ActvNode22;
+
+    using _ActvNode23_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode23_type ActvNode23;
+
+    using _ActvNode24_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode24_type ActvNode24;
+
+    using _ActvNode1_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode1_NF_type ActvNode1_NF;
+
+    using _ActvNode2_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode2_NF_type ActvNode2_NF;
+
+    using _ActvNode3_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode3_NF_type ActvNode3_NF;
+
+    using _ActvNode4_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode4_NF_type ActvNode4_NF;
+
+    using _ActvNode5_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode5_NF_type ActvNode5_NF;
+
+    using _ActvNode6_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode6_NF_type ActvNode6_NF;
+
+    using _ActvNode7_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode7_NF_type ActvNode7_NF;
+
+    using _ActvNode8_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode8_NF_type ActvNode8_NF;
+
+    using _ActvNode9_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode9_NF_type ActvNode9_NF;
+
+    using _ActvNode10_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode10_NF_type ActvNode10_NF;
+
+    using _ActvNode11_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode11_NF_type ActvNode11_NF;
+
+    using _ActvNode12_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode12_NF_type ActvNode12_NF;
+
+    using _ActvNode13_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode13_NF_type ActvNode13_NF;
+
+    using _ActvNode14_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode14_NF_type ActvNode14_NF;
+
+    using _ActvNode15_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode15_NF_type ActvNode15_NF;
+
+    using _ActvNode16_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode16_NF_type ActvNode16_NF;
+
+    using _ActvNode17_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode17_NF_type ActvNode17_NF;
+
+    using _ActvNode18_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode18_NF_type ActvNode18_NF;
+
+    using _ActvNode19_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode19_NF_type ActvNode19_NF;
+
+    using _ActvNode20_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode20_NF_type ActvNode20_NF;
+
+    using _ActvNode21_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode21_NF_type ActvNode21_NF;
+
+    using _ActvNode22_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode22_NF_type ActvNode22_NF;
+
+    using _ActvNode23_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode23_NF_type ActvNode23_NF;
+
+    using _ActvNode24_NF_type = ActvNodeCtrl_Command_Enum;
+    _ActvNode24_NF_type ActvNode24_NF;
+
+    using _NodeSwtCtrl_type = NodeSwtCtrl_Command_Enum;
+    _NodeSwtCtrl_type NodeSwtCtrl;
+
+    using _NodeSwtCtrl_NF_type = NodeSwtCtrl_Command_Enum;
+    _NodeSwtCtrl_NF_type NodeSwtCtrl_NF;
+
     using _SyllablePrmCtrl_type = SyllablePrmCtrl_Command_Enum;
     _SyllablePrmCtrl_type SyllablePrmCtrl;
 
     using _SyllablePrmCtrl_NF_type = SyllablePrmCtrl_Command_Enum;
     _SyllablePrmCtrl_NF_type SyllablePrmCtrl_NF;
 
-};
+    using _FadeTimeCtrl_type = FadeTimeCtrl_Command_Integer;
+    _FadeTimeCtrl_type FadeTimeCtrl;
 
-//0-100有效 101 无响应
-enum class MusicFrqSet_Enum : std::uint8_t {
-    amplitude_0 = 0,
-    amplitude_1 = 1,
-    amplitude_2 = 2,
-    amplitude_3 = 3,
-    amplitude_4 = 4,
-    amplitude_5 = 5,
-    amplitude_6 = 6,
-    amplitude_7 = 7,
-    amplitude_8 = 8,
-    amplitude_9 = 9,
-    amplitude_10 = 10,
-    amplitude_11 = 11,
-    amplitude_12 = 12,
-    amplitude_13 = 13,
-    amplitude_14 = 14,
-    amplitude_15 = 15,
-    amplitude_16 = 16,
-    amplitude_17 = 17,
-    amplitude_18 = 18,
-    amplitude_19 = 19,
-    amplitude_20 = 20,
-    amplitude_21 = 21,
-    amplitude_22 = 22,
-    amplitude_23 = 23,
-    amplitude_24 = 24,
-    amplitude_25 = 25,
-    amplitude_26 = 26,
-    amplitude_27 = 27,
-    amplitude_28 = 28,
-    amplitude_29 = 29,
-    amplitude_30 = 30,
-    amplitude_31 = 31,
-    amplitude_32 = 32,
-    amplitude_33 = 33,
-    amplitude_34 = 34,
-    amplitude_35 = 35,
-    amplitude_36 = 36,
-    amplitude_37 = 37,
-    amplitude_38 = 38,
-    amplitude_39 = 39,
-    amplitude_40 = 40,
-    amplitude_41 = 41,
-    amplitude_42 = 42,
-    amplitude_43 = 43,
-    amplitude_44 = 44,
-    amplitude_45 = 45,
-    amplitude_46 = 46,
-    amplitude_47 = 47,
-    amplitude_48 = 48,
-    amplitude_49 = 49,
-    amplitude_50 = 50,
-    amplitude_51 = 51,
-    amplitude_52 = 52,
-    amplitude_53 = 53,
-    amplitude_54 = 54,
-    amplitude_55 = 55,
-    amplitude_56 = 56,
-    amplitude_57 = 57,
-    amplitude_58 = 58,
-    amplitude_59 = 59,
-    amplitude_60 = 60,
-    amplitude_61 = 61,
-    amplitude_62 = 62,
-    amplitude_63 = 63,
-    amplitude_64 = 64,
-    amplitude_65 = 65,
-    amplitude_66 = 66,
-    amplitude_67 = 67,
-    amplitude_68 = 68,
-    amplitude_69 = 69,
-    amplitude_70 = 70,
-    amplitude_71 = 71,
-    amplitude_72 = 72,
-    amplitude_73 = 73,
-    amplitude_74 = 74,
-    amplitude_75 = 75,
-    amplitude_76 = 76,
-    amplitude_77 = 77,
-    amplitude_78 = 78,
-    amplitude_79 = 79,
-    amplitude_80 = 80,
-    amplitude_81 = 81,
-    amplitude_82 = 82,
-    amplitude_83 = 83,
-    amplitude_84 = 84,
-    amplitude_85 = 85,
-    amplitude_86 = 86,
-    amplitude_87 = 87,
-    amplitude_88 = 88,
-    amplitude_89 = 89,
-    amplitude_90 = 90,
-    amplitude_91 = 91,
-    amplitude_92 = 92,
-    amplitude_93 = 93,
-    amplitude_94 = 94,
-    amplitude_95 = 95,
-    amplitude_96 = 96,
-    amplitude_97 = 97,
-    amplitude_98 = 98,
-    amplitude_99 = 99,
-    amplitude_100 = 100,
-    No_action = 101,
-    Reserved1 = 102,
-    Reserved2 = 103,
-    Reserved3 = 104,
-    Reserved4 = 105,
-    Reserved5 = 106,
-    Reserved6 = 107,
-    Reserved7 = 108,
-    Reserved8 = 109,
-    Reserved9 = 110,
-    Reserved10 = 111,
-    Reserved11 = 112,
-    Reserved12 = 113,
-    Reserved13 = 114,
-    Reserved14 = 115,
-    Reserved15 = 116,
-    Reserved16 = 117,
-    Reserved17 = 118,
-    Reserved18 = 119,
-    Reserved19 = 120,
-    Reserved20 = 121,
-    Reserved21 = 122,
-    Reserved22 = 123,
-    Reserved23 = 124,
-    Reserved24 = 125,
-    Reserved25 = 126,
-    Reserved26 = 127
-};
+    using _FadeTimeCtrl_NF_type = FadeTimeCtrl_Command_Integer;
+    _FadeTimeCtrl_NF_type FadeTimeCtrl_NF;
 
-struct MusicFrqSet_Struct {
-    using _MusicFrq0_type = MusicFrqSet_Enum;
-    _MusicFrq0_type MusicFrq0;
+    using _ModeChangeCtrl_type = ModeChangeCtrl_Command_Enum;
+    _ModeChangeCtrl_type ModeChangeCtrl;
 
-    using _MusicFrq1_type = MusicFrqSet_Enum;
-    _MusicFrq1_type MusicFrq1;
+    using _ModeChangeCtrl_NF_type = ModeChangeCtrl_Command_Enum;
+    _ModeChangeCtrl_NF_type ModeChangeCtrl_NF;
 
-    using _MusicFrq2_type = MusicFrqSet_Enum;
-    _MusicFrq2_type MusicFrq2;
+    using _LightLvlCtrl_type = LightLvlCtrl_Command_Enum;
+    _LightLvlCtrl_type LightLvlCtrl;
 
-    using _MusicFrq3_type = MusicFrqSet_Enum;
-    _MusicFrq3_type MusicFrq3;
+    using _LightLvlCtrl_NF_type = LightLvlCtrl_Command_Enum;
+    _LightLvlCtrl_NF_type LightLvlCtrl_NF;
 
-    using _MusicFrq4_type = MusicFrqSet_Enum;
-    _MusicFrq4_type MusicFrq4;
+    using _ModeSelectionCtrl_type = ModeSelectionCtrl_Command_Enum;
+    _ModeSelectionCtrl_type ModeSelectionCtrl;
 
-    using _MusicFrq5_type = MusicFrqSet_Enum;
-    _MusicFrq5_type MusicFrq5;
+    using _ModeSelectionCtrl_NF_type = ModeSelectionCtrl_Command_Enum;
+    _ModeSelectionCtrl_NF_type ModeSelectionCtrl_NF;
 
-    using _MusicFrq6_type = MusicFrqSet_Enum;
-    _MusicFrq6_type MusicFrq6;
+    using _RedRatCtrl_type = ColorCtrl_Command_Integer;
+    _RedRatCtrl_type RedRatCtrl;
+
+    using _RedRatCtrl_NF_type = ColorCtrl_Command_Integer;
+    _RedRatCtrl_NF_type RedRatCtrl_NF;
+
+    using _GreenRatCtrl_type = ColorCtrl_Command_Integer;
+    _GreenRatCtrl_type GreenRatCtrl;
+
+    using _GreenRatCtrl_NF_type = ColorCtrl_Command_Integer;
+    _GreenRatCtrl_NF_type GreenRatCtrl_NF;
+
+    using _BlueRatCtrl_type = ColorCtrl_Command_Integer;
+    _BlueRatCtrl_type BlueRatCtrl;
+
+    using _BlueRatCtrl_NF_type = ColorCtrl_Command_Integer;
+    _BlueRatCtrl_NF_type BlueRatCtrl_NF;
 
 };
 
-int getMaxMusicNo(MusicFrqSet_Struct& musicstruct){
-    int MaxNo = 0;
-    int No = 0;
-    int max = 0;
-    int min = 0;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
+//*********  以上是数据类型  **************************//
 
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        min = static_cast<uint8_t>(*i);
-        if(max < min){
-            max = min;
-            MaxNo = No;
+const int ActvNodeSize = 48;
+
+class Context
+{    
+public:
+    //*内部存储的节点使能信息
+    uint8_t context_ActvNodeCtrl[ActvNodeSize];
+    ContourAtmLiCtrl_Struct contourLightSt;
+
+    void setContext_ActvNodeCtrl(uint8_t* actv){
+        uint8_t* head = actv;//获取结构体存储首地址
+        auto tail = head+ActvNodeSize*sizeof(uint8_t);//获取结构体存储尾地址
+        auto rtail = context_ActvNodeCtrl+ActvNodeSize*sizeof(uint8_t);
+        int idx = 0;
+        for(auto i = head,r = context_ActvNodeCtrl; i<tail && r<rtail;i++,r++){
+            *r = *i;
         }
-        No++;
     }
-    return MaxNo;
-}
 
-void setMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
-    int value = 18;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        *i = (MusicFrqSet_Enum)value;
-        value += (-3);
+    //* 注意返回的是数组首地址指针， 不能直接赋值给其他数组
+    auto getContext_ActvNodeCtrl(){
+        return context_ActvNodeCtrl;
     }
-        
-}
 
-void printMusicFrq_Struct(MusicFrqSet_Struct& musicstruct){
-    int musicno = 0;
-    //获取结构体首地址
-    MusicFrqSet_Enum* MusicFrqSet_Start = (MusicFrqSet_Enum*)&musicstruct;
-    //获取结构体尾地址
-    MusicFrqSet_Enum* MusicFrqSet_End = MusicFrqSet_Start + sizeof(musicstruct)/sizeof(MusicFrqSet_Enum);
-    for (auto i = MusicFrqSet_Start ; i < MusicFrqSet_End ; i++)
-    {
-        std::cout<<"musicno "<<musicno<<" : "<<static_cast<int>(*i)<<std::endl;
-        musicno++;
-    }    
-}
-*/
-//*********************************** 驾驶区域 节点开关 辅助函数*************************************//
-//主驾区节点全开/全关
-Context_ActvNodeCtrl_Struct MainZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
-    //LIN 7
-    OpenNode = setSignalNode(2,1,OpenNode);
-    OpenNode = setSignalNode(5,1,OpenNode);
-    OpenNode = setSignalNode(20,1,OpenNode);
-    OpenNode = setSignalNode(18,1,OpenNode);
-    OpenNode = setSignalNode(6,1,OpenNode);
-    OpenNode = setSignalNode(7,1,OpenNode);
-    OpenNode = setSignalNode(8,1,OpenNode);
-    //LIN 9
-    OpenNode = setSignalNode(42,1,OpenNode);
-    OpenNode = setSignalNode(43,1,OpenNode);
-    OpenNode = setSignalNode(44,1,OpenNode);
-    OpenNode = setSignalNode(45,1,OpenNode);
-    OpenNode = setSignalNode(25,1,OpenNode);
-    OpenNode = setSignalNode(26,1,OpenNode);
-    OpenNode = setSignalNode(27,1,OpenNode);
-    OpenNode = setSignalNode(28,1,OpenNode);
-    OpenNode = setSignalNode(29,1,OpenNode);
-    OpenNode = setSignalNode(30,1,OpenNode);
-    OpenNode = setSignalNode(31,1,OpenNode);
+    uint8_t* ResetNodeToAllZero(uint8_t* actv){
+        uint8_t* head = actv;//获取结构体存储首地址
+        auto tail = head+ActvNodeSize*sizeof(uint8_t);//获取结构体存储尾地址
 
-    return OpenNode;
-}
-Context_ActvNodeCtrl_Struct MainZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
-    CloseNode = setSignalNode(2,0,CloseNode);
-    CloseNode = setSignalNode(5,0,CloseNode);
-    CloseNode = setSignalNode(20,0,CloseNode);
-    CloseNode = setSignalNode(18,0,CloseNode);
-    CloseNode = setSignalNode(6,0,CloseNode);
-    CloseNode = setSignalNode(7,0,CloseNode);
-    CloseNode = setSignalNode(8,0,CloseNode);
-    CloseNode = setSignalNode(42,0,CloseNode);
-    CloseNode = setSignalNode(43,0,CloseNode);
-    CloseNode = setSignalNode(44,0,CloseNode);
-    CloseNode = setSignalNode(45,0,CloseNode);
-    CloseNode = setSignalNode(25,0,CloseNode);
-    CloseNode = setSignalNode(26,0,CloseNode);
-    CloseNode = setSignalNode(27,0,CloseNode);
-    CloseNode = setSignalNode(28,0,CloseNode);
-    CloseNode = setSignalNode(29,0,CloseNode);
-    CloseNode = setSignalNode(30,0,CloseNode);
-    CloseNode = setSignalNode(31,0,CloseNode);
-    return CloseNode;
-}
+        for(auto i = head ; i<tail;i++){
+            *i =0u;
+        }
+        return head;
+    }
 
-//副驾区节点全开/全关
-Context_ActvNodeCtrl_Struct FrontPassengerZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
-    OpenNode = setSignalNode(3,1,OpenNode);
-    OpenNode = setSignalNode(4,1,OpenNode);
-    OpenNode = setSignalNode(22,1,OpenNode);
-    OpenNode = setSignalNode(19,1,OpenNode);
-    OpenNode = setSignalNode(12,1,OpenNode);
-    OpenNode = setSignalNode(13,1,OpenNode);
-    OpenNode = setSignalNode(14,1,OpenNode);
-    OpenNode = setSignalNode(35,1,OpenNode);
-    OpenNode = setSignalNode(36,1,OpenNode);
-    OpenNode = setSignalNode(37,1,OpenNode);
+    uint8_t* SetNodeToAllOpen(uint8_t* actv){
+        uint8_t* head = actv;//获取结构体存储首地址
+        auto tail = head+ActvNodeSize*sizeof(uint8_t);//获取结构体存储尾地址
 
-    return OpenNode;
-}
-Context_ActvNodeCtrl_Struct FrontPassengerZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
-    CloseNode = setSignalNode(3,0,CloseNode);
-    CloseNode = setSignalNode(4,0,CloseNode);
-    CloseNode = setSignalNode(22,0,CloseNode);
-    CloseNode = setSignalNode(19,0,CloseNode);
-    CloseNode = setSignalNode(12,0,CloseNode);
-    CloseNode = setSignalNode(13,0,CloseNode);
-    CloseNode = setSignalNode(14,0,CloseNode);
-    CloseNode = setSignalNode(35,0,CloseNode);
-    CloseNode = setSignalNode(36,0,CloseNode);
-    CloseNode = setSignalNode(37,0,CloseNode);
+        for(auto i = head ; i<tail;i++){
+            *i =1u;
+        }
+        return head;
+    }
 
-    return CloseNode;
-}
+    uint8_t* SetSignalNode(int No , int status ,uint8_t* ActvNodeStruct){
+        uint8_t* head = ActvNodeStruct;//获取结构体存储首地址
+        auto index = head+No-1;//对应的 结构体中 元素位置
+        *index = (uint8_t)(status);
+        return ActvNodeStruct;
+    }
 
-//后部区节点全开/全关
-Context_ActvNodeCtrl_Struct RearZoneOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct OpenNode = ActvNodeStruct;
-    OpenNode = setSignalNode(9,1,OpenNode);
-    OpenNode = setSignalNode(10,1,OpenNode);
-    OpenNode = setSignalNode(11,1,OpenNode);
-    OpenNode = setSignalNode(15,1,OpenNode);
-    OpenNode = setSignalNode(16,1,OpenNode);
-    OpenNode = setSignalNode(17,1,OpenNode);
-    OpenNode = setSignalNode(32,1,OpenNode);
-    OpenNode = setSignalNode(33,1,OpenNode);
-    OpenNode = setSignalNode(34,1,OpenNode);
-    OpenNode = setSignalNode(38,1,OpenNode);
-    OpenNode = setSignalNode(39,1,OpenNode);
-    OpenNode = setSignalNode(40,1,OpenNode);
-    OpenNode = setSignalNode(47,1,OpenNode);
-    OpenNode = setSignalNode(48,1,OpenNode);
+    void printActvNode(uint8_t* actv){
+        uint8_t* head = actv;//获取结构体存储首地址
+        int idx = 1;
+        for (auto i = head; i < head+(ActvNodeSize)*sizeof(uint8_t); i++)
+        {
+            std::cout<<idx<<" 号使能节点值 =  "<<static_cast<int>(*i)<<std::endl;
+            idx ++;
+        }
+    }
 
-    return OpenNode;
-}
-//关闭后排节点使能
-Context_ActvNodeCtrl_Struct RearZoneClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
-    CloseNode = setSignalNode(9,0,CloseNode);
-    CloseNode = setSignalNode(10,0,CloseNode);
-    CloseNode = setSignalNode(11,0,CloseNode);
-    CloseNode = setSignalNode(15,0,CloseNode);
-    CloseNode = setSignalNode(16,0,CloseNode);
-    CloseNode = setSignalNode(17,0,CloseNode);
-    CloseNode = setSignalNode(32,0,CloseNode);
-    CloseNode = setSignalNode(33,0,CloseNode);
-    CloseNode = setSignalNode(34,0,CloseNode);
-    CloseNode = setSignalNode(38,0,CloseNode);
-    CloseNode = setSignalNode(39,0,CloseNode);
-    CloseNode = setSignalNode(40,0,CloseNode);
-    CloseNode = setSignalNode(47,0,CloseNode);
-    CloseNode = setSignalNode(48,0,CloseNode);
+    void setActvNode(uint8_t actvNode[ActvNodeSize]){
+        auto ActvNodeIndex = (ActvNodeCtrl_Command_Enum *)(&contourLightSt);    
+        memcpy(ActvNodeIndex,actvNode,ActvNodeSize*sizeof(ActvNodeCtrl_Command_Enum));
 
-    return CloseNode;
-}
-
-/**
- * @brief 关闭特殊区域节点
- */
-Context_ActvNodeCtrl_Struct SpecialNodesClose(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
-
-    CloseNode = setSignalNode(1,0,CloseNode);
-    CloseNode = setSignalNode(21,0,CloseNode);
-    CloseNode = setSignalNode(23,0,CloseNode);
-    CloseNode = setSignalNode(41,0,CloseNode);
-    CloseNode = setSignalNode(46,0,CloseNode);
-
-    return CloseNode;
-}
-/**
- * @brief 打开特殊区域节点
- */
-Context_ActvNodeCtrl_Struct SpecialNodesOpen(Context_ActvNodeCtrl_Struct ActvNodeStruct){
-    Context_ActvNodeCtrl_Struct CloseNode = ActvNodeStruct;
-
-    CloseNode = setSignalNode(1,1,CloseNode);
-    CloseNode = setSignalNode(21,1,CloseNode);
-    CloseNode = setSignalNode(23,1,CloseNode);
-    CloseNode = setSignalNode(41,1,CloseNode);
-    CloseNode = setSignalNode(46,1,CloseNode);
-
-    return CloseNode;
-}
-/**
- * @brief 与或非的计算
- * 
- */
-void computenum(){
-    uint16_t gradual_bright = 0x1<<12;//渐亮
-    uint16_t gradual_extinction = 0x2<<12;//渐灭
-
-
-    uint8_t save_light = 255u;
-
-    uint16_t light1 = gradual_bright | save_light;
-    uint16_t light2 = gradual_extinction | save_light;
-    uint16_t flash_fulllight = (0x4<<12) | 0xff;
-
-    std::cout<<std::bitset<16>(light1)<<std::endl;
-    std::cout<<std::bitset<16>(light2)<<std::endl;
-    std::cout<<std::bitset<16>(flash_fulllight)<<std::endl;
-    std::cout<<"0&0: "<< (0&0) << " 0&1:" <<(0&1)<<" 0&2: "<<(0&2)<<std::endl;
-    std::cout<<"1&0: "<< (1&0) << " 1&1:" <<(1&1)<<" 1&2: "<<(1&2)<<std::endl;
-    std::cout<<"2|0: "<< (2|0) << " 1|1:" <<(1|1)<<" 1|2: "<<(1|2)<<std::endl;
-}
-
-/**
- * @brief 打印功能菜单
- * 1：打印详细节点信息
- * 2：关闭分区 （主驾、副驾、后排、特殊）
- * 3：打开分区 （主驾、副驾、后排、特殊）
- */
-void PrintMenu(){
-
-}
-
-
+        uint8_t* head = (uint8_t *)&contourLightSt;//获取结构体存储首地址
+        int idx = 1;
+        for (auto i = head; i < head+sizeof(contourLightSt)/sizeof(uint8_t); i++)
+        {
+            std::cout<<idx<<" 号使能节点值 =  "<<static_cast<int>(*i)<<std::endl;
+            idx ++;
+        }
+    }
+};
 
 int main(){
+    uint8_t context_ActvNodeCtrl_NF[ActvNodeSize];
+    Context con;
 
-    Context_ActvNodeCtrl_Struct actvnode;
+    //拿出存储的节点信息
+    memcpy(context_ActvNodeCtrl_NF,con.getContext_ActvNodeCtrl(),sizeof(context_ActvNodeCtrl_NF));
+    //临时节点信息全关
+    con.ResetNodeToAllZero(context_ActvNodeCtrl_NF);
+    con.printActvNode(context_ActvNodeCtrl_NF);
+    std::cout<<std::endl;
 
+    //临时节点信息全开
+    con.SetNodeToAllOpen(context_ActvNodeCtrl_NF);
+    con.printActvNode(context_ActvNodeCtrl_NF);
+    std::cout<<std::endl;
+
+    //存储临时信息回本地
+    con.setContext_ActvNodeCtrl(context_ActvNodeCtrl_NF);
+    con.printActvNode(con.getContext_ActvNodeCtrl());
+    std::cout<<std::endl;
+
+    //单个设置值
+    con.SetSignalNode(2,0,context_ActvNodeCtrl_NF);
+    con.printActvNode(context_ActvNodeCtrl_NF);
+    // con.setActvNode(context_ActvNodeCtrl_NF);
+    std::cout<<std::endl;
 
     return 0;
 }

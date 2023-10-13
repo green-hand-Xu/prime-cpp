@@ -24,7 +24,7 @@ void GALogicExpressFeatureTest(){
         return;
     }
     if(expr == true){
-        LOG("Feature: default result shoule be false(operator ==), failed");
+        L OG("Feature: default result shoule be false(operator ==), failed");
         return;
     }
     if(expr != false){
