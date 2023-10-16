@@ -17,9 +17,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package (Threads REQUIRED)
 
+include_directories( 
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-
-add_executable(demo computColor.cpp)
+add_executable(demo main.cpp)
 
 target_link_libraries(demo pthread)
 
