@@ -51,9 +51,35 @@ public:
 class SolutionTwo {
 public:
     string gcdOfStrings(string str1, string str2) {
-        vector<string> Str1Vec;
-        vector<string> Str2Vec;
+        //先计算两个字符串长度
+        int len1 = (int)str1.length();
+        int len2 = (int)str2.length();
+        //用长度短的字符串 开始进行枚举, 从长到短开始找
+        for(int i = min(len1,len2);i>=1;i--){
+            //若有一个长度 使两个字符串 都能除尽，那么就有可能是一个公因子，然后在保存这个字符串，并进行检查，是否为真的公因子
+            if (len1 % i == 0 && len2 % i ==0)
+            {
+                string X = str1.substr(0,i);
+                if (check(X,str1)&&check(X,str2)) return X;
+            } 
+        }
+        //找不到就返回空字符串
+        return "";
+    }
 
+    /**
+     * 判断 t 能否 除尽 s ,t 为公因子
+    */
+    bool check(string t, string s){
+        // s 的长度是 最大公因子 t 的 lenx 倍
+        int lenx = (int)s.length()/(int)t.length();
+        string ans = "";
+        //最大公因子 经过 lenx 倍拼接后，应该等于 原字符串 s
+        for (int i = 0; i < lenx; i++)
+        {
+            ans = ans + t;
+        }
+        return ans == s;//判断 是否等于原字符串
     }
 };
 
