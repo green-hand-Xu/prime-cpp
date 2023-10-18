@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package (Threads REQUIRED)
 
 
-add_executable(demo Sept28.cpp)
+add_executable(demo Oct.cpp)
 
 target_link_libraries(demo pthread)
 
