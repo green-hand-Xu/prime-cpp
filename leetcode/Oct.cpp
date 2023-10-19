@@ -79,7 +79,7 @@ public:
         }
         return n<=0;
     }
-    //还可以用贪心算法
+    //还可以用贪心算法 直接计算出一共可以种多少只花
 }SolutionTwo;
 
 void TestSolutionTwo(){
