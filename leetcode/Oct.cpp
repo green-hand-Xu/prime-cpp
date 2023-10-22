@@ -176,6 +176,12 @@ public:
         return s;
     }
 //* 力扣官方题解
+/*
+方法二：自行编写对应的函数
+思路和算法
+我们也可以不使用语言中的 API，而是自己编写对应的函数。在不同语言中，这些函数实现是不一样的，主要的差别是有些语言的字符串不可变（如 Java 和 Python)，有些语言的字符串可变（如 C++)。
+对于字符串不可变的语言，首先得把字符串转化成其他可变的数据结构，同时还需要在转化的过程中去除空格。
+*/
     string reverseWords_leetcode(string s) {
         // 反转整个字符串
         reverse(s.begin(), s.end());
@@ -201,7 +207,45 @@ public:
         s.erase(s.begin() + idx, s.end());
         return s;
     }
+/*
+方法三：双端队列
+思路和算法
 
+由于双端队列支持从队列头部插入的方法，因此我们可以沿着字符串一个一个单词处理，然后将单词压入队列的头部，再将队列转成字符串即可。
+*/
+    string reverseWords_leetcode_two(string s) {
+        int left = 0, right = s.size() - 1;
+        // 去掉字符串开头的空白字符
+        while (left <= right && s[left] == ' ') ++left;
+
+        // 去掉字符串末尾的空白字符
+        while (left <= right && s[right] == ' ') --right;
+
+        deque<string> d;
+        string word;
+
+        while (left <= right) {
+            char c = s[left];
+            if (word.size() && c == ' ') {
+                // 将单词 push 到队列的头部
+                d.push_front(move(word));
+                word = "";
+            }
+            else if (c != ' ') {
+                word += c;
+            }
+            ++left;
+        }
+        d.push_front(move(word));
+        
+        string ans;
+        while (!d.empty()) {
+            ans += d.front();
+            d.pop_front();
+            if (!d.empty()) ans += ' ';
+        }
+        return ans;
+    }
 }SolutionFour;
 
 void TestFour(){
