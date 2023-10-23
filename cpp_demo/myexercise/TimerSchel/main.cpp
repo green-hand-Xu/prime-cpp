@@ -1,47 +1,32 @@
 #include <iostream>
 #include <unistd.h>
-// #include <thread>
+#include <thread>
 #include "FunctionScheduler.hpp"
+#include <memory>
 
-
-void Fun1(){
-    folly::FunctionScheduler fs;
-    fs.addFunction([] { std::cout << "tick111111111"; }, std::chrono::microseconds(1), "ticker");
-    fs.start();
+std::shared_ptr<folly::FunctionScheduler> fs = std::make_shared<folly::FunctionScheduler>();
+//添加延时任务
+void start(){
+    fs->cancelFunction("ticker");
+    fs->addFunctionOnce([] { std::cout << "start"<<std::endl; }, "ticker", std::chrono::milliseconds(2000));
+    std::cout << "addFunctionOnce "<<std::endl;
 }
 
+//取消延时任务
+void cancel(){
+    fs->cancelFunction("ticker");
+    std::cout << "cancel"<<std::endl;
+}
 
 int main(){
-    // std::thread t1(Fun1);
-    // t1.join();
-    folly::FunctionScheduler fs;
-    int a = 101;
-
-    fs.addFunction([&fs,&a] { 
-    std::cout << "tick111111111"<<std::endl;
-    if( a <= 100){
-        std::cout << "a = "<<a <<std::endl;
-        fs.cancelFunction("ticker");
-    }
-    }, std::chrono::milliseconds(50), "ticker");
-
-    fs.addFunction([&fs,&a] { 
-    std::cout << "tick2222222222222"<<std::endl;
-    if( a <= 100){
-        std::cout << "a = "<<a <<std::endl;
-        fs.cancelFunction("ticker");
-    }
-    }, std::chrono::milliseconds(50), "ticker");
-
-    fs.start();
-
-    while (std::cin>>a)
-    {
-
-        std::this_thread::sleep_for(std::chrono::seconds(100));
-
-    }
+    fs->start();
+    std::thread th1([](){start();});
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::thread th2([](){cancel();});
     
-
+    th1.detach();
+    th2.detach();
+    std::this_thread::sleep_for(std::chrono::seconds(6));
+    
     return 0;
 }

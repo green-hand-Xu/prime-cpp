@@ -1,29 +1,62 @@
+#include <boost/algorithm/string.hpp>
 #include <iostream>
+#include <string>
+#include <vector>
+
+#include <string.h>
+#include <stdio.h>
+
 
 using namespace std;
+using namespace boost;
 
-long Fun(int N){
-    if (N==0)
-    {
-        return 0;
-    }
-    if (N==1)
-    {
-        return 1;
-    }
-    return Fun(N-1)+Fun(N-2);
+void print( vector <string> & v )
+{
+  for (size_t n = 0; n < v.size(); n++)
+    cout << "\"" << v[ n ] << "\"\n";
+  cout << endl;
 }
 
-void Test(){
-    for (int i = 0; i <= 100; i++)
-    {
-        cout<<"Fun "<<i<<" = "<<Fun(i)<<endl;
-    }
-    
+
+
+int cstrtok(){
+  char s[] = "a,b,  *c , d";
+  const char *sep = ",*"; //可按多个字符来分割
+  char *p;
+  p = strtok(s, sep);
+  while(p){
+    printf("%s ", p);
+    p = strtok(NULL, sep);
+  }
+  printf("\n");
+  return 0;
+}
+
+int boost_split()
+{
+  string s = "a,b, c ,,e,f,";
+  vector <string> fields;
+
+  cout << "Original = \"" << s << "\"\n\n";
+
+  cout << "Split on \',\' only\n";
+  split( fields, s, is_any_of( "," ) );
+  print( fields );
+
+  cout << "Split on \" ,\"\n";
+  split( fields, s, is_any_of( " ," ) );
+  print( fields );
+
+  cout << "Split on \" ,\" and elide delimiters\n"; 
+  split( fields, s, is_any_of( " ," ), token_compress_on );
+  print( fields );
+
+  return 0;
 }
 
 int main(){
 
-    Test();
+    boost_split();
+    cstrtok();
     return 0;
 }

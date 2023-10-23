@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm> //使用sort()函数排序
+#include <deque>
 
 using namespace std;
 
@@ -181,6 +182,7 @@ public:
 思路和算法
 我们也可以不使用语言中的 API，而是自己编写对应的函数。在不同语言中，这些函数实现是不一样的，主要的差别是有些语言的字符串不可变（如 Java 和 Python)，有些语言的字符串可变（如 C++)。
 对于字符串不可变的语言，首先得把字符串转化成其他可变的数据结构，同时还需要在转化的过程中去除空格。
+*注： 在数组下边中 使用 ++i 和 i++ 是有去别的 ++i 是先对i+1 然后取 arr[i+1]的位置  i++ 是先取在+1 即取 arr[i] ; 然后 i+1
 */
     string reverseWords_leetcode(string s) {
         // 反转整个字符串
@@ -189,14 +191,21 @@ public:
         int n = s.size();
         int idx = 0;
         for (int start = 0; start < n; ++start) {
+            //先找到一个开头不是 空的位置，为单词的起始位置
             if (s[start] != ' ') {
                 // 填一个空白字符然后将idx移动到下一个单词的开头位置
-                if (idx != 0) s[idx++] = ' ';
-
-                // 循环遍历至单词的末尾
+                if (idx != 0) { // idx != 0 排除 首个单词的头部，因为头部不加 空字符串占位
+                    s[idx++] = ' ';
+                }
+                // 声明一个尾部索引。用来将记录单词的结束位置
                 int end = start;
-                while (end < n && s[end] != ' ') s[idx++] = s[end++];
-
+                while (end < n && s[end] != ' ') {
+                    //遍历 start 之后的元素，不为空 则将idx 和 end 的位置向后移动一次
+                    end++;
+                    // s[idx++] = s[end++];
+                }
+                //记录当前  单词的索引位置 
+                idx = end;
                 // 反转整个单词
                 reverse(s.begin() + idx - (end - start), s.begin() + idx);
 
@@ -204,6 +213,7 @@ public:
                 start = end;
             }
         }
+        //移除掉尾部的空格
         s.erase(s.begin() + idx, s.end());
         return s;
     }
@@ -227,7 +237,7 @@ public:
         while (left <= right) {
             char c = s[left];
             if (word.size() && c == ' ') {
-                // 将单词 push 到队列的头部
+                // 将单词 push 到队列的头部 然后将word置空 开始记录下一个单词
                 d.push_front(move(word));
                 word = "";
             }
@@ -236,6 +246,7 @@ public:
             }
             ++left;
         }
+        //将最后一个单词放入队列中
         d.push_front(move(word));
         
         string ans;
@@ -250,12 +261,12 @@ public:
 
 void TestFour(){
     string s = "the sky is blue";
-    auto str = SolutionFour.reverseWords(s);
-    for (auto word : SolutionFour.words)
-    {
-        cout<<word;
-    }
-    cout<<endl;
+    auto str = SolutionFour.reverseWords_leetcode_two(s);
+    // for (auto word : SolutionFour.words)
+    // {
+    //     cout<<word;
+    // }
+    // cout<<endl;
     cout << str<<endl;
     
 }
