@@ -404,21 +404,25 @@ public:
 /*
 *方法二：贪心
 可以使用贪心的方法将空间复杂度降到 O(1)。从左到右遍历数组 nums，遍历过程中维护两个变量 first和 second，
-分别表示递增的三元子序列中的第一个数和第二个数，任何时候都有 first<second。
+在遍历时候 保证 first<second 的情况下，去将最小的值 赋给first 与 second
+*分别表示递增的三元子序列中的第一个数和第二个数，任何时候都有 first<second。
 */
     bool increasingTripletTwo(vector<int>& nums){
         int n = nums.size();
         if (n < 3) {
             return false;
         }
-        int first = nums[0], second = ;
+        //将second设为int 最大值，防止在未设置 second时提前返回
+        //将first 初始化为 数组内第一个元素
+        int first = nums[0], second = __INT_MAX__;
         for (int i = 1; i < n; i++) {
             int num = nums[i];
-            if (num > second) {
+            if (num > second) {//遍历到比second值大的元素时 说明存在三元子序列
                 return true;
+                //遍历到比first的值大的元素时，记录为second
             } else if (num > first) {
                 second = num;
-            } else {
+            } else { // 若没有找到比 first 大的值 则 将first 进行更新 继续进行查找
                 first = num;
             }
         }
