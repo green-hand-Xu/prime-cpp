@@ -363,7 +363,104 @@ void TestFive(){
 
 }
 
+/**
+ ** 递增的三元子序列
+ *  给你一个整数数组 nums ，判断这个数组中是否存在长度为 3 的递增子序列。
+    如果存在这样的三元组下标 (i, j, k) 且满足 i < j < k ，使得 nums[i] < nums[j] < nums[k] ，返回 true ；否则，返回 false 。
+*/
+class SolutionSix {
+public:
+/*
+*方法一：双向遍历
+使用两个数组 分别保存 nums[i] 两侧 的最小值 与最大值。 若nums[i] 在两者之间 则说明存在三元子序列
+特点：可以不用记录下标，只要存在即可。同时可以使用STL方法 min max 查询
+*/
+    bool increasingTripletOne(vector<int>& nums) {
+        int n = nums.size();
+        if (n < 3) {
+            return false;
+        }
+        // i 左侧最小值
+        vector<int> leftMin(n);
+        leftMin[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            leftMin[i] = min(leftMin[i - 1], nums[i]);
+        }
+        // i 右侧最大值
+        vector<int> rightMax(n);
+        rightMax[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = max(rightMax[i + 1], nums[i]);
+        }
+        //  存在 leftMin[i-1]<nums[i]<rightMax[i + 1] 则return true
+        for (int i = 1; i < n - 1; i++) {
+            if (nums[i] > leftMin[i - 1] && nums[i] < rightMax[i + 1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+/*
+*方法二：贪心
+可以使用贪心的方法将空间复杂度降到 O(1)。从左到右遍历数组 nums，遍历过程中维护两个变量 first和 second，
+分别表示递增的三元子序列中的第一个数和第二个数，任何时候都有 first<second。
+*/
+    bool increasingTripletTwo(vector<int>& nums){
+        int n = nums.size();
+        if (n < 3) {
+            return false;
+        }
+        int first = nums[0], second = ;
+        for (int i = 1; i < n; i++) {
+            int num = nums[i];
+            if (num > second) {
+                return true;
+            } else if (num > first) {
+                second = num;
+            } else {
+                first = num;
+            }
+        }
+        return false;
+    }
+
+    //三重循环 效率低 不推荐使用
+    bool increasingTripletThree(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); i++)
+        {
+            for (int j = i+1; j < nums.size(); j++)
+            {
+                if (nums[j]>nums[i])
+                {
+                    for (int k = j+1; k < nums.size(); k++)
+                    {
+                        if (nums[k]>nums[j])
+                        {
+                           return true;
+                        }
+                        if (k == nums.size())
+                        {
+                            return false;
+                        }
+                    }
+                }
+                if (j == nums.size())
+                {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+}SolutionSix;
+
+void TestSix(){
+    vector<int> nums{1,2,3,4,5};
+    cout<<SolutionSix.increasingTripletOne(nums)<<endl;
+}
+
 int main(){
-    TestFive();
+    TestSix();
     return 0;
 }
