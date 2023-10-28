@@ -66,7 +66,21 @@ void TestTwo(){
   std::cout<<fun()<<std::endl;
 }
 
-int main(){
-  Test();
+void fun(int* ptr) {
+  *ptr = -1;
+}
+
+
+
+
+int main() {
+  const int a = 10;
+  int* b = const_cast<int*>(&a);
+  fun(b);
+
+  std::cout << "adress a= " << &a << " a =" << a << std::endl;
+  std::cout << "adress b= " << b << " *b =" << *b << std::endl;
+  std::cout << " after fun(b) a = "<< a<<std::endl;
   return 0;
 }
+
