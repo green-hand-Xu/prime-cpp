@@ -72,6 +72,12 @@ public:
 
     }
 
+    Sales_data(int No,double sold,double re){
+        bookNo = No;
+        units_sold = sold;
+        revenue = re;
+    }
+
     ~Sales_data(){
 
     }
@@ -84,26 +90,60 @@ public:
     }
 
     std::ostream &print(std::ostream &os , const Sales_data &item){
-        os << item.units_sold << " " << item.revenue << " " <<item.bookNo;
+        os << item.bookNo << " " << item.units_sold << " " <<item.revenue <<" ";
         return os;
     }
 
-
-    void TestOne(char* argv[]){
-        std::ifstream input (argv[1]);
-        std::ofstream output (argv[2]);
-        Sales_data total;
-        if (read(input,total))
-        {
-            
-        }
-        
+    //向文件中写数据
+    void WriteData(){
+        std::ofstream output;
+        output.open("../Files/text.txt");
+        Sales_data totalone(1,2,3);
+        Sales_data totaltwo(4,5,6);
+        print(output,totalone);
+        print(output,totaltwo);
+        output.close();
     }
-};
+    //从文件中读数据并保存到对象中
+    void ReadData(){
+        std::ifstream input;
+        input.open("../Files/text.txt");
+        Sales_data totalone;
+        Sales_data totaltwo;
+        read(input,totalone);
+        read(input,totaltwo);
+        input.close();
+        std::cout<<totalone.bookNo<<" "<<totalone.units_sold<<" "<<totalone.revenue<<"\n";
+        std::cout<<totaltwo.bookNo<<" "<<totaltwo.units_sold<<" "<<totaltwo.revenue<<"\n";
+    }
+}Sales_data;
 
+/**
+ * @brief 忽略输入流中的非数字类型
+ * 
+ */
+void ignore_non_numeric_input(){
+    // 保存 整形类型的最大数
+    auto max_size = std::numeric_limits<std::streamsize>::max();
+
+    std::istringstream input{"1asd2asd3"};
+
+    for(;;){
+        int n;
+        if(input >> n){
+            std::cout<<n<<'\n';
+        }else if(input.bad()||input.eof()){
+            break;
+        }else if(input.fail()){
+            input.clear();
+            input.ignore();//使用默认参数
+        }
+    }
+}
 
 
 int main(){
-    exchangestream();
+    Sales_data.WriteData();
+    Sales_data.ReadData();
     return 0;
 }
