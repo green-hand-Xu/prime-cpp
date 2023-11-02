@@ -21,7 +21,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(demo FileIO.cpp)
+add_executable(demo StringIO.cpp)
 
 target_link_libraries(demo pthread)
 
