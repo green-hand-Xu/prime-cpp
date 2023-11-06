@@ -102,8 +102,8 @@ void ostringstream_Test(){
 	string line, word;
 	vector<PersonInfo> people;
 	istringstream record;
-	ifstream ifs("personinfo");
-	ofstream ofs("personinfo_new");
+	ifstream ifs("../Files/Person.txt");
+	ofstream ofs("../Files/Personout.txt");
 
 	while(getline(ifs, line))
 	{
@@ -115,26 +115,30 @@ void ostringstream_Test(){
 		record.clear();
 		people.push_back(info);
 	}
-
+	ostringstream formatted, badNums;
 	for(const auto &person : people)
 	{
-		ostringstream formatted, badNums;
 		for(const auto &ph : person.phones)
 		{
 			if(!valid(ph))
 			{
 				badNums << " " << ph;
-			}else
+			}else{
 				formatted << " " << format(ph);
+			}
 		}
-		if(badNums.str().empty())
+		if(badNums.str().empty()){
 			ofs << person.name << " " << formatted.str() << endl;
-		else
+		}
+		else{
 			cerr << " input error: " << person.name << " invalid number(s)" << badNums.str() << endl;
+		}
+
 	}
+	cout<<formatted.str()<<endl;
 }
 
 int main(){
-    test();
+    ostringstream_Test();
     return 0;
 }
