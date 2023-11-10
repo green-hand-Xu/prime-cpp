@@ -8,5 +8,20 @@
  * @copyright Copyright (c) 2023
  * 
  */
+//* 标准库提供了六种容器类型
+#include <vector> //1
+#include <string> //2
+#include <deque>  //3
+#include <array>  //4
+#include <list>   //5
+#include <forward_list>  //6
 
-#include <vector>
+
+
+
+
+int main(){
+
+
+    return 0;
+}
