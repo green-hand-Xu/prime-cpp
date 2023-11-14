@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package (Threads REQUIRED)
 
 
-add_executable(demo std_tuple.cpp)
+add_executable(demo std_heap.cpp)
 
 target_link_libraries(demo pthread)
 
