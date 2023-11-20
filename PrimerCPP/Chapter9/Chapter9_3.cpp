@@ -28,4 +28,6 @@ array<int,20> iarray; // 数组
 
 int main(){
     
+
+    return 0;
 }
