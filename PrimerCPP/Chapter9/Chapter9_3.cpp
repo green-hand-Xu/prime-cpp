@@ -62,6 +62,7 @@ void printAll(){
 /**
  * @brief 向顺序容器添加元素 push emplace insert。  array 不支持这些操作
  * * 插入元素会导致 vector string deque 迭代器失效
+ * * vector string 不支持push_front
  */
 void addElement(){
     // push_back push_front  末尾追加元素 拷贝方式 返回 void
@@ -107,13 +108,97 @@ void accessElement(){
  ** 注：删除操作会改变容器大小，所以array 不适用
  ** 删除元素 会导致 迭代器失效
  ** 同访问一样 删除不存在的位置和空容器的行为是未定义的，需要自行处理这类情况
+ ** vector string 不支持pop_front
  */
 void erraseElement(){
+    ivector.pop_back();//删除尾元素
+    ilist.pop_front();//删除首元素
+    ivector.erase(ivector.begin());//删除迭代器指向的元素 返回被删除元素之后的迭代器
+    ilist.erase(ilist.end(),ilist.end()); //删除迭代器指向范围内的元素
+    str.clear();// 删除容器中 所有元素
 
+
+    printAll();
 }
 
+/**
+ * @brief forward_list (单向链表) 特殊的操作
+ * (c)before_begin  insert_after emplace_after erase_after
+ ** 由于单向链表的特性， 这些插入删除方法 操作的是 迭代器指向位置之后的位置
+ */
+void specialOperator(){
+    forward_list<int> flist;
+    flist.insert_after(flist.before_begin(),1);//在首前迭代器之后添加一个元素
+    flist.emplace_front(2);//在首位置添加，直接构造方式
+    flist.emplace_after(flist.begin()++,3);//在指定位置之后添加一个元素，直接构造方式
+    flist.erase_after(flist.begin()++);//删除指定位置之后的元素
+    print(flist);
+}
+
+/**
+ * @brief 移除 单向列表的奇数元素， 添加至 vector中
+ * 
+ */
+void eraseSpecificElement(){
+    forward_list<int> ilist{0,1,2,3,4,5,6,7,8,9,10,11};
+    vector<int> dst;
+    auto curr = ilist.begin(); //指向首元素
+    auto prev = ilist.before_begin(); //指向首前元素
+    while (curr != ilist.end())
+    {
+        if (*curr % 2 != 0)
+        {
+            dst.push_back(*curr);
+            curr = ilist.erase_after(prev);//删除奇数元素，并把curr位置挪到删除元素之后的位置
+        }else{
+            //不是基数 将前一个元素指针指向当前位置 并 将当前位置指针后移 
+            prev = curr;
+            curr++;
+        }
+    }
+    print(ilist);
+    print(dst);
+}
+
+/**
+ * @brief 9.3.4   9.28 习题练习
+ * 
+ * @param flist 
+ * @param str1 
+ * @param str2 
+ */
+void exe9_3_4(forward_list<string> flist, string str1 , string str2){
+    if (flist.empty())
+    {
+        return;
+    }
+    print(flist);
+
+    auto index = flist.begin();
+    while (index != flist.end())
+    {
+        if (*index == str1)
+        {
+            index = flist.insert_after(index,str2);
+        }else{
+            index++;
+        }
+    }
+    print(flist);
+}
+
+void exe9_3_4test(){
+    forward_list<string> flist{"hello","hello"};
+    string str1{"hello"};
+    string str2{"world"};
+    string str3{"a"};
+    exe9_3_4(flist,str1,str2);
+    exe9_3_4(flist,str3,str2);
+}
+
+
 int main(){
-    accessElement();
+    exe9_3_4test();
     
     return 0;
 }
