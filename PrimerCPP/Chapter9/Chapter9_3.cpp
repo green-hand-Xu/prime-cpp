@@ -196,9 +196,45 @@ void exe9_3_4test(){
     exe9_3_4(flist,str3,str2);
 }
 
+/**
+ * @brief 改变容器的大小
+ *  resize
+ *  改变大小后 容器的 迭代器 以及相关的引用、指针可能会失效
+ *  扩容后自动使用元素默认初始化，或者主动填入构造初始化进行元素追加
+ *  缩小容器  会将多余的元素删除
+ *  array不支持改变大小 需要动态重新手动分配
+ */
+void resizecapacity(){  
+    ilist.resize(15);// 扩容到15 使用int类型的值初始化为0
+    ilist.resize(20,1);// 扩容到20 初始化成 1
+    print(ilist);
+}
+
+/**
+ * @brief 单向链表 循环改变容器内容
+ * 
+ */
+void exe9_3_1(){
+    forward_list<int> vi = {0,1,2,3,4,5,6,7,8,9,0};
+    auto iter = vi.begin();
+    auto before_iter = vi.before_begin();
+    while (iter != vi.end())
+    {
+        if(*iter%2){
+            iter = vi.insert_after(iter,*iter); // 返回指向新插入元素的指针，与insert的区别是 insert在给定迭代器之前插入，insert_after 是在之后
+            before_iter = iter;
+            iter++;//移动指针到下一个未处理的元素
+        }else{
+            iter = vi.erase_after(before_iter); // 返回删除元素之后的位置
+        }
+    }
+    
+    print(vi);
+
+}
 
 int main(){
-    exe9_3_4test();
     
+    exe9_3_1();
     return 0;
 }
