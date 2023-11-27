@@ -204,7 +204,7 @@ void exe9_3_4test(){
  *  缩小容器  会将多余的元素删除
  *  array不支持改变大小 需要动态重新手动分配
  */
-void resizecapacity(){  
+void resize(){  
     ilist.resize(15);// 扩容到15 使用int类型的值初始化为0
     ilist.resize(20,1);// 扩容到20 初始化成 1
     print(ilist);
@@ -228,13 +228,115 @@ void exe9_3_1(){
             iter = vi.erase_after(before_iter); // 返回删除元素之后的位置
         }
     }
-    
     print(vi);
+}
 
+/**
+ * @brief 改变容器占用内存大小 
+ * capacity:获取容量大小 
+ * 以下操作与实际操作系统有关联
+ * reserve：修改容量大小（只增不减） shrink_to_fit 容量大小裁剪至和元素数量大小一致（不一定真的退还）
+ */
+void resizecapacity(){
+    vector<int> vec;
+    cout<<vec.capacity()<<endl;//显示当前vec的容量大小
+    vec.shrink_to_fit();//容量大小裁剪至和元素数量大小一致
+    cout<<vec.capacity()<<endl;
+    vec.reserve(100);//修改容量大小（只增不减）
+    cout<<vec.capacity()<<endl;
+}
+
+/**
+ * @brief 一些string 其他的构造方法 
+ * string s(cp,n):cp 为数组。n为拷贝数量，默认为前n个。数组需要以/n结尾
+ * string s(s2,pos2)：从s2 pos2位置开始拷贝 pos2 不能大于s2的总长度 size()
+ * string s(s2,pos2，n)：从s2 pos2位置开始拷贝 n 个字符 pos2 不能大于s2的总长度 size()
+ * * substr(pos,n):字符串截取 从pos开始的n个字符
+ * * string 的 insert 和 erase 还额外支持 下标相关的操作 
+ * * 例如：insert(pos,n,s) 从pos位置添加n个s元素 erase(pos,n) 从pos位置开始删除n个元素 注：POS 可以是 c 风格字符串数组
+ * * append(str) 末尾追加 和 replace(range,args) 删除s中range范围内的字符，替换为args指定的长度，range可以是下标和长度的组合，或者一对迭代器
+ */
+void special_str_operator(){
+    char ch[10]{'h','e','l','o','w','o','r','l','d'};
+    string str1{"111 222"};
+
+    string str2(ch,5);
+    string str3(str1,0,3);
+    string str4(str1,2);
+
+    string str5 = str1.substr(1);
+    cout<<str2<<" "<<str3<<" "<<str4<<" "<<str5<<endl;
+
+    string str6{"AAAA"};
+    str6.insert(4,"1");
+    cout<<str6<<endl;
+    str6.erase(0,1);
+    cout<<str6<<endl;
+    str6.insert(str6.size()-1,ch); //在size()-1 之前位置加入元素
+    cout<<str6<<endl;
+    str6.insert(str6.size(),ch+4);
+    cout<<str6<<endl;
+    //* 替换str6 内容为 ch+4位置开始 连续5个元素的内容 ，或者只写开始位置，默认以字符串末尾为结束位置
+    str6.assign(ch+4,5);
+    cout<<str6<<endl;
+    str6 = {"ABCDE"};
+    str6.replace(1,3,"s"); //从str6 第一个位置开始删除3个元素 然后插入 "s"
+    cout<<str6<<endl;
+}
+
+/**
+ * @brief 习题 9.5.2-9.43
+ * 
+ */
+void exec_9_43(string &s , string oldVal , string newVal){
+    //* 1、使用 insert + replace
+    for (auto i = 0; i < s.size();)
+    {
+        if (s.substr(i,oldVal.size()) == oldVal)
+        {
+            s.erase(i,oldVal.size());
+            s.insert(i,newVal);
+            i+=oldVal.size();
+        }
+        ++i;
+    }
+}
+
+void exec_9_44(string &s , string oldVal , string newVal){
+    //* 2、使用replace
+    for (auto i = 0; i < s.size();)
+    {
+        if (s.substr(i,oldVal.size()) == oldVal)
+        {
+            s.replace(i,oldVal.size(),newVal);
+            i+=oldVal.size();
+        }
+        ++i;
+    }
+}
+
+
+void test_9_43(){
+    std::string s1 = "hello world";  
+    std::string oldVal1 = "world";  
+    std::string newVal1 = "Python";  
+    exec_9_44(s1, oldVal1, newVal1);  
+    std::cout << s1 << std::endl; // Output: hello Python  
+  
+    std::string s2 = "abcd";  
+    std::string oldVal2 = "cd";  
+    std::string newVal2 = "efg";  
+    exec_9_44(s2, oldVal2, newVal2);  
+    std::cout << s2 << std::endl; // Output: abefgefg  
+  
+    std::string s3 = "1234567890";  
+    std::string oldVal3 = "345";  
+    std::string newVal3 = "ABC";  
+    exec_9_44(s3, oldVal3, newVal3);  
+    std::cout << s3 << std::endl; // Output: 12ABC67890  
 }
 
 int main(){
-    
-    exe9_3_1();
+    test_9_43();
     return 0;
 }
