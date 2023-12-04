@@ -315,7 +315,6 @@ void exec_9_44(string &s , string oldVal , string newVal){
     }
 }
 
-
 void test_9_43(){
     std::string s1 = "hello world";  
     std::string oldVal1 = "world";  
@@ -336,7 +335,35 @@ void test_9_43(){
     std::cout << s3 << std::endl; // Output: 12ABC67890  
 }
 
+/**
+ * @brief string 搜索操作
+ * *查找第一次/最后一次出现的位置
+ * find rfind find_first_of  find_last_of  
+ * *查找第一个/最后一个 不在args 中的字符
+ * find_first_not_of   find_last_not_of  
+ * *参数都为args ：可以为 c pos(位置) , s2 pos , cp(字符数组指针) pos , cp(字符数组指针) ,pos(位置),n(前n个字符)
+ * *可以通过修改位置参数 在字符串中循环的搜索子字符串出现的所有位置
+ */
+void stringSerch(){
+    string src1{"aaabcdefgha123456"};
+    string src3{"1234p56789"};
+    char src2[]={'a','b','c'};
+    char src4[]={'1','2','3','4','5','6','7','8','9','0'};
+
+    std::cout<<src1.find('a')<<std::endl;//查找第一次出现的位置
+    std::cout<<src1.rfind("gha")<<std::endl;//查找最后一次出现的位置
+    std::cout<<src1.find('a',2)<<std::endl;//从第二个位置开始，查找第一次出现的位置
+    std::cout<<src1.find('a',1)<<std::endl;//从第1个位置开始，查找第一次出现的位置
+    std::cout<<src1.rfind(src2,src1.size(),3)<<std::endl;//从最后一个字符开始,查找最后一次出现的位置
+
+    std::cout<<src1.find_first_of("kle")<<std::endl;//在src1中查找arg中任何一个字符第一次出现的位置。
+    std::cout<<src1.find_first_not_of("kle")<<std::endl;//在src1中查找第一个不在args中的字符。
+
+    std::cout<<src3.find_last_of(src2)<<std::endl;//在src1中查找arg中任何一个字符最后一次出现的位置。
+    std::cout<<src3.find_last_not_of(src4)<<std::endl;//在src1中查找最后一个不在args中的字符。
+}
+
 int main(){
-    test_9_43();
+    stringSerch();
     return 0;
 }
