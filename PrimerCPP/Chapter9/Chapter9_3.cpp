@@ -16,6 +16,8 @@
 #include <forward_list>
 #include <string>
 #include <array>
+#include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -363,7 +365,96 @@ void stringSerch(){
     std::cout<<src3.find_last_not_of(src4)<<std::endl;//在src1中查找最后一个不在args中的字符。
 }
 
+class my_date
+{
+public:
+	my_date(const string&);
+private:
+	unsigned int year;
+	unsigned int month;
+	unsigned int day;
+};
+
+my_date::my_date(const string &s)
+{
+	string date_str = s;
+	string::size_type index1 = 0;
+	string::size_type index2 = 0;
+
+	if(s.find(',') != string::npos)//January 1, 1900
+	{
+		index1 = s.find(' ');
+		index2 = s.find(',', index1+1);
+		cout << "year: " << s.substr(index2+1, s.size()) << "; month: " << s.substr(0, index1) << "; day: " << s.substr(index1+1, index2-index1-1) << endl;
+		// month = stoi(s.substr(0, index1));
+		if( s.find("Jan") < s.size() )  month = 1;
+		if( s.find("Feb") < s.size() )  month = 2;
+		if( s.find("Mar") < s.size() )  month = 3;
+		if( s.find("Apr") < s.size() )  month = 4;
+		if( s.find("May") < s.size() )  month = 5;
+		if( s.find("Jun") < s.size() )  month = 6;
+		if( s.find("Jul") < s.size() )  month = 7;
+		if( s.find("Aug") < s.size() )  month = 8;
+		if( s.find("Sep") < s.size() )  month = 9;
+		if( s.find("Oct") < s.size() )  month =10;
+		if( s.find("Nov") < s.size() )  month =11;
+		if( s.find("Dec") < s.size() )  month =12;
+		day = stoi(s.substr(index1+1, index2-index1-1));
+		year = stoi(s.substr(index2+1, s.size()));
+	}else if(s.find('/') != string::npos)//1/1/1900
+	{
+		index1 = s.find('/');
+		index2 = s.find('/', index1+1);
+		cout << "year: " << s.substr(index2+1, s.size()) << "; month: " << s.substr(0, index1) << "; day: " << s.substr(index1+1, index2-index1-1) << endl;
+		month = stoi(s.substr(0, index1));
+		day = stoi(s.substr(index1+1, index2-index1-1));
+		year = stoi(s.substr(index2+1, s.size()));
+	}else//Jan 1 1900
+	{
+		index1 = s.find(' ');
+		index2 = s.find(' ', index1+1);
+		cout << "year: " << s.substr(index2+1, s.size()) << "; month: " << s.substr(0, index1) << "; day: " << s.substr(index1+1, index2-index1-1) << endl;
+		// month = stoi(s.substr(0, index1));
+		if( s.find("Jan") < s.size() )  month = 1;
+		if( s.find("Feb") < s.size() )  month = 2;
+		if( s.find("Mar") < s.size() )  month = 3;
+		if( s.find("Apr") < s.size() )  month = 4;
+		if( s.find("May") < s.size() )  month = 5;
+		if( s.find("Jun") < s.size() )  month = 6;
+		if( s.find("Jul") < s.size() )  month = 7;
+		if( s.find("Aug") < s.size() )  month = 8;
+		if( s.find("Sep") < s.size() )  month = 9;
+		if( s.find("Oct") < s.size() )  month =10;
+		if( s.find("Nov") < s.size() )  month =11;
+		if( s.find("Dec") < s.size() )  month =12;
+		day = stoi(s.substr(index1+1, index2-index1-1));
+		year = stoi(s.substr(index2+1, s.size()));
+	}
+	cout << "year: " << year << "; month: " << month << "; day: " << day << endl;
+}
+
+//* 适配器  包含：栈适配器  队列适配器 优先级队列适配器
+/**
+ * @brief 栈适配器
+ * 包含操作：
+ * pop() 弹出栈顶元素 
+ * push(item) emplace(item) 创建新元素压入栈顶 
+ * top() 返回栈顶元素，并不弹出元素
+ */
+void stackAdapter(){
+
+    vector<int> vint{10,9,8,7,6,5,4,3,2,1,11};
+    deque<int> dint{10,9,8,7,6,5,4,3,2,1,11};
+    stack<int> Dstackint(dint); //stack默认 基于 deque 实现 
+    stack<int,vector<int>> Vstackint(vint);// 需要显式重载默认容器类型，使其可用于vector
+
+    Vstackint.emplace(1);
+    print(vint);
+    Vstackint.push(1);
+    print(vint);
+}
+
 int main(){
-    stringSerch();
+    stackAdapter();
     return 0;
 }
