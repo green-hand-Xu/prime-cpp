@@ -435,23 +435,35 @@ my_date::my_date(const string &s)
 
 //* 适配器  包含：栈适配器  队列适配器 优先级队列适配器
 /**
- * @brief 栈适配器
+ * @brief 栈适配器  要求底层容器有 push_bsck pop_back back 操作 (vector deque list)
  * 包含操作：
  * pop() 弹出栈顶元素 
  * push(item) emplace(item) 创建新元素压入栈顶 
  * top() 返回栈顶元素，并不弹出元素
  */
 void stackAdapter(){
-
     vector<int> vint{10,9,8,7,6,5,4,3,2,1,11};
     deque<int> dint{10,9,8,7,6,5,4,3,2,1,11};
     stack<int> Dstackint(dint); //stack默认 基于 deque 实现 
     stack<int,vector<int>> Vstackint(vint);// 需要显式重载默认容器类型，使其可用于vector
 
-    Vstackint.emplace(1);
-    print(vint);
-    Vstackint.push(1);
-    print(vint);
+    Vstackint.emplace(1);//创建新元素压入栈顶 
+    cout<<Vstackint.top()<<endl;//返回栈顶元素，并不弹出元素
+    Vstackint.push(2);//创建新元素压入栈顶 
+    cout<<Vstackint.top()<<endl;
+    Vstackint.pop();//弹出栈顶元素
+    cout<<Vstackint.top()<<endl;
+    cout<<Vstackint.size()<<endl;//获取元素数目
+}
+
+/**
+ * @brief 队列适配器 要求底层容器有 back push_back front push_front (list 默认类型deque)
+ *        优先级队列适配器 要求底层容器有 front push_back pop_back 以及随机访问能力 (deque 默认类型vector)
+ * 
+ */
+void queueAdapter(){
+
+
 }
 
 int main(){
