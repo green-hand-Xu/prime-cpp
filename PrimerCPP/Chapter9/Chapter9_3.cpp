@@ -459,14 +459,46 @@ void stackAdapter(){
 /**
  * @brief 队列适配器 要求底层容器有 back push_back front push_front (list 默认类型deque)
  *        优先级队列适配器 要求底层容器有 front push_back pop_back 以及随机访问能力 (deque 默认类型vector)
- * 
+ * 包含操作：
+ * pop() 弹出队首/优先级最高的元素 并移除此元素
+ * front() 访问首元素
+ * back() 访问尾元素 (只适用于 queue)
+ * top() 访问优先级最高的元素 (只适用于 priority_queue)
+ * push(item) emplace(args) 在queue队尾 或者 priority_queue 中恰当位置创建一个元素 其值为item 或者由 args 构造
  */
 void queueAdapter(){
+    vector<int> vint{10,9,8,7,6,5,4,3,2,1,11};
+    deque<int> dint{10,9,8,7,6,5,4,3,2,1,11};
+    list<int> lint{10,9,8,7,6,5,4,3,2,1,11};
 
+    queue<int> queint(dint);//默认 deque 为底层容器类型
+    queue<int,list<int>> quelint(lint);//指明 list<int> 为底层容器类型
+    priority_queue<int,vector<int>,greater<int>> priint;
+
+    cout<<queint.front()<<endl;
+    cout<<queint.back()<<endl;
+    queint.pop();
+    cout<<queint.front()<<endl;
+    queint.push(55);
+    cout<<queint.back()<<endl;
+    queint.emplace(66);
+    cout<<queint.back()<<endl;    
+
+    priint.push(1),priint.push(2),priint.push(3); //入队
+    cout<<priint.top()<<endl;//获取优先级最高的元素
+    priint.pop();// 优先级最高的元素出队
+    cout<<priint.top()<<endl;
+}
+
+/**
+ * @brief 练习9.52
+ * 
+ */
+void parenthesized_expressions(){
 
 }
 
 int main(){
-    stackAdapter();
+    queueAdapter();
     return 0;
 }
