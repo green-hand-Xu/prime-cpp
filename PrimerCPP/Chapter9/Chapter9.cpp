@@ -81,8 +81,8 @@ void addElement(){
     str.insert(str.begin(),'1'); //在指定位置迭代器之前添加元素
     str.insert(str.end(),1,'2'); // 在指定位置迭代器之前 添加 1 个 2
     str.insert(str.end(),str1.begin(),str1.end()); // 在指定位置迭代器之前 插入迭代器范围内的元素
-    str.insert(str.begin(),{'h','e','l','l','o'}); //  在指定位置迭代器之前 插入一个元素值列表
-
+    auto itr = str.insert(str.begin(),{'h','e','l','l','o'}); //  在指定位置迭代器之前 插入一个元素值列表
+    cout<<*itr<<endl;
     printAll();
 }
 
@@ -234,7 +234,8 @@ void exe9_3_1(){
 }
 
 /**
- * @brief 改变容器占用内存大小 
+ * @brief 改变容器占用内存大小
+ * * vector 和 string 类型特有的操作 
  * capacity:获取容量大小 
  * 以下操作与实际操作系统有关联
  * reserve：修改容量大小（只增不减） shrink_to_fit 容量大小裁剪至和元素数量大小一致（不一定真的退还）
@@ -437,7 +438,7 @@ my_date::my_date(const string &s)
 /**
  * @brief 栈适配器  要求底层容器有 push_bsck pop_back back 操作 (vector deque list)
  * 包含操作：
- * pop() 弹出栈顶元素 
+ * pop() 弹出栈顶元素 addElement
  * push(item) emplace(item) 创建新元素压入栈顶 
  * top() 返回栈顶元素，并不弹出元素
  */
@@ -473,7 +474,7 @@ void queueAdapter(){
 
     queue<int> queint(dint);//默认 deque 为底层容器类型
     queue<int,list<int>> quelint(lint);//指明 list<int> 为底层容器类型
-    priority_queue<int,vector<int>,greater<int>> priint;
+    priority_queue<int,vector<int>,greater<int>> priint; // 越大优先级越低
 
     cout<<queint.front()<<endl;
     cout<<queint.back()<<endl;
@@ -484,7 +485,7 @@ void queueAdapter(){
     queint.emplace(66);
     cout<<queint.back()<<endl;    
 
-    priint.push(1),priint.push(2),priint.push(3); //入队
+    priint.push(3),priint.push(2),priint.push(1); //入队   优先级策略 排序后 存储顺序 1 2 3
     cout<<priint.top()<<endl;//获取优先级最高的元素
     priint.pop();// 优先级最高的元素出队
     cout<<priint.top()<<endl;
@@ -528,6 +529,6 @@ void parenthesized_expressions(){
 }
 
 int main(){
-    parenthesized_expressions();
+    queueAdapter();
     return 0;
 }
