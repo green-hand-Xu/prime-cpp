@@ -46,7 +46,6 @@ void gf_accumulate(){
     auto str1 = accumulate(str.begin(),str.end(),string("hello ")); //设置加初始值为 字符串 hello
     cout<<str1<<endl;
 }
-
 /**
  * * 只读算法
  * @brief equal(range,p2) 比较算法 比较第一个序列 range 范围内 和 第二个序列 p2 开始的元素是否相等。
