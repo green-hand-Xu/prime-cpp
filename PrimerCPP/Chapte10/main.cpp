@@ -55,7 +55,7 @@ void gf_accumulate(){
 void gf_equal(){
     vector<int> vec1{1,2,3,4,5};
     vector<int> vec2{1,2,3,4,5,6};
-    vector<int> vec3{1,2,3,4};
+    vector<int> vec3{1};
     auto b1 = equal(vec1.begin(),vec1.end(),vec2.begin());
     cout<< b1 <<endl; // true 
     auto b2 = equal(vec1.begin(),vec1.end(),vec2.begin()+3);
