@@ -11,7 +11,7 @@ endif(USEMacro1)
 
 message(STATUS "USEMacro1 = " ${USEMacro1})
 
-set(CMAKE_CXX_STANDARD 17)   
+set(CMAKE_CXX_STANDARD 20)   
 #设置可执行文件输出位置
 #set(EXECUTABLE_OUTPUT_PATH ./bin)
 
@@ -21,7 +21,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(demo EBOdemo.cpp)
+add_executable(demo main.cpp)
 
 target_link_libraries(demo pthread)
 

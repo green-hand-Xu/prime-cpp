@@ -1,150 +1,46 @@
-/**
- * @file EBOdemo.cpp
- * @author XuYingBo (you@domain.com)
- * @brief 用于帮助理解空基类优化的练习demo
- * @version 0.1
- * @date 2023-11-13
- * 
- * @copyright Copyright (c) 2023
- * 
- */
+#include <vector>
 #include <iostream>
-#include <type_traits>
+#include <memory>
+#include <algorithm>
+#include <cstring>
+using namespace std;
 
-static int id = 0;
-
-
-
-template<typename ... Types>
-class SelfTuple;
-/* First instantiated from: insights.cpp:25 */
-#ifdef INSIGHTS_USE_TEMPLATE
-template<>
-class SelfTuple<Test2, Test3> : private SelfTuple<Test3>
-{
-  Test2 val;
-  
-  public: 
-  inline SelfTuple()
-  : SelfTuple<Test3>()
-  , val{Test2()}
-  {
-    std::operator<<(std::cout, "SelfTuple<FirstT...> sizeof = ").operator<<(1).operator<<(std::endl);
-  }
-  
+enum class Position : std::uint8_t{
+    Front = 0,
+    Behind = 1,
+    Left = 2,
+    Right = 3
 };
 
-#endif
-/* First instantiated from: insights.cpp:25 */
-#ifdef INSIGHTS_USE_TEMPLATE
-template<>
-class SelfTuple<Test3> : private SelfTuple<>
+//* 结构体成员默认按照最大的字节位数对齐
+struct LightSet
 {
-  Test3 val;
-  
-  public: 
-  inline SelfTuple()
-  : SelfTuple<>()
-  , val{Test3()}
-  {
-    std::operator<<(std::cout, "SelfTuple<FirstT...> sizeof = ").operator<<(0).operator<<(std::endl);
-  }
-  
-};
-
-#endif
-/* First instantiated from: insights.cpp:63 */
-#ifdef INSIGHTS_USE_TEMPLATE
-template<>
-class SelfTuple<Test1, Test2, Test3> : private SelfTuple<Test2, Test3>
-{
-  Test1 val;
-  
-  public: 
-  inline SelfTuple()
-  : SelfTuple<Test2, Test3>()
-  , val{Test1()}
-  {
-    std::operator<<(std::cout, "SelfTuple<FirstT...> sizeof = ").operator<<(2).operator<<(std::endl);
-  }
-  
-};
-
-#endif
-
-
-/*
-    SelfTuple<Test1,Test2,Test3> : private SelfTuple <Test2,Test3>  : private SelfTuple <Test3>
-*/
-
-template<typename FirstT, typename ... Rest>
-class SelfTuple<FirstT, Rest...> : private SelfTuple<Rest...>
-{
-  FirstT val;
-  
-  public: 
-  inline SelfTuple()
-  : val{}
-  {
-    std::operator<<(std::cout, "SelfTuple<FirstT...> sizeof = ").operator<<(sizeof...(Rest)).operator<<(std::endl);
-  }
-  
+  Position pos;
+  uint16_t LightVal;
 };
 
 
-
-template<>
-class SelfTuple<>
-{
-  
-  public: 
-  inline SelfTuple()
+void NvmSet(std::vector<uint8_t> vec){
+  for (int i = 0 ; auto v : vec)
   {
-    std::operator<<(std::operator<<(std::cout, "SelfTuple< ").operator<<(id), " >").operator<<(std::endl);
-    id++;
+    cout<<" v["<<i<<"] = "<<(int)v<<" ";
+    ++i;
   }
-  
-};
+  cout<<endl;
+}
 
-
-
-struct Test1
-{
-  inline Test1()
-  {
-    std::operator<<(std::cout, "Test1\n");
-  }
-  
-};
-
-
-
-struct Test2
-{
-  inline Test2()
-  {
-    std::operator<<(std::cout, "Test2\n");
-  }
-  
-};
-
-
-
-struct Test3
-{
-  inline Test3()
-  {
-    std::operator<<(std::cout, "Test3\n");
-  }
-  
-};
-
-
-
-
-int main()
-{
-  SelfTuple<Test1, Test2, Test3> t = SelfTuple<Test1, Test2, Test3>();
-  std::cout.operator<<(sizeof(t)).operator<<(std::endl);
+int main(){
+  LightSet lightset{Position::Right,10};
+  uint8_t* begin = (uint8_t*)&lightset;
+  uint8_t* end = begin + sizeof(lightset);
+  //*1、容器初始化时传入迭代器（指针）范围
+  vector<uint8_t> vec(begin,end);
+  NvmSet(vec);
+  //*2、memcpy
+  lightset.LightVal = 20;
+  memcpy(vec.data(),&lightset,sizeof(lightset));
+  NvmSet(vec);
+  auto ret = (LightSet*)vec.data();
+  cout<<ret->LightVal<<" "<<(int)ret->pos<<endl;
   return 0;
 }

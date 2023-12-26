@@ -79,7 +79,7 @@ std::string_view Typeof(T t)
 void getTypeTest()
 {
     std::cout << Typeof(DataType::HD) << std::endl;
-    //std::cout << Typeof<DType>(DType::PCI) << std::endl;
+    std::cout << Typeof<DType>(DType::PCI) << std::endl;
 }
 
 int main()
