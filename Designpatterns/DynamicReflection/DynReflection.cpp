@@ -53,7 +53,7 @@ struct static_for<n, n>
     template<typename F>
     void operator()( const F & func) const
     {
-       // std::cout << "noting" << std::endl;
+       std::cout << "noting" << std::endl;
     }
 };
 
