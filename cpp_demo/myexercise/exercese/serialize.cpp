@@ -36,12 +36,14 @@ int main(){
   //*1、容器初始化时传入迭代器（指针）范围
   vector<uint8_t> vec(begin,end);
   NvmSet(vec);
+
   //*2、memcpy
   lightset.LightVal = 20;
   memcpy(vec.data(),&lightset,sizeof(lightset));
   NvmSet(vec);
   auto ret = (LightSet*)vec.data();
   cout<<(int)ret->LightVal<<" "<<(int)ret->pos<<endl;
+  
   //*3、直接手动存成员，然后进行类型转回
   vector<uint8_t> vec1;
   //*存的时候按照成员顺序手动存
