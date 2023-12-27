@@ -10,28 +10,23 @@
 #include <string>
 #include <type_traits>
 
-// 定义宏__FUNC__ 表示
 #ifdef _WIN64
 #define __FUNC__ __FUNCSIG__
 #else
 #define __FUNC__  __PRETTY_FUNCTION__
 #endif
 
-using namespace std;
-// 定义的动态获取的类类型信息
 enum class DataType{USB,PCI,HD,NOT};
 enum  DType{USB,PCI,HD,NOT};
-
-//* 利用宏+字符串截取，输出T的类型信息
-template<typename T>
-std::string_view TypeInfo(){
-    string type = __FUNC__;
-    auto begin = type.find("T = ")+4;
-    auto end = type.find(";");
-    return std::string_view{type.data()+begin , end - begin};
+template<auto T>
+std::string_view TypeInfo()
+{
+    std::string type = __FUNC__;
+    auto begin = type.find("T = ") + 4;
+    auto end = type.find_last_of(';');
+    return std::string_view{ type.data() + begin, end - begin };
 }
 
-//* 带模板的仿函数类 在c++ 17后可以用带模板的lambda 表达式实现类似功能
 template <int s, int e>
 struct static_for
 {
@@ -56,22 +51,22 @@ struct static_for<n, n>
        std::cout << "noting" << std::endl;
     }
 };
-
 constexpr int s = static_cast<int>(DataType::USB);
 constexpr int e = static_cast<int>(DataType::NOT);
 
 template<typename T>
 std::string_view Typeof(T t)
 {
-   int t1 = static_cast<int>(t);
-   std::string_view sv;
-       static_for<s, e>()([&](auto num) {
+    int t1 = static_cast<int>(t);
+    std::string_view sv;
+    auto fun = [&](auto num) {
         if (t1 == num) {
-             //重点要理解const和num.value
-             const DataType d = DataType{num.value};
+            //* 重点要理解const和num.value [模板入参必须为常量，因为是编译期展开的]
+            const DataType d = DataType{num.value};
             sv = TypeInfo<d>();
             }
-            });
+        };
+    static_for<s, e>()(fun);
 
     return sv;
 }
@@ -84,6 +79,8 @@ void getTypeTest()
 
 int main()
 {
-        getTypeTest();
-        return 0;
+    std::cout<<TypeInfo<DataType::HD>()<< std::endl;
+    getTypeTest();
+
+    return 0;
 }
