@@ -59,6 +59,7 @@ std::string_view Typeof(T t)
 {
     int t1 = static_cast<int>(t);
     std::string_view sv;
+
     auto fun = [&](auto num) {
         if (t1 == num) {
             //* 重点要理解const和num.value [模板入参必须为常量，因为是编译期展开的]
@@ -66,6 +67,7 @@ std::string_view Typeof(T t)
             sv = TypeInfo<d>();
             }
         };
+    //* 模板展开 编译期生成所有需要的函数 
     static_for<s, e>()(fun);
 
     return sv;

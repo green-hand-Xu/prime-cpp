@@ -14,7 +14,7 @@
 #include <iostream>
 #include <algorithm>  //大部分泛型算法的头文件
 #include <numeric>
-
+#include <utils.hpp>
 using namespace std;
 
 /**
@@ -63,10 +63,19 @@ void gf_equal(){
     cout<< b3 <<endl; // false  长度 不匹配 但不报错 会返回 false
 }
 
-
+/** 
+ ** 写容器元素算法
+ * @brief fill(range,value) 将range范围内的元素，设置成value的值
+ * 
+ */
+void gf_fill(){
+    vector<int> vec{1,2,3,4,5,6};
+    fill(vec.begin(),vec.begin()+vec.size()/2,0);
+    my_print(vec);
+}
 
 int main(){
-    gf_equal();
+    gf_fill();
 
 
     return 0;
