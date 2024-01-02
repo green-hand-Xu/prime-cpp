@@ -36,7 +36,23 @@ void printdata(uint8_t *p,int length){
     cout<<endl;
 }
 
-void printdatax(int *p,int length){
+/**
+ * 打印地址
+*/
+void printaddr(uint8_t *p,int length){
+
+    for (auto i = p; i < p+length; i++)
+    {
+        //按照二进制位打印出来
+        cout<<(void *)i<<" ";
+    }
+    cout<<endl;
+}
+
+/**
+ * 打印16进制
+*/
+void printdatax(uint32_t *p,int length){
 
     cout<<hex<<*p<<" ";
     cout<<endl;
@@ -48,24 +64,22 @@ void printdatax(int *p,int length){
 */ 
 struct CSA2
 {
-    uint8_t payload[8]{0};
+    uint8_t payload[8]{0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 };
 
 /**
  * @brief A2R数据源
  */
 struct Data{
-    uint8_t SteerWheelAng;
+    uint8_t SteerWheelAng{5}; // MSB 15  LSB 17
+    uint8_t SteerWheelAngSign{0};// MSB  16  LSB 16
+    uint8_t SteerWheelSpd{2};// MSB 31 LSB 33
+    uint8_t SteerWheelSpdSign{0};// MSB 32 LSB 32
 };
 
 int main(){
-    int a = 0x12345678;
-    printdatax(&a,sizeof(a));
-
-    uint8_t b = 1;
-    printdata(&b,sizeof(b));
-    b = b<<1;
-    printdata(&b,sizeof(b));
-
-    printdata((uint8_t*)&a,sizeof(a));
+    CSA2 csa;
+    Data data;
+    printdata((uint8_t *)&csa,sizeof(csa));
+    printdata((uint8_t *)&data,sizeof(data));
 }
