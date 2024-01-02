@@ -1,3 +1,13 @@
+/**
+ * @file randomNumber.cpp
+ * @author XuYingBo (you@domain.com)
+ * @brief 随机数 生成彩票号码
+ * @version 0.1
+ * @date 2024-01-02
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include <iostream>
 #include<ctype.h>
 #include<vector>
