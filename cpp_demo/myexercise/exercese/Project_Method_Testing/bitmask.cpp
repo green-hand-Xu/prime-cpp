@@ -15,18 +15,26 @@
  ** 压包 计算公式：array[index]: 声明的数组名字  MSB、LSB、size:矩阵表头名字
  ** 1、startIndex : 起始位所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
  ** 2、endIndex : 结束位所在字节数组下标：array[LSB/8]
- ** 3、isSingleByte : 是否跨字节：startIndex != endIndex
+ ** 3、是否跨字节：
+ **    1、isSingleByte(是否为单字节) : startIndex != endIndex
+ **    2、isDoubleByte(是否为双字节) : endIndex - startIndex == 1
+ **    3、isMultibyte(是否为多字节)  : endIndex - startIndex > 1
  ** 4、不夸字节时对齐方式：
  **     1、leftShift:左移位移量：(Msb % 8) + 1 - size
  ** 5、跨字节时对齐方式：先右移，再左移
  **     1、rightShift:右移位移量：size - ( (Msb % 8) + 1 ) 
  **     2、leftShift:左移位移量：(Lsb % 8)
+ **     3、跨多个字节时，首位部分移位值同上 ，中间部分位移值如下
+ **         map<uint,uint> midRightShift：中间部分数据对应的位移值 <索引,右移位移数>
+ **         索引 = (startIndex,endIndex) 内所有整数
+ **         右移位移数 = rightShift - { (索引 - startIndex) * 8 }
  ** 6、掩码计算方式：
  **   不跨字节：
  **     1、leftMask : 左移时掩码计算方式：{ {2 ^ ( (Msb % 8) + 1 ) } - 1 } - { {2 ^ (leftShift) } -1 }
  **   跨字节：
  **     1、leftMask : 左移时掩码计算方式：0xff - { { 2 ^ leftShift } - 1 }
  **     2、rightMask : 右移时掩码计算方式：{ 2 ^ ((Msb % 8) + 1) } - 1
+ **     3、跨多个字节时，首位部分掩码同上 ，中间部分掩码一律为 0xff 
  */
 
 #include <iostream>
@@ -34,6 +42,7 @@
 #include <bitset>
 #include <array>
 #include <cmath>
+#include <map>
 using namespace std;
 
 /**
@@ -86,85 +95,28 @@ struct Data{
     uint8_t SteerWheelSpdSign{0};// MSB 32 LSB 32
 };
 
-//* 位序递增算法
-struct Inc
+struct In
 {
-    Inc(uint Msb , uint sizeBit){
-        startBit = Msb;
-        endBit = Msb + sizeBit -1;
-        startIndex = Msb / 8;
-        endIndex = endBit / 8;
-        isSingleByte = startIndex != endIndex ? false : true;
-
-        getLeftShift();
-        getRightShift();
-        getLeftMask();
-        getRightMask();
-    };
-
-    uint getLeftShift(){
-        if (isSingleByte)
-        {
-            leftShift = 7 - (startBit % 8);
-        }else{
-            leftShift = 7 - (endBit % 8);
-        }
-        return leftShift;
-    }
-
-    //* 不夸字节时 是不需要右移的 默认0xff
-    uint getRightShift(){
-        if (!isSingleByte)
-        {
-            rightShift = startBit % 8;
-            return rightShift;
-        }
-        return 0xff;
-    }
-
-    uint getLeftMask(){
-        if (isSingleByte)
-        {
-            leftMask = ( ( pow(2,leftShift+1) -1 ) - ( pow(2,8 - leftShift) - 1 ));
-        }{//todo:
-            leftMask = 0xff - (pow(2,leftShift) - 1);
-        }
-        return leftMask;
-    }
-
-    uint getRightMask(){
-        if(!isSingleByte){
-            rightMask = pow(2,rightShift + 1) -1 ;
-        }
-        return rightMask;
-    }
-
-    void printInDate(){
-        cout <<" startBit = "<<startBit << " endBit = "<<endBit<<endl;
-        cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
-        cout <<" isSingleByte = "<<isSingleByte<<endl;
-        cout <<" leftShift = "<<leftShift << " rightShift = "<<rightShift<<endl;
-        cout <<" leftMask = "<<leftMask << " rightMask = "<<rightMask<<endl;
-    }
-
-    // 起始，结束位下标
-    uint startBit{0};
-    uint endBit{0};
+    // 起始，结束位下标 已经长度
+    uint Msb{0};
+    uint Lsb{0};
+    uint size{0};
     // 数组索引
     uint startIndex{0};
     uint endIndex{0};
-    // 是否为单字节
+    // 跨字节标志位
     bool isSingleByte{0};
+    bool isDoubleByte{0};
+    bool isMultibyte{0};
     // 移位
     uint leftShift{0};
     uint rightShift{0xff};
+    // 多字节时，中间部分数据 对应的 <索引,右移位移数>
+    map<uint,uint> midRightShift;
     // 掩码
-    uint leftMask{0xffff};
-    uint rightMask{0xffff};
-};
+    uint leftMask{0};
+    uint rightMask{0xff};
 
-struct In
-{
     In(uint _Msb , uint _Lsb , uint _size){
         Msb = _Msb;
         Lsb = _Lsb;
@@ -173,11 +125,14 @@ struct In
         startIndex = Msb / 8;
         endIndex = Lsb / 8;
         isSingleByte = startIndex != endIndex ? false : true;
+        isDoubleByte = (endIndex - startIndex) == 1 ? true : false;
+        isMultibyte  = (endIndex - startIndex > 1) ? true : false;
 
         computeLeftShift();
         computeLeRightShift();
         computeLeftMask();
         computeRightMask();
+        computeMidData();
     };
 
     void computeLeftShift(){
@@ -216,33 +171,71 @@ struct In
         }
     }
 
+    void computeMidData(){
+        if (isMultibyte)
+        {
+            for (auto i = startIndex + 1 ; i < endIndex; i++){
+                midRightShift[i] = rightShift - ((i - startIndex) * 8);
+            }
+        }
+    }
+    
+    void printByteWidth(){
+        if (isSingleByte)
+        {
+            cout <<" isSingleByte = "<<isSingleByte<<endl;
+        }
+        if (isDoubleByte)
+        {
+            cout <<" isDoubleByte = "<<isDoubleByte<<endl;
+        }        
+        if (isMultibyte)
+        {
+            cout <<" isMultibyte = "<<isMultibyte<<endl;
+        }   
+    }
+
+    void printMap(){
+        if (isMultibyte)
+        {
+            int n = 0;
+            for (auto i : midRightShift)
+            {
+                cout<<" 除首尾外，中间第 "<<n<<" 个,右移位数 = "<<i.second<<endl;
+            }
+        }
+    }
+
+    void printShift(){
+        cout <<" leftShift = "<<leftShift;
+        if (!isSingleByte)
+        {
+            cout<<" rightShift = "<<rightShift;
+        }
+        cout<<endl;
+    }
+
+    void printMask(){
+        cout <<" leftMask = "<<leftMask;
+        if (!isSingleByte)
+        {
+            cout << " rightMask = "<<rightMask;
+        }
+        cout<<endl;
+    }
+
     void printInDate(){
         cout <<" Msb = "<<Msb << " Lsb = "<<Lsb<<" size = " <<size<<endl;
         cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
-        cout <<" isSingleByte = "<<isSingleByte<<endl;
-        cout <<" leftShift = "<<leftShift << " rightShift = "<<rightShift<<endl;
-        cout <<" leftMask = "<<leftMask << " rightMask = "<<rightMask<<endl;
+        printByteWidth();
+        printShift();
+        printMask();
+        printMap();
     }
-
-    // 起始，结束位下标 已经长度
-    uint Msb{0};
-    uint Lsb{0};
-    uint size{0};
-    // 数组索引
-    uint startIndex{0};
-    uint endIndex{0};
-    // 是否为单字节
-    bool isSingleByte{0};
-    // 移位
-    uint leftShift{0};
-    uint rightShift{0xff};
-    // 掩码
-    uint leftMask{0};
-    uint rightMask{0xff};
 };
 
 
 int main(){
-    In SteerWheelAng(15,24,24);
+    In SteerWheelAng(87,120,48);
     SteerWheelAng.printInDate();
 }
