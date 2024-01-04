@@ -43,6 +43,8 @@
 #include <array>
 #include <cmath>
 #include <map>
+#include <typeinfo>
+#include "shift.cpp"
 using namespace std;
 
 /**
@@ -81,7 +83,7 @@ void printaddr(uint8_t *p,int length){
 */ 
 struct CSA2
 {
-    uint8_t payload[8]{0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+    uint8_t payload[8]{0,0,0,0,0,0,0,0};
 };
 
 /**
@@ -89,12 +91,13 @@ struct CSA2
  * 该数据是A核传入的
  */
 struct Data{
-    uint8_t SteerWheelAng{5}; // MSB 15  LSB 17
-    uint8_t SteerWheelAngSign{0};// MSB  16  LSB 16
-    uint8_t SteerWheelSpd{2};// MSB 31 LSB 33
-    uint8_t SteerWheelSpdSign{0};// MSB 32 LSB 32
+    uint16_t SteerWheelAng{255}; // MSB 15  LSB 17  size 15
+    uint8_t SteerWheelAngSign{0};// MSB  16  LSB 16  size 1
+    uint16_t SteerWheelSpd{2};// MSB 31 LSB 33 size 15
+    uint8_t SteerWheelSpdSign{0};// MSB 32 LSB 32 size 1
 };
 
+// 压包算法
 struct In
 {
     // 起始，结束位下标 已经长度
@@ -143,7 +146,6 @@ struct In
             leftShift = Lsb % 8;
         }
     }
-
     
     void computeLeRightShift(){
         if (isSingleByte)
@@ -235,8 +237,28 @@ struct In
     }
 };
 
+// 解包算法 
+struct Out{
+
+};
+
+
+void TESTone(){
+    In SteerWheelAng(15,17,15);
+    In SteerWheelAngSign(16,16,1);
+    In SteerWheelSpd(31,33,15);
+    In SteerWheelSpdSign(32,32,1);
+    SteerWheelAng.printInDate();
+    // A 核数据
+    Data src;
+    // 压包后数据
+    CSA2 csa2;
+    csa2.payload[SteerWheelAng.startIndex] = csa2.payload[SteerWheelAng.startIndex] | static_cast<uint8_t>(pack_right_shift_u16(src.SteerWheelAng,(uint8_t)SteerWheelAng.rightShift,(uint8_t)SteerWheelAng.rightMask));
+    csa2.payload[SteerWheelAng.endIndex]   = csa2.payload[SteerWheelAng.endIndex]   | static_cast<uint8_t>(pack_left_shift_u16(src.SteerWheelAng,(uint8_t)SteerWheelAng.leftShift,(uint8_t)SteerWheelAng.leftMask));
+    cout<<" "<<bitset<8>(csa2.payload[SteerWheelAng.startIndex])<<" "<<bitset<8>(csa2.payload[SteerWheelAng.endIndex])<<endl;
+}
 
 int main(){
-    In SteerWheelAng(7,56,64);
-    SteerWheelAng.printInDate();
+    TESTone();
+    return 0;
 }
