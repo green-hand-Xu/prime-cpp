@@ -12,33 +12,21 @@
  * 
  ** 注： ByteOrder 别名: Motorola 表示大端 用 Inter 表示小端
 
- ** 计算公式：array[index]: 声明的数组名字  MSB、size:矩阵表头名字
- **  ---------------------------- 位序递增算法 ------------------------------------------------------
+ ** 压包 计算公式：array[index]: 声明的数组名字  MSB、LSB、size:矩阵表头名字
  ** 1、startIndex : 起始位所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
- ** 2、endIndex : 结束位所在字节数组下标：array[(MSB+size-1)/8]
+ ** 2、endIndex : 结束位所在字节数组下标：array[LSB/8]
  ** 3、isSingleByte : 是否跨字节：startIndex != endIndex
  ** 4、不夸字节时对齐方式：
- **     1、leftShift:左移位移量：7 - (MSB % 8)
+ **     1、leftShift:左移位移量：(Msb % 8) + 1 - size
  ** 5、跨字节时对齐方式：先右移，再左移
- **     1、rightShift:右移位移量：MSB % 8
- **     2、leftShift:左移位移量：7 - ((MSB+size-1) % 8)
+ **     1、rightShift:右移位移量：size - ( (Msb % 8) + 1 ) 
+ **     2、leftShift:左移位移量：(Lsb % 8)
  ** 6、掩码计算方式：
  **   不跨字节：
- **     1、leftMask : 左移时掩码计算方式：{ {2 ^ (leftShift + 1) } - 1 } - { {2 ^ (8 - leftShift) } -1 }
+ **     1、leftMask : 左移时掩码计算方式：{ {2 ^ ( (Msb % 8) + 1 ) } - 1 } - { {2 ^ (leftShift) } -1 }
  **   跨字节：
- **     1、leftMask : 左移时掩码计算方式：2 ^ (leftShift + 1) - 1
- **     2、rightMask : 右移时掩码计算方式：{ 2 ^ (rightShift + 1) } - 1
-
-
- **  ---------------------------- 位序递减算法 -------------------------------------------------------
- ** 1、startIndex : 起始位所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
- ** 2、endIndex : 结束位所在字节数组下标：array[(MSB+size-1)/8]
- ** 3、isSingleByte : 是否跨字节：startIndex != endIndex
- ** 4、不夸字节时对齐方式：
- **     1、leftShift:左移位移量：MSB % 8
- ** 5、跨字节时对齐方式：先右移，再左移
- **     1、rightShift:右移位移量：MSB % 8
- **     2、leftShift:左移位移量：7 - ((MSB+size-1) % 8)
+ **     1、leftMask : 左移时掩码计算方式：0xff - { { 2 ^ leftShift } - 1 }
+ **     2、rightMask : 右移时掩码计算方式：{ 2 ^ ((Msb % 8) + 1) } - 1
  */
 
 #include <iostream>
@@ -175,58 +163,71 @@ struct Inc
     uint rightMask{0xffff};
 };
 
-struct Ind
+struct In
 {
-    Ind(uint Msb , uint sizeBit){
-        startBit = Msb;
-        endBit = Msb + sizeBit -1;
+    In(uint _Msb , uint _Lsb , uint _size){
+        Msb = _Msb;
+        Lsb = _Lsb;
+        size = _size;
+
         startIndex = Msb / 8;
-        endIndex = endBit / 8;
+        endIndex = Lsb / 8;
         isSingleByte = startIndex != endIndex ? false : true;
 
-        getLeftShift();
-        getRightShift();
-        getLeftMask();
-        getRightMask();
+        computeLeftShift();
+        computeLeRightShift();
+        computeLeftMask();
+        computeRightMask();
     };
 
-    uint getLeftShift(){
+    void computeLeftShift(){
         if (isSingleByte)
         {
-            leftShift = startBit % 8;
+            leftShift = ( Msb % 8 ) + 1 - size;
         }else{
-            leftShift = endBit % 8;
+            leftShift = Lsb % 8;
         }
-        return leftShift;
     }
 
-    //* 不夸字节时 是不需要右移的 默认0xff
-    uint getRightShift(){
-        
-        return 0xff;
+    
+    void computeLeRightShift(){
+        if (isSingleByte)
+        {
+            //* 不夸字节时 是不需要右移的 默认0xff
+        }else{
+            rightShift = size - ( (Msb % 8 ) + 1 );
+        }       
     }
 
-    uint getLeftMask(){
-        
-        return leftMask;
+    void computeLeftMask(){
+        if (isSingleByte)
+        {
+            leftMask = ( pow(2,(Msb % 8) + 1) - 1 )- ( pow(2,leftShift) - 1 );
+        }else{
+            leftMask = 0xff - (pow(2,leftShift) - 1);
+        }        
     }
 
-    uint getRightMask(){
-        
-        return rightMask;
+    void computeRightMask(){
+        if(isSingleByte){
+            //* 不夸字节时 是不需要右移的 默认0xff
+        }else{
+            rightMask = pow(2,(Msb % 8) + 1) - 1;
+        }
     }
 
     void printInDate(){
-        cout <<" startBit = "<<startBit << " endBit = "<<endBit<<endl;
+        cout <<" Msb = "<<Msb << " Lsb = "<<Lsb<<" size = " <<size<<endl;
         cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
         cout <<" isSingleByte = "<<isSingleByte<<endl;
-        cout <<" leftShift = "<<(int)leftShift << " rightShift = "<<rightShift<<endl;
+        cout <<" leftShift = "<<leftShift << " rightShift = "<<rightShift<<endl;
         cout <<" leftMask = "<<leftMask << " rightMask = "<<rightMask<<endl;
     }
 
-    // 起始，结束位下标
-    uint startBit{0};
-    uint endBit{0};
+    // 起始，结束位下标 已经长度
+    uint Msb{0};
+    uint Lsb{0};
+    uint size{0};
     // 数组索引
     uint startIndex{0};
     uint endIndex{0};
@@ -242,6 +243,6 @@ struct Ind
 
 
 int main(){
-    Inc SteerWheelAng(31,15);
+    In SteerWheelAng(15,24,24);
     SteerWheelAng.printInDate();
 }
