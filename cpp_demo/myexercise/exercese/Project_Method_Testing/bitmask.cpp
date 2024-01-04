@@ -198,10 +198,11 @@ struct In
     void printMap(){
         if (isMultibyte)
         {
-            int n = 0;
+            int n = 1;
             for (auto i : midRightShift)
             {
                 cout<<" 除首尾外，中间第 "<<n<<" 个,右移位数 = "<<i.second<<endl;
+                ++n;
             }
         }
     }
@@ -236,6 +237,6 @@ struct In
 
 
 int main(){
-    In SteerWheelAng(87,120,48);
+    In SteerWheelAng(7,56,64);
     SteerWheelAng.printInDate();
 }
