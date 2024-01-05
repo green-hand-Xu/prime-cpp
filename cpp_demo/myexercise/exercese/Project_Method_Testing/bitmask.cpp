@@ -13,8 +13,8 @@
  ** 注： ByteOrder 别名: Motorola 表示大端 用 Inter 表示小端
 
  ** 压包 计算公式：array[index]: 声明的数组名字  MSB、LSB、size:矩阵表头名字
- ** 1、startIndex : 起始位所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
- ** 2、endIndex : 结束位所在字节数组下标：array[LSB/8]
+ ** 1、startIndex : MSB所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
+ ** 2、endIndex : LSB所在字节数组下标：array[LSB/8]
  ** 3、是否跨字节：
  **    1、isSingleByte(是否为单字节) : startIndex != endIndex
  **    2、isDoubleByte(是否为双字节) : endIndex - startIndex == 1
@@ -34,6 +34,31 @@
  **   跨字节：
  **     1、leftMask : 左移时掩码计算方式：0xff - { { 2 ^ leftShift } - 1 }
  **     2、rightMask : 右移时掩码计算方式：{ 2 ^ ((Msb % 8) + 1) } - 1
+ **     3、跨多个字节时，首位部分掩码同上 ，中间部分掩码一律为 0xff 
+
+ ** 解包 计算公式：array[index]: 声明的数组名字  MSB、LSB、size:矩阵表头名字
+ ** 注意：解包时是从源数据处一个字节一个字节读的，因此需要先掩码计算，屏蔽掉字节内的无用位，只保留有效位，然后在位移至目标数据的对应位上
+ ** 1、startIndex : MSB所在字节数组下标：array[MSB/8]（利用了整数除法向下取整特性）
+ ** 2、endIndex : LSB所在字节数组下标：array[LSB/8]
+ ** 3、是否跨字节：
+ **    1、isSingleByte(是否为单字节) : startIndex != endIndex
+ **    2、isDoubleByte(是否为双字节) : endIndex - startIndex == 1
+ **    3、isMultibyte(是否为多字节)  : endIndex - startIndex > 1
+ ** 4、不夸字节时对齐方式：
+ **     1、rightShift:右移位移量：(Msb % 8) + 1 - size
+ ** 5、跨字节时对齐方式：先左移，再右移
+ **     1、leftShift:左移位移量：size - ( (Msb % 8) + 1 )
+ **     2、rightShift:右移位移量：(Lsb % 8)
+ **     3、跨多个字节时，首位部分移位值同上 ，中间部分位移值如下
+ **         map<uint,uint> midRightShift：中间部分数据对应的位移值 <索引,左移位移数>
+ **         索引 = (startIndex,endIndex) 内所有整数
+ **         左移位移数 = leftShift - { (索引 - startIndex) * 8 }
+ ** 6、掩码计算方式：
+ **   不跨字节：
+ **     1、rightMask : 右移时掩码计算方式：{ {2 ^ ( (Msb % 8) + 1 ) } - 1 } - { {2 ^ (rightShift) } -1 }
+ **   跨字节：
+ **     1、leftMask : 左移时掩码计算方式：{ 2 ^ ((Msb % 8) + 1) } - 1
+ **     2、rightMask : 右移时掩码计算方式：0xff - { { 2 ^ leftShift } - 1 }
  **     3、跨多个字节时，首位部分掩码同上 ，中间部分掩码一律为 0xff 
  */
 
@@ -238,12 +263,147 @@ struct In
 };
 
 // 解包算法 
-struct Out{
+struct Out
+{
+    // 起始，结束位下标 已经长度
+    uint Msb{0};
+    uint Lsb{0};
+    uint size{0};
+    // 数组索引
+    uint startIndex{0};
+    uint endIndex{0};
+    // 跨字节标志位
+    bool isSingleByte{0};
+    bool isDoubleByte{0};
+    bool isMultibyte{0};
+    // 移位
+    uint leftShift{0};
+    uint rightShift{0xff};
+    // 多字节时，中间部分数据 对应的 <索引,右移位移数>
+    map<uint,uint> midRightShift;
+    // 掩码
+    uint leftMask{0};
+    uint rightMask{0xff};
 
+    Out(uint _Msb , uint _Lsb , uint _size){
+        Msb = _Msb;
+        Lsb = _Lsb;
+        size = _size;
+
+        startIndex = Msb / 8;
+        endIndex = Lsb / 8;
+        isSingleByte = startIndex != endIndex ? false : true;
+        isDoubleByte = (endIndex - startIndex) == 1 ? true : false;
+        isMultibyte  = (endIndex - startIndex > 1) ? true : false;
+
+        computeLeftShift();
+        computeLeRightShift();
+        computeLeftMask();
+        computeRightMask();
+        computeMidData();
+    };
+
+    void computeLeftShift(){
+        if (isSingleByte)
+        {
+            //* 不夸字节时 是不需要左移的 默认0xff
+        }else{
+            leftShift = size - ( (Msb % 8 ) + 1 );
+        }   
+    }
+    
+    void computeLeRightShift(){
+        if (isSingleByte)
+        {
+            rightShift = ( Msb % 8 ) + 1 - size;
+        }else{
+            rightShift = Lsb % 8;
+        }
+    }
+
+    void computeLeftMask(){
+        if(isSingleByte){
+            //* 不夸字节时 是不需要右移的 默认0xff
+        }else{
+            leftMask = pow(2,(Msb % 8) + 1) - 1;
+        }    
+    }
+
+    void computeRightMask(){
+        if (isSingleByte)
+        {
+            rightMask = ( pow(2,(Msb % 8) + 1) - 1 )- ( pow(2,rightShift) - 1 );
+        }else{
+            rightMask = 0xff - (pow(2,rightShift) - 1);
+        }   
+    }
+
+    void computeMidData(){
+        if (isMultibyte)
+        {
+            for (auto i = startIndex + 1 ; i < endIndex; i++){
+                midRightShift[i] = leftShift - ((i - startIndex) * 8);
+            }
+        }
+    }
+    
+    void printByteWidth(){
+        if (isSingleByte)
+        {
+            cout <<" isSingleByte = "<<isSingleByte<<endl;
+        }
+        if (isDoubleByte)
+        {
+            cout <<" isDoubleByte = "<<isDoubleByte<<endl;
+        }        
+        if (isMultibyte)
+        {
+            cout <<" isMultibyte = "<<isMultibyte<<endl;
+        }   
+    }
+
+    void printMap(){
+        if (isMultibyte)
+        {
+            int n = 1;
+            for (auto i : midRightShift)
+            {
+                cout<<" 除首尾外，中间第 "<<n<<" 个,左移位数 = "<<i.second<<endl;
+                ++n;
+            }
+        }
+    }
+
+    void printShift(){
+        cout<<" rightShift = "<<rightShift;
+        if (!isSingleByte)
+        {
+            cout <<" leftShift = "<<leftShift;
+        }
+        cout<<endl;
+    }
+
+    void printMask(){
+        cout << " rightMask = "<<rightMask;
+        if (!isSingleByte)
+        {
+            cout <<" leftMask = "<<leftMask;
+        }
+        cout<<endl;
+    }
+
+    void printInDate(){
+        cout <<" Msb = "<<Msb << " Lsb = "<<Lsb<<" size = " <<size<<endl;
+        cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
+        printByteWidth();
+        printShift();
+        printMask();
+        printMap();
+    }
 };
 
 
-void TESTone(){
+void TESTPack(){
     In SteerWheelAng(15,17,15);
     In SteerWheelAngSign(16,16,1);
     In SteerWheelSpd(31,33,15);
@@ -258,7 +418,16 @@ void TESTone(){
     cout<<" "<<bitset<8>(csa2.payload[SteerWheelAng.startIndex])<<" "<<bitset<8>(csa2.payload[SteerWheelAng.endIndex])<<endl;
 }
 
+void TESTUnpack(){
+    Out SteerWheelAng(15,17,15);
+    Out SteerWheelAngSign(16,16,1);
+    Out SteerWheelSpd(31,33,15);
+    Out SteerWheelSpdSign(32,32,1);
+    Out MAC_Check_ABM1{87,120,48};
+    MAC_Check_ABM1.printInDate();
+
+}
 int main(){
-    TESTone();
+    TESTUnpack();
     return 0;
 }
