@@ -323,7 +323,7 @@ struct Out
 
     void computeLeftMask(){
         if(isSingleByte){
-            //* 不夸字节时 是不需要右移的 默认0xff
+            //* 不夸字节时 是不需要左移的 默认0xff
         }else{
             leftMask = pow(2,(Msb % 8) + 1) - 1;
         }    
