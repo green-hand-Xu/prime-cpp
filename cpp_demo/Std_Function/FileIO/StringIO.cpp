@@ -150,7 +150,29 @@ void Int2String(int a,int b){
 	cout<<retS<<endl;
 }
 
+/**
+ * @brief 范围值校验 并输出日志
+ * 
+ * @tparam T 输入参数类型
+ * @param a 
+ * @param b 
+ */
+template<typename T>
+void TInt2String(T value,T min,T max){
+    std::string TypeName = __PRETTY_FUNCTION__;
+    auto begin = TypeName.find("T = ") + 4;
+    auto end = TypeName.find_last_of(';');
+    auto type = std::string_view{ TypeName.data() + begin,end-begin-1};
+	cout <<type <<endl;
+    std::stringstream str{" "};
+    str << type.data() << " input range error . input value = " << (int)value << " but date range is [" << (int)min << "," << (int)max << "]";  
+    std::string retS;
+    retS = str.str();
+	cout<<retS<<endl;
+}
+
+
 int main(){
-    Int2String(1,2);
+    TInt2String(1,2,3);
     return 0;
 }
