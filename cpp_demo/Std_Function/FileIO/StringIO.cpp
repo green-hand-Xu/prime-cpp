@@ -162,10 +162,9 @@ void TInt2String(T value,T min,T max){
     std::string TypeName = __PRETTY_FUNCTION__;
     auto begin = TypeName.find("T = ") + 4;
     auto end = TypeName.find_last_of(';');
-    auto type = std::string_view{ TypeName.data() + begin,end-begin-1};
-	cout <<type <<endl;
+    auto type = std::string_view{ TypeName.data() + begin,end-begin};
     std::stringstream str{" "};
-    str << type.data() << " input range error . input value = " << (int)value << " but date range is [" << (int)min << "," << (int)max << "]";  
+    str <<type.data() << " input range error . input value = " << (int)value << " but date range is [" << (int)min << "," << (int)max << "]";  
     std::string retS;
     retS = str.str();
 	cout<<retS<<endl;
