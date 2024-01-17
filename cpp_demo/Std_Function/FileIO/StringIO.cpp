@@ -138,7 +138,19 @@ void ostringstream_Test(){
 	cout<<formatted.str()<<endl;
 }
 
+/**
+ * @brief 将int 等类型数据转换为string输出
+ * 
+ */
+void Int2String(int a,int b){
+    std::stringstream str{" "};
+    str << " input range error . input value = " << (int)a << " but date range is [" << (int)b << "," << (int)b << "]";  
+    std::string retS;
+    retS = str.str();
+	cout<<retS<<endl;
+}
+
 int main(){
-    ostringstream_Test();
+    Int2String(1,2);
     return 0;
 }
