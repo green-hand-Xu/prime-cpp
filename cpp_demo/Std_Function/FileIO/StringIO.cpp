@@ -150,28 +150,52 @@ void Int2String(int a,int b){
 	cout<<retS<<endl;
 }
 
+enum class AAA {
+	OK = 1,
+	NOK = 2,
+	ERROR = 3
+};
+
+
+namespace CCC{
+	namespace FFF{
+		enum class BBBB {
+			OK = 1,
+			NOK = 2,
+			ERROR = 3
+		};
+	}
+
+}
+
+using DDD = CCC::FFF::BBBB;
 /**
  * @brief 范围值校验 并输出日志
- * 
+ * 可以将 T 的名字自动输出
  * @tparam T 输入参数类型
  * @param a 
  * @param b 
  */
 template<typename T>
 void TInt2String(T value,T min,T max){
-    std::string TypeName = __PRETTY_FUNCTION__;
-    auto begin = TypeName.find("T = ") + 4;
-    auto end = TypeName.find_last_of(';');
-    auto type = std::string_view{ TypeName.data() + begin,end-begin};
-    std::stringstream str{" "};
-    str <<type.data() << " input range error . input value = " << (int)value << " but date range is [" << (int)min << "," << (int)max << "]";  
-    std::string retS;
-    retS = str.str();
-	cout<<retS<<endl;
+    std::string FunctionType = __PRETTY_FUNCTION__;
+	cout<<FunctionType<<endl;
+    auto begin = FunctionType.find("T = ") + 4;
+	begin = FunctionType.find_last_of('::');
+	begin = FunctionType.find_last_of('::',begin-2)+1;
+    auto end = FunctionType.find_last_of(']');
+
+	auto type = FunctionType.substr(begin,end-begin);
+    std::stringstream str;
+	str.str(" ");
+    str << type << " input range error . input value = " << (int)value << " but date range is [" << (int)min << "," << (int)max << "] \n";  
+	cout<<str.str();
 }
 
-
 int main(){
-    TInt2String(1,2,3);
+	// AAA aaa{44};
+    // TInt2String(aaa,AAA::OK,AAA::ERROR);
+	DDD bbbb{44};
+	TInt2String(bbbb,DDD::OK,DDD::ERROR);
     return 0;
 }
