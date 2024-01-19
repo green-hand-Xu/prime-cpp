@@ -66,17 +66,124 @@ void gf_equal(){
 /** 
  ** 写容器元素算法
  * @brief fill(range,value) 将range范围内的元素，设置成value的值
- * 
+ *        fill_n(dest,n,value) 将dest开始的n个的元素，设置成value的值
  */
 void gf_fill(){
     vector<int> vec{1,2,3,4,5,6};
     fill(vec.begin(),vec.begin()+vec.size()/2,0);
     my_print(vec);
+    fill_n(vec.begin(),3,1);
+    my_print(vec);
+}
+
+/**
+ * @brief 插入迭代器的应用 back_inserter
+ * 插入迭代器与普通迭代器不同，插入迭代器 是 添加元素。普通迭代器是修改迭代器指向的元素
+ */
+void gf_insertiter(){
+    vector<int> vec;//创建一个空容器
+    fill_n(back_inserter(vec),10,1);//向容器插入n个元素
+    my_print(vec);
+}
+
+/**
+ ** 拷贝算法
+ * @brief 使用copy(range,dst) 完成内置数组类型的拷贝
+ * 
+ */
+void gf_copy(){
+    int a[10]{1,2,3};
+    int b[sizeof(a)/sizeof(*a)];
+
+    auto ret = copy(begin(a),end(a),b);
+    cout<<"[ ";
+    for (int i = 0 ; i<sizeof(a)/sizeof(*a) ; i++)
+    {
+        cout<<b[i]<<" ";
+    }
+    cout<<" ]"<<endl;
+}
+
+/**
+ ** 替换算法
+ * @brief 使用 replace(range,oldvalue,newvalue)：在指定range内查找olevalue值并替换为newvalue值
+ ** 许多算法提供一个 _copy （拷贝）版本，该函数不在原序列上进行操作，而是将操作结果拷贝到指定的序列上。原序列内容不变
+ */
+void gf_replace(){
+    vector<int> vec1{1,2,3,4,5,6};
+    vector<int> vec2{};
+    vec2.resize(vec1.size());
+
+    replace(vec1.begin(),vec1.end(),4,0);
+    my_print(vec1);
+    replace_copy(vec1.begin(),vec1.end(),vec2.begin(),1,0);
+    my_print(vec1);
+    my_print(vec2);
+}
+
+/**
+ ** 排序算法
+ * @brief 使用sort(range,compare) 对序列进行排序 可以自己指定排序函数
+ */
+void gf_sort(){
+    vector<string> vec1{"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
+    sort(vec1.begin(),vec1.end());
+    my_print(vec1);
+}
+
+/**
+ ** 删除“相邻”重复元素算法
+ * @brief 使用 unique(range) “删除”范围内相邻的重复元素。
+ ** 该操作并不真的删除元素，而是覆盖相邻的元素，使不重复的元素出现在序列的开始部分。该方法返回指向最后一个不重复元素之后的位置。此位置之后的元素仍存在，且未知。
+ */
+void gf_unique(){
+    vector<string> vec1{"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
+    sort(vec1.begin(),vec1.end());
+    auto end = unique(vec1.begin(),vec1.end()); //* 注意unique 不改变原有迭代器范围，使用原迭代器会输出多余元素。要使用返回的迭代器作为尾后迭代器
+    for (auto i = std::begin(vec1); i < end; i++)
+    {
+        std::cout<<*i<<" ";
+    }
+    cout<<endl;
+    //*为了真正删除元素 可以结合erase(range)方法
+    vec1.erase(end,vec1.end());
+    my_print(vec1);
+}
+
+/**
+ * @brief 自定义比较方法的排序算法
+ */
+void gf_sort_with_predicate(){
+    vector<int> vec{2,3,8,0,1,9,4};
+    //自定义比较算法，使满足条件的元素排列靠前的位置
+    sort(vec.begin(),vec.end(),[](auto a,auto b){
+        return a<b;//升序排列
+    });
+    my_print(vec);
+    sort(vec.begin(),vec.end(),[](auto a,auto b){
+        return a>b;//降序排列
+    });
+    my_print(vec);
+}
+
+/** 
+ ** 划分算法 
+ * @brief partition(range,predicate)
+ */
+void gf_partition(){
+    vector<int> vec{2,3,8,0,1,9,4};
+    //先升序排列
+    sort(vec.begin(),vec.end());
+    my_print(vec);
+    //在以4为界限进行分割,降小于4的排在前面
+    auto end = partition(vec.begin(),vec.end(),[](auto a){
+        return a < 4;
+    });
+    vec.erase(end,vec.end());
+    my_print(vec);
 }
 
 int main(){
-    gf_fill();
-
-
+    gf_partition();
     return 0;
 }

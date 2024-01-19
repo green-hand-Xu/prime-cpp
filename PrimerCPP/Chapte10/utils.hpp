@@ -31,12 +31,17 @@ std::string_view TypeInfo()
 template < typename T>
 void my_print(T data){
     auto sv = TypeInfo<T>();
-    std::cout<<sv<<" [ ";
-    for (auto v : data)
+    std::cout<<sv<<" size = "<<data.size()<<" [ ";
+    for (auto i = std::begin(data); i < std::end(data); i++)
     {
-        std::cout<<v<<" ";
+        std::cout<<*i<<" ";
     }
-    std::cout<<" ]"<<std::endl;
+    
+    // for (auto v : data)
+    // {
+    //     std::cout<<v<<" ";
+    // }
+    std::cout<<"]"<<std::endl;
 }
 
 #endif // __UTILS__
