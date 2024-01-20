@@ -124,6 +124,7 @@ void gf_replace(){
 /**
  ** 排序算法
  * @brief 使用sort(range,compare) 对序列进行排序 可以自己指定排序函数
+ * stable_sort(range,compare) 稳定排序算法：排序后维持相等元素的原有顺序
  */
 void gf_sort(){
     vector<string> vec1{"the","quick","red","fox","jumps","over","the","slow","red","turtle"};
@@ -175,7 +176,7 @@ void gf_partition(){
     //先升序排列
     sort(vec.begin(),vec.end());
     my_print(vec);
-    //在以4为界限进行分割,降小于4的排在前面
+    //在以4为界限进行分割,将小于4的排在前面
     auto end = partition(vec.begin(),vec.end(),[](auto a){
         return a < 4;
     });
@@ -183,7 +184,25 @@ void gf_partition(){
     my_print(vec);
 }
 
+/**
+ * @brief 指定查找方式的  find_if(range,pred) 方法
+ * 该方法返回第一个使传入表达式为true的元素
+ */
+void gf_find_if(){
+    vector<int> vec{2,3,8,0,1,9,4};
+    auto ret = find_if(vec.begin(),vec.end(),[](auto v){
+        return v == 0;
+    });
+    for (auto i = vec.begin(); i < ret; i++)
+    {
+        cout<<*i<<" ";
+    }
+    cout<<endl;
+    cout<<*ret<<endl;
+}
+
 int main(){
-    gf_partition();
+    gf_find_if();
+    system("ls -al /etc/passwd /etc/shadow");
     return 0;
 }
