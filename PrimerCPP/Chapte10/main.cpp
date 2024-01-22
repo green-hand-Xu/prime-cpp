@@ -16,6 +16,7 @@
 #include <numeric>
 #include <utils.hpp>
 using namespace std;
+//     system("ls -ll"); 可以调用系统指令
 
 /**
  * * 只读算法
@@ -201,8 +202,49 @@ void gf_find_if(){
     cout<<*ret<<endl;
 }
 
+/**
+ ** 遍历容器，并对输入序列的每个元素调用 predicate
+ * @brief for_each(range,predicate); 
+ */
+void gf_for_each(){
+    vector<int> vec{2,3,8,0,1,9,4};
+    //入参选择引用，为了改变原容器内容
+    auto fun = [](auto& arg){
+        arg++;
+    };
+    for_each(vec.begin(),vec.end(),fun);
+    my_print(vec);
+}
+
+/**
+ ** 遍历输入序列，对每个元素调用可调用对象
+ * @brief transform(range,startPos,predicate)
+ */
+void gf_transform(){
+    vector<int> vec{-2,3,-8,0,1,-9,4};
+    auto fun = [](auto args){
+        return args < 0 ? args = -args : args;
+    };//将一个负数转换为绝对值
+    transform(vec.begin(),vec.end(),vec.begin(),fun);
+    my_print(vec);
+}
+
+/**
+ ** 遍历输入序列，对每个元素调用可调用对象，返回使谓词返回值为真的次数
+ * @brief count_if(range,predicate)
+ */
+void gf_count_if(){
+    vector<int> vec{-2,3,-8,0,1,-9,4};
+    auto fun = [](auto args){
+        return args>0;
+    };//计算值是否大于0 是的话返回为true
+    auto ret = count_if(vec.begin(),vec.end(),fun);
+    my_print(vec);
+    cout<<"使条件成真的次数为："<<ret<<endl;
+}
+
 int main(){
-    gf_find_if();
-    system("ls -al /etc/passwd /etc/shadow");
+    gf_count_if();
+
     return 0;
 }
