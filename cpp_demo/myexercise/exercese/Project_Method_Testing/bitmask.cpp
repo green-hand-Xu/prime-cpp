@@ -21,7 +21,7 @@
  **    3、isMultibyte(是否为多字节)  : endIndex - startIndex > 1
  ** 4、不夸字节时对齐方式：
  **     1、leftShift:左移位移量：(Msb % 8) + 1 - size
- ** 5、跨字节时对齐方式：先右移，再左移
+ ** 5、跨字节时对齐方式：先右移，再左移（从  [startIndex,endIndex) 右移， endIndex 左移 ）
  **     1、rightShift:右移位移量：size - ( (Msb % 8) + 1 ) 
  **     2、leftShift:左移位移量：(Lsb % 8)
  **     3、跨多个字节时，首位部分移位值同上 ，中间部分位移值如下
@@ -46,7 +46,7 @@
  **    3、isMultibyte(是否为多字节)  : endIndex - startIndex > 1
  ** 4、不夸字节时对齐方式：
  **     1、rightShift:右移位移量：(Msb % 8) + 1 - size
- ** 5、跨字节时对齐方式：先左移，再右移
+ ** 5、跨字节时对齐方式：先左移，再右移 （从  [startIndex,endIndex) 左移， endIndex 右移 ）
  **     1、leftShift:左移位移量：size - ( (Msb % 8) + 1 )
  **     2、rightShift:右移位移量：(Lsb % 8)
  **     3、跨多个字节时，首位部分移位值同上 ，中间部分位移值如下
@@ -103,26 +103,28 @@ void printaddr(uint8_t *p,int length){
 }
 
 /*
+ *  CAN数据格式。是一个字节数组 长度为矩阵中对应帧的 DLC 长度
  *  PT_CAN CSA2	id = 0x0A1 
  *  DLC = 8
 */ 
 struct CSA2
 {
+    //* payload[DLC]
     uint8_t payload[8]{0,0,0,0,0,0,0,0};
 };
 
-/**
- * @brief A2R数据源
+/*
+ * A2R数据源
  * 该数据是A核传入的
  */
 struct Data{
-    uint16_t SteerWheelAng{255}; // MSB 15  LSB 17  size 15
+    uint16_t SteerWheelAng{255}; // MSB 15  LSB 17  size 15    1110
     uint8_t SteerWheelAngSign{0};// MSB  16  LSB 16  size 1
     uint16_t SteerWheelSpd{2};// MSB 31 LSB 33 size 15
     uint8_t SteerWheelSpdSign{0};// MSB 32 LSB 32 size 1
 };
 
-// 压包算法
+//* 压包算法
 struct In
 {
     // 起始，结束位下标 已经长度
@@ -132,19 +134,26 @@ struct In
     // 数组索引
     uint startIndex{0};
     uint endIndex{0};
-    // 跨字节标志位
+    //* 跨字节标志位  依据此标志位判断 压包时，如何调用 left/right_shift 函数
     bool isSingleByte{0};
     bool isDoubleByte{0};
     bool isMultibyte{0};
     // 移位
-    uint leftShift{0};
-    uint rightShift{0xff};
+    uint leftShift{0}; // 左移位
+    uint rightShift{0xff}; // 右移位
     // 多字节时，中间部分数据 对应的 <索引,右移位移数>
     map<uint,uint> midRightShift;
     // 掩码
-    uint leftMask{0};
-    uint rightMask{0xff};
+    uint leftMask{0}; // 左移位时的掩码
+    uint rightMask{0xff};// 右移位时的掩码
 
+    /**
+     * @brief Construct a new In object
+     * 
+     * @param _Msb 矩阵中对应信号的 MSB 
+     * @param _Lsb 矩阵中对应信号的 LSB
+     * @param _size 矩阵中对应信号的 size
+     */
     In(uint _Msb , uint _Lsb , uint _size){
         Msb = _Msb;
         Lsb = _Lsb;
@@ -225,11 +234,9 @@ struct In
     void printMap(){
         if (isMultibyte)
         {
-            int n = 1;
             for (auto i : midRightShift)
             {
-                cout<<" 除首尾外，中间第 "<<n<<" 个,右移位数 = "<<i.second<<endl;
-                ++n;
+                cout<<" 第 "<<i.first<<" 个数组位置 , 右移位数 = "<<i.second<<" 掩码 = 255"<<endl;
             }
         }
     }
@@ -253,6 +260,7 @@ struct In
     }
 
     void printInDate(){
+        cout<<"以下为压包数据"<<endl;
         cout <<" Msb = "<<Msb << " Lsb = "<<Lsb<<" size = " <<size<<endl;
         cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
         printByteWidth();
@@ -262,7 +270,7 @@ struct In
     }
 };
 
-// 解包算法 
+//* 解包算法 
 struct Out
 {
     // 起始，结束位下标 已经长度
@@ -285,6 +293,13 @@ struct Out
     uint leftMask{0};
     uint rightMask{0xff};
 
+    /**
+     * @brief Construct a new In object
+     * 
+     * @param _Msb 矩阵中对应信号的 MSB 
+     * @param _Lsb 矩阵中对应信号的 LSB
+     * @param _size 矩阵中对应信号的 size
+     */
     Out(uint _Msb , uint _Lsb , uint _size){
         Msb = _Msb;
         Lsb = _Lsb;
@@ -365,11 +380,9 @@ struct Out
     void printMap(){
         if (isMultibyte)
         {
-            int n = 1;
             for (auto i : midRightShift)
             {
-                cout<<" 除首尾外，中间第 "<<n<<" 个,左移位数 = "<<i.second<<endl;
-                ++n;
+                cout<<" 第 "<<i.first<<" 个数组位置 , 左移位数 = "<<i.second<<" 掩码 = 255"<<endl;
             }
         }
     }
@@ -393,6 +406,7 @@ struct Out
     }
 
     void printInDate(){
+        cout<<"以下为解包数据"<<endl;
         cout <<" Msb = "<<Msb << " Lsb = "<<Lsb<<" size = " <<size<<endl;
         cout <<" startIndex = "<<startIndex << " endIndex = "<<endIndex<<endl;
         printByteWidth();
@@ -408,14 +422,14 @@ void TESTPack(){
     In SteerWheelAngSign(16,16,1);
     In SteerWheelSpd(31,33,15);
     In SteerWheelSpdSign(32,32,1);
-    SteerWheelAng.printInDate();
+    In MAC_Check_ABM1{87,120,48};
+    MAC_Check_ABM1.printInDate();
     // A 核数据
     Data src;
     // 压包后数据
     CSA2 csa2;
     csa2.payload[SteerWheelAng.startIndex] = csa2.payload[SteerWheelAng.startIndex] | static_cast<uint8_t>(pack_right_shift_u16(src.SteerWheelAng,(uint8_t)SteerWheelAng.rightShift,(uint8_t)SteerWheelAng.rightMask));
     csa2.payload[SteerWheelAng.endIndex]   = csa2.payload[SteerWheelAng.endIndex]   | static_cast<uint8_t>(pack_left_shift_u16(src.SteerWheelAng,(uint8_t)SteerWheelAng.leftShift,(uint8_t)SteerWheelAng.leftMask));
-    cout<<" "<<bitset<8>(csa2.payload[SteerWheelAng.startIndex])<<" "<<bitset<8>(csa2.payload[SteerWheelAng.endIndex])<<endl;
 }
 
 void TESTUnpack(){
@@ -423,11 +437,12 @@ void TESTUnpack(){
     Out SteerWheelAngSign(16,16,1);
     Out SteerWheelSpd(31,33,15);
     Out SteerWheelSpdSign(32,32,1);
-    Out MAC_Check_ABM1{87,120,48};
+    Out MAC_Check_ABM1{87,120,48}; //MAC_Check_ABM1{MSB,LSB,SIZE}
     MAC_Check_ABM1.printInDate();
 
 }
 int main(){
+    TESTPack();
     TESTUnpack();
     return 0;
 }
