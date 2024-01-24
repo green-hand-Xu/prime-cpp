@@ -5,6 +5,8 @@
 
 #define SAMPLE_SERVICE_ID 0x1234
 #define SAMPLE_INSTANCE_ID 0x5678
+#define SAMPLE_METHOD_ID 0x0421
+
 
 std::shared_ptr< vsomeip::application > app;
 
