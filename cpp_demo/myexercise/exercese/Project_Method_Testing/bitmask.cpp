@@ -423,7 +423,9 @@ void TESTPack(){
     In SteerWheelSpd(31,33,15);
     In SteerWheelSpdSign(32,32,1);
     In MAC_Check_ABM1{87,120,48};
-    MAC_Check_ABM1.printInDate();
+
+    In Test{35,52,16};
+    Test.printInDate();
     // A 核数据
     Data src;
     // 压包后数据
@@ -443,6 +445,5 @@ void TESTUnpack(){
 }
 int main(){
     TESTPack();
-    TESTUnpack();
     return 0;
 }

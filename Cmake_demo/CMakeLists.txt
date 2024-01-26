@@ -43,7 +43,16 @@ endif ()
 set (INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
 # message(STATUS "INSTALL_CMAKE_DIR = ${INSTALL_CMAKE_DIR}")
 
-foreach(loop_var LIB BIN INCLUDE CMAKE)
-    set (var INSTALL_${loop_var}_DIR) # 字符拼接，设置新的变量名字
-    message(STATUS "loop_var = ${loop_var}")
-endforeach()
+# 定义绝对路径变量并赋值。利用相对路径和循环+字符拼接的形式完成了该功能 CMAKE_INSTALL_PREFIX : 此变量在 UNIX 上默认为 /usr/local
+foreach (p LIB BIN INCLUDE CMAKE)
+    set (var INSTALL_${p}_DIR) # 定义 路径的变量名
+    if (NOT IS_ABSOLUTE "${${var}}")
+        # 定义绝对路径的变量名 并赋值  ${${var}} 对var进行了两次展开，最终结果是对应的 INSTALL_${p}_DIR 变量的值
+        set (ABSOLUTE_${var} "${CMAKE_INSTALL_PREFIX}/${${var}}") # Add all targets to the build-tree export set
+    endif ()
+endforeach ()
+
+# message(STATUS "ABSOLUTE_INSTALL_LIB_DIR = ${ABSOLUTE_INSTALL_LIB_DIR}")
+# message(STATUS "ABSOLUTE_INSTALL_LIB_DIR = ${ABSOLUTE_INSTALL_BIN_DIR}")
+# message(STATUS "ABSOLUTE_INSTALL_LIB_DIR = ${ABSOLUTE_INSTALL_INCLUDE_DIR}")
+
