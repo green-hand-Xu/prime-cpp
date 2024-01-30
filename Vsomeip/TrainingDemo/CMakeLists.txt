@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.16.0)
 
-set (CMAKE_CXX_FLAGS "-g -std=c++0x")
+# set (CMAKE_CXX_FLAGS "-g -std=c++0x")
 project(FirstProject)
 # vsomeip 库
 find_package (vsomeip3 3.3.5 REQUIRED)

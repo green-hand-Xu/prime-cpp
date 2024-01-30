@@ -16,7 +16,7 @@ std::shared_ptr< vsomeip::application > app;
  * 
  * @param _request 
  */
-void getstring(const std::shared_ptr<vsomeip::message> &_request) {
+void get_message(const std::shared_ptr<vsomeip::message> &_request) {
     //* 1、获取请求消息中的 payload 字段
     std::shared_ptr<vsomeip::payload> its_payload = _request->get_payload();
     vsomeip::length_t l = its_payload->get_length();
@@ -42,7 +42,13 @@ void getstring(const std::shared_ptr<vsomeip::message> &_request) {
     //* 5、设置回复消息内容
     std::vector<vsomeip::byte_t> its_payload_data;
     auto str = "hello world";
-    std::fill_n(std::back_inserter(its_payload_data),1,str);
+    auto start = (uint8_t*) str;
+    auto end = start + sizeof(str);
+    for (auto i = start; i < end; i++)
+    {
+        its_payload_data.push_back(*i);
+    }
+    // std::fill_n(std::back_inserter(its_payload_data),1,str);
 
     //* 6、设置 payload 内容
     its_payload->set_data(its_payload_data); // "hello world"
@@ -57,7 +63,7 @@ void getstring(const std::shared_ptr<vsomeip::message> &_request) {
 int main() {
     app = vsomeip::runtime::get()->create_application("World");
     app->init();
-    app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, getstring);
+    app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, get_message);
     //提供服务前 初始化完毕，并注册好所有提供出去的接口信息
     app->offer_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
     app->start();
