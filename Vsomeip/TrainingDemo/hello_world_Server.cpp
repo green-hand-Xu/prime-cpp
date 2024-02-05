@@ -23,15 +23,12 @@ void get_message(const std::shared_ptr<vsomeip::message> &_request) {
 
     //* 2、解析 payload 内容
     std::stringstream ss;
-    for (vsomeip::length_t i=0; i<l; i++) {
-       ss << std::setw(2) << std::setfill('0') << std::hex
-          << (int)*(its_payload->get_data()+i) << " ";
-    }
+    ss << its_payload->get_data();
 
-    std::cout << "SERVICE: Received message with Client/Session ["
-        << std::setw(4) << std::setfill('0') << std::hex << _request->get_client() << "/"
-        << std::setw(4) << std::setfill('0') << std::hex << _request->get_session() << "] " 
-        << ss.str() << std::endl;
+    std::cout << "SERVICE: 收到来自 Client/Session ["
+        << _request->get_client() << "/"
+        << _request->get_session() << "] 的调用,内容为: [" 
+        << ss.str() <<" ]"<< std::endl;
 
     //* 3、基于请求消息字段相关属性，创建一条用于回复的消息对象。
     std::shared_ptr<vsomeip::message> its_response = vsomeip::runtime::get()->create_response(_request);
@@ -41,14 +38,13 @@ void get_message(const std::shared_ptr<vsomeip::message> &_request) {
 
     //* 5、设置回复消息内容
     std::vector<vsomeip::byte_t> its_payload_data;
-    auto str = "hello world";
-    auto start = (uint8_t*) str;
-    auto end = start + sizeof(str);
-    for (auto i = start; i < end; i++)
+    std::string str = "hello world";
+    auto start = str.data();
+    auto end = str.size();
+    for (auto i = 0; i < end; i++)
     {
-        its_payload_data.push_back(*i);
+        its_payload_data.push_back(*(start+i));
     }
-    // std::fill_n(std::back_inserter(its_payload_data),1,str);
 
     //* 6、设置 payload 内容
     its_payload->set_data(its_payload_data); // "hello world"
