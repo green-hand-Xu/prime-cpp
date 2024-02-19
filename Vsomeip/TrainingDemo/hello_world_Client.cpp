@@ -3,6 +3,7 @@
 #include <condition_variable>
 #include <vsomeip/vsomeip.hpp>
 #include <thread>
+#include <vsomeip/internal/logger.hpp>
 
 #define SAMPLE_SERVICE_ID 0x1234
 #define SAMPLE_INSTANCE_ID 0x5678
@@ -19,6 +20,11 @@ std::condition_variable condition;
  * 创建请求报文 放入请求消息字段后发送
  */
 void run_request() {
+  if (!app->is_available(SAMPLE_SERVICE_ID,SAMPLE_INSTANCE_ID))
+  {
+    VSOMEIP_INFO<<"[SAMPLE_SERVICE_ID,SAMPLE_INSTANCE_ID] 服务状态不可用";
+  }
+  
   std::unique_lock<std::mutex> its_lock(mutex);
   condition.wait(its_lock);
 
@@ -32,19 +38,15 @@ void run_request() {
 
   //* 设置请求消息内容（入参内容）
   std::vector<vsomeip::byte_t> its_payload_data;
-  std::string str = "hello XYB";
+  std::string str = "Hello World";
 
   auto start = (uint8_t *)str.data();
   auto end = str.size();
-  std::cout<<"入参长度为"<<(int)end<<std::endl;
   for (auto i = 0; i < end; i++)
   {
       its_payload_data.push_back(*(start+i));
   }
 
-  std::stringstream sss;
-  sss<<its_payload_data.data();
-  std::cout<<"直接输出vector数据域内容["<<sss.str()<<"]"<<std::endl;
   its_payload->set_data(its_payload_data);
   request->set_payload(its_payload);
   app->send(request);
@@ -68,8 +70,7 @@ void request_ret_handler(const std::shared_ptr<vsomeip::message> &_response) {
       << ss.str() <<" ]"<< std::endl;
 }
 
-
-//*服务可用性检查
+//*服务可用性变化时的回调
 void on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available) {
     std::cout<<"Service [ "<< _service <<" ]"<<" Instance [ "<<_instance<<" ]"<<" _is_available [ "<<(_is_available ? "true" : "false")<<" ]"<<std::endl;
     condition.notify_one();//检测到服务后 激活请求操作

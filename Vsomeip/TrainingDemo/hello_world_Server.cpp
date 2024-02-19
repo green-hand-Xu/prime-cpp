@@ -1,10 +1,21 @@
+/**
+ * @file hello_world_Server.cpp
+ * @author XuYingBo (you@domain.com)
+ * @brief Vsomeip 服务端示例代码
+ * TODO 当入参为多个值时，应如何进行入参类型转回？
+ * @version 0.1
+ * @date 2024-02-19
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 
 #include <vsomeip/vsomeip.hpp>
-
+#include <vsomeip/internal/logger.hpp>
 #define SAMPLE_SERVICE_ID 0x1234
 #define SAMPLE_INSTANCE_ID 0x5678
 #define SAMPLE_METHOD_ID 0x0421
@@ -23,12 +34,10 @@ void get_message(const std::shared_ptr<vsomeip::message> &_request) {
 
     //* 2、解析 payload 内容
     std::stringstream ss;
-    ss << its_payload->get_data();
+    ss << its_payload->get_data(); // 该请求内容的格式应是提前定义好的接口入参。
 
-    std::cout << "SERVICE: 收到来自 Client/Session ["
-        << _request->get_client() << "/"
-        << _request->get_session() << "] 的调用,内容为: [" 
-        << ss.str() <<" ]"<< std::endl;
+    std::cout << "SERVICE: 收到来自 Client/Session ["<< _request->get_client() << "/"<< _request->get_session() 
+        << "] 的调用,内容为: [" << ss.str() <<" ]"<< std::endl;
 
     //* 3、基于请求消息字段相关属性，创建一条用于回复的消息对象。
     std::shared_ptr<vsomeip::message> its_response = vsomeip::runtime::get()->create_response(_request);
