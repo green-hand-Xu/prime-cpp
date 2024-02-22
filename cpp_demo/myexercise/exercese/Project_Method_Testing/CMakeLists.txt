@@ -1,27 +1,17 @@
-cmake_minimum_required(VERSION 3.16.0)
+cmake_minimum_required (VERSION 3.16.0)
 
-project(demo)
-
-option(USEMacro1 "Macro1 宏开关" OFF)
-
-#判断宏开关是否打开 打开则添加宏定义进来
-if(USEMacro1)
-    add_definitions("-DMacro1") #可以将这一行理解为加入编译命令行的语句 需要-D开头 加 自定义的宏名字
-endif(USEMacro1)
-
-message(STATUS "USEMacro1 = " ${USEMacro1})
-
-set(CMAKE_CXX_STANDARD 20)   
-#设置可执行文件输出位置
-#set(EXECUTABLE_OUTPUT_PATH ./bin)
-
-find_package (Threads REQUIRED)
-
-include_directories( 
-    ${CMAKE_CURRENT_SOURCE_DIR}
+# set (CMAKE_CXX_FLAGS "-g -std=c++0x")
+project(FirstProject)
+# vsomeip 库
+find_package (vsomeip3 3.3.5 REQUIRED)
+# boost 库
+find_package( Boost 1.71 COMPONENTS system thread log REQUIRED )
+# vsomeip  boost 的头文件目录
+include_directories (
+    ${Boost_INCLUDE_DIR}
+    ${VSOMEIP_INCLUDE_DIRS}
 )
 
-add_executable(demo bitmask.cpp)
+add_executable(demo PriorityFramework.cpp)
 
-target_link_libraries(demo pthread)
-
+target_link_libraries(demo vsomeip3 ${Boost_LIBRARIES})
