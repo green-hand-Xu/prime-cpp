@@ -21,7 +21,7 @@
         1、优先级高的先执行
         2、同优先级，后触发先执行
         3、中断后进行被中断任务的前提条件判断，若仍满足触发和前提条件，则保留任务用于恢复执行（恢复执行时，仍需要进行前提/触发的判断）,若不满足触发条件活前提条件，则删除该任务。
-*TODO： 4、高优先级触发时，收到低优先级命令，是丢弃还是加入任务队列等待触发。
+*TODO： 4、高优先级触发时，收到低优先级命令，是丢弃还是加入任务队列等待触发。（暂时直接丢弃）
 
     **测试用例
     1、高优先级打断低优先级
@@ -37,16 +37,23 @@
 #include <condition_variable>
 #include <functional>
 #include <list>
-//使用vsomeip的日志库
-#include <vsomeip/internal/logger.hpp>
+#include <thread>
+
+
+bool SwtSt{false};
 
 //* 最底层的开关操作，该操作不能并发控制，同时操作时应遵循优先级规则。
-void Open(){
-    VSOMEIP_INFO<<" 打开 ";
+void Open(std::string str){
+    std::cout<<str<<" 打开 "<<std::endl;
 }
 
-void Close(){
-    VSOMEIP_INFO<<" 关闭 ";
+void Close(std::string str){
+    if (SwtSt)
+    {
+        std::cout<<str<<" 关闭 "<<std::endl;
+    }else{
+        std::cout<<str<<" 关闭,前提条件不满足 "<<std::endl;
+    }
 }
 
 //* 待执行的任务
@@ -62,13 +69,38 @@ struct Task
     std::function<void()> interruptTask{nullptr};
 };
 
+//执行流程中打打断标志位
+bool terminal{false};
 
+//执行器
+struct actuator
+{
+    // task running status flag bit
+    bool isRunning{false};
+    // execute task queue
+    std::list<Task> tasks;
 
-//待执行任务队列
-std::list<Task> tasks;
-
+    void run(){
+        if (isRunning)
+        {
+            std::cout<<"There is already a running actuator"<<std::endl;
+            return;
+        }
+        
+        std::thread([this](){
+            isRunning = true;
+            while (!tasks.empty())
+            {
+                tasks.back().task;
+            }
+            isRunning = false;
+        }).detach();
+    }
+};
 
 
 int main(){
 
+
+    return 0;
 }
