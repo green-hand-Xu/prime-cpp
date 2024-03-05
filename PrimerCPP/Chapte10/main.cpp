@@ -243,8 +243,51 @@ void gf_count_if(){
     cout<<"使条件成真的次数为："<<ret<<endl;
 }
 
+/**
+ * @brief 删除掉容器类型为结构体成员的重复元素
+ */
+void RmStructRepetitive(){
+    struct Command
+    {
+        int a;
+        int b;
+    };
+    
+    Command Ca{2,2};
+    Command Cb{3,3};
+    Command Cc{4,4};
+
+    std::vector<Command> Vec{Cb,Ca,Cc};
+
+    std::cout<<"before the sort "<<std::endl;
+    for(auto n : Vec){
+        std::cout<<n.a<<" ";
+    }
+    std::cout<<std::endl;
+    std::sort(Vec.begin(),Vec.end(),[](Command a, Command b){return a.a<b.a;});
+
+    std::cout<<"after the sort "<<std::endl;
+    for(auto n : Vec){
+        std::cout<<n.a<<" ";
+    }
+    std::cout<<std::endl;
+    std::cout<<"source size "<<Vec.size()<<std::endl;
+    //remove the repetitive elements
+    auto last = std::unique(Vec.begin(),Vec.end(),[](Command a, Command b){return a.a == b.a;});
+    Vec.erase(last,Vec.end());
+
+    std::cout<<"after the erase "<<std::endl;
+    for(auto n : Vec){
+        std::cout<<n.a<<" ";
+    }
+    std::cout<<std::endl;
+    std::cout<<"after erase size "<<Vec.size()<<std::endl;
+    
+}
+
+
 int main(){
-    gf_count_if();
+    RmStructRepetitive();
 
     return 0;
 }
