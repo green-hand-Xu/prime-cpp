@@ -12,6 +12,6 @@ include_directories (
     ${VSOMEIP_INCLUDE_DIRS}
 )
 
-add_executable(demo main.cpp)
+add_executable(demo Priority.cpp)
 
 target_link_libraries(demo vsomeip3 ${Boost_LIBRARIES})
